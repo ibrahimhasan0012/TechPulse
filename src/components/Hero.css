@@ -1,0 +1,211 @@
+.hero {
+    padding: 36px 0 0;
+}
+
+/* Category pills */
+.hero-pills {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+}
+
+.pill {
+    padding: 7px 18px;
+    background: var(--bg-card);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-full);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    transition: border-color var(--transition), color var(--transition), background var(--transition), box-shadow var(--transition);
+}
+
+.pill:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-glow);
+    box-shadow: 0 2px 10px rgba(30, 59, 138, 0.1);
+}
+
+/* Hero card */
+.hero-card {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--bg-card);
+    box-shadow: var(--shadow-lg);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 420px;
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.hero-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 50px rgba(30, 59, 138, 0.18);
+}
+
+/* Image */
+.hero-image-wrap {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.hero-card:hover .hero-image {
+    transform: scale(1.04);
+}
+
+.hero-image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(30, 59, 138, 0.2) 0%, transparent 60%);
+}
+
+.hero-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: var(--radius-full);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent);
+    backdrop-filter: blur(8px);
+    box-shadow: var(--shadow-sm);
+}
+
+.live-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #e53935;
+    animation: pulse-dot 1.6s ease-in-out infinite;
+}
+
+/* Content */
+.hero-content {
+    padding: 40px 44px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
+}
+
+.hero-title {
+    font-size: clamp(22px, 2.5vw, 32px);
+    font-weight: 800;
+    color: var(--text-primary);
+    line-height: 1.25;
+    letter-spacing: -0.5px;
+}
+
+.hero-excerpt {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.65;
+}
+
+/* Meta */
+.hero-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 8px;
+}
+
+.hero-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.author-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent-bright));
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(30, 59, 138, 0.25);
+}
+
+.author-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.hero-date {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+/* Read button */
+.btn-read {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 22px;
+    background: var(--accent);
+    color: white;
+    border-radius: var(--radius-full);
+    font-size: 14px;
+    font-weight: 600;
+    transition: background var(--transition), box-shadow var(--transition), transform var(--transition);
+    box-shadow: 0 4px 16px rgba(30, 59, 138, 0.28);
+    white-space: nowrap;
+}
+
+.btn-read .material-icons-round {
+    font-size: 18px;
+    transition: transform var(--transition);
+}
+
+.btn-read:hover {
+    background: var(--accent-light);
+    transform: translateX(2px);
+    box-shadow: 0 6px 20px rgba(30, 59, 138, 0.38);
+}
+
+.btn-read:hover .material-icons-round {
+    transform: translateX(3px);
+}
+
+@media (max-width: 768px) {
+    .hero-card {
+        grid-template-columns: 1fr;
+        min-height: auto;
+    }
+
+    .hero-image-wrap {
+        height: 220px;
+    }
+
+    .hero-content {
+        padding: 24px;
+    }
+
+    .hero-meta {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
