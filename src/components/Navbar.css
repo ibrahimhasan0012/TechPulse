@@ -138,6 +138,20 @@
     color: var(--text-secondary);
 }
 
+.lang-toggle {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    padding: 6px 12px;
+    border-radius: var(--radius-full);
+    transition: background var(--transition), color var(--transition);
+}
+
+.lang-toggle:hover {
+    background: var(--accent-glow);
+    color: var(--accent);
+}
+
 /* Mobile menu */
 .mobile-menu {
     display: flex;

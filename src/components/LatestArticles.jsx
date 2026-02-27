@@ -1,14 +1,17 @@
 import { useNavigate } from 'react-router-dom'
+import { useAppContext } from '../context/AppContext'
+import { getTranslation } from '../data/translations'
 import { ARTICLES } from '../data/articles'
 import './LatestArticles.css'
 
 export default function LatestArticles() {
     const navigate = useNavigate()
+    const { lang } = useAppContext()
 
     return (
         <section className="latest">
             <div className="latest-header">
-                <h2 className="latest-title">Latest Articles</h2>
+                <h2 className="latest-title">{getTranslation('LatestArticles', lang)}</h2>
                 <a href="#" className="view-all">
                     View All
                     <span className="material-icons-round">chevron_right</span>
@@ -23,12 +26,12 @@ export default function LatestArticles() {
                         onClick={() => navigate(`/article/${article.id}`)}
                     >
                         <div className="article-image-wrap">
-                            <img src={article.img} alt={article.title} className="article-image" />
+                            <img src={article.img} alt={lang === 'bn' && article.title_bn ? article.title_bn : article.title} className="article-image" />
                         </div>
                         <div className="article-body">
                             <span className="chip">{article.category}</span>
-                            <h3 className="article-title">{article.title}</h3>
-                            <p className="article-excerpt">{article.excerpt}</p>
+                            <h3 className="article-title">{lang === 'bn' && article.title_bn ? article.title_bn : article.title}</h3>
+                            <p className="article-excerpt">{lang === 'bn' && article.excerpt_bn ? article.excerpt_bn : article.excerpt}</p>
                             <div className="article-meta">
                                 <div className="article-author">
                                     <div className="article-avatar">{article.author[0]}</div>

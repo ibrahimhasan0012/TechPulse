@@ -1,12 +1,15 @@
+import { useAppContext } from '../context/AppContext'
+import { getTranslation } from '../data/translations'
 import './Footer.css'
 
 const LINKS = {
-    Topics: ['Technology', 'AI & Machine Learning', 'Development', 'Design', 'Hardware', 'Startups'],
-    Company: ['About Us', 'Careers', 'Advertise', 'Contact'],
+    Topics: ['Technology', 'AI', 'Development', 'Design', 'Hardware', 'Startups'],
+    Company: ['AboutUs', 'Careers', 'Advertise', 'Contact'],
     Legal: ['Privacy Policy', 'Terms of Service', 'Cookie Policy'],
 }
 
 export default function Footer() {
+    const { lang } = useAppContext()
     return (
         <footer className="footer">
             <div className="container">
@@ -20,7 +23,7 @@ export default function Footer() {
                             <span className="logo-text">TechPulse</span>
                         </div>
                         <p className="footer-tagline">
-                            Your daily source for technology news, analysis, and insights that matter.
+                            {getTranslation('FooterTagline', lang)}
                         </p>
                         <div className="footer-socials">
                             {['twitter', 'linkedin', 'rss_feed', 'alternate_email'].map(icon => (
@@ -34,11 +37,11 @@ export default function Footer() {
                     {/* Link columns */}
                     {Object.entries(LINKS).map(([col, items]) => (
                         <div key={col} className="footer-col">
-                            <h4 className="footer-col-title">{col}</h4>
+                            <h4 className="footer-col-title">{getTranslation(col, lang)}</h4>
                             <ul>
                                 {items.map(item => (
                                     <li key={item}>
-                                        <a href="#" className="footer-link">{item}</a>
+                                        <a href="#" className="footer-link">{getTranslation(item, lang)}</a>
                                     </li>
                                 ))}
                             </ul>

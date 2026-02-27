@@ -26,6 +26,23 @@
   --font: 'Inter', system-ui, sans-serif;
 }
 
+:root.dark {
+  --accent: #4f6edb;
+  --accent-light: #5d7fe8;
+  --accent-bright: #7c98f2;
+  --accent-glow: rgba(79, 110, 219, 0.15);
+  --bg: #0a0e17;
+  --bg-card: #121926;
+  --bg-chip: #1e2638;
+  --text-primary: #e6e9f0;
+  --text-secondary: #9aa5c3;
+  --text-muted: #64739a;
+  --border: #212d45;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.6);
+}
+
 *,
 *::before,
 *::after {

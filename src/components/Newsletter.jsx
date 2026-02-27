@@ -1,7 +1,10 @@
 import { useState } from 'react'
+import { useAppContext } from '../context/AppContext'
+import { getTranslation } from '../data/translations'
 import './Newsletter.css'
 
 export default function Newsletter() {
+    const { lang } = useAppContext()
     const [email, setEmail] = useState('')
     const [subscribed, setSubscribed] = useState(false)
 
@@ -17,32 +20,32 @@ export default function Newsletter() {
             <div className="newsletter-icon-wrap">
                 <span className="material-icons-round newsletter-icon">mail</span>
             </div>
-            <h3 className="newsletter-title">Stay Updated</h3>
+            <h3 className="newsletter-title">{getTranslation('StayUpdated', lang)}</h3>
             <p className="newsletter-desc">
-                Get the latest tech news delivered to your inbox weekly. No spam, ever.
+                {getTranslation('NewsletterDescDetailed', lang)}
             </p>
             {subscribed ? (
                 <div className="newsletter-success">
                     <span className="material-icons-round">check_circle</span>
-                    You're subscribed! Welcome aboard.
+                    {getTranslation('SubscribedSuccess', lang)}
                 </div>
             ) : (
                 <form className="newsletter-form" onSubmit={handleSubmit}>
                     <input
                         type="email"
-                        placeholder="you@example.com"
+                        placeholder={getTranslation('NewsletterPlaceholder', lang)}
                         value={email}
                         onChange={e => setEmail(e.target.value)}
                         className="newsletter-input"
                         required
                     />
                     <button type="submit" className="newsletter-btn">
-                        Subscribe
+                        {getTranslation('Subscribe', lang)}
                         <span className="material-icons-round">send</span>
                     </button>
                 </form>
             )}
-            <p className="newsletter-note">Join 28,400+ readers · Cancel anytime</p>
+            <p className="newsletter-note">{getTranslation('NewsletterNote', lang)}</p>
         </div>
     )
 }

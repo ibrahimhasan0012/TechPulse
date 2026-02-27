@@ -1,5 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
+import { useAppContext } from '../context/AppContext'
+import { getTranslation } from '../data/translations'
 import { getArticleById, ARTICLES } from '../data/articles'
 import './ArticlePage.css'
 
@@ -52,6 +54,7 @@ function ArticleContent({ blocks }) {
 export default function ArticlePage() {
     const { id } = useParams()
     const navigate = useNavigate()
+    const { lang } = useAppContext()
     const article = getArticleById(id)
 
     useEffect(() => { window.scrollTo(0, 0) }, [id])
@@ -60,8 +63,8 @@ export default function ArticlePage() {
         return (
             <div className="article-not-found">
                 <span className="material-icons-round">article</span>
-                <h2>Article not found</h2>
-                <button onClick={() => navigate('/')}>← Back to Home</button>
+                <h2>{getTranslation('ArticleNotFound', lang)}</h2>
+                <button onClick={() => navigate('/')}>{getTranslation('BackToHome', lang)}</button>
             </div>
         )
     }
@@ -76,10 +79,10 @@ export default function ArticlePage() {
                 <div className="container article-hero-content">
                     <button className="back-btn" onClick={() => navigate('/')}>
                         <span className="material-icons-round">arrow_back</span>
-                        Back
+                        {getTranslation('Back', lang)}
                     </button>
                     <span className="chip dark">{article.category}</span>
-                    <h1 className="article-page-title">{article.title}</h1>
+                    <h1 className="article-page-title">{lang === 'bn' && article.title_bn ? article.title_bn : article.title}</h1>
                     <div className="article-page-meta">
                         <div className="article-page-author">
                             <div className="page-author-avatar">{article.author[0]}</div>
@@ -103,7 +106,7 @@ export default function ArticlePage() {
             {/* Article body */}
             <div className="container article-layout">
                 <article className="article-body-col">
-                    <ArticleContent blocks={article.content} />
+                    <ArticleContent blocks={lang === 'bn' && article.content_bn ? article.content_bn : article.content} />
 
                     {/* Author card */}
                     <div className="author-card">
@@ -122,7 +125,7 @@ export default function ArticlePage() {
                         <div className="sidebar-card">
                             <h4 className="sidebar-card-title">
                                 <span className="material-icons-round">memory</span>
-                                Quick Specs
+                                {getTranslation('QuickSpecs', lang)}
                             </h4>
                             <ul className="quick-specs">
                                 {(article.id === 'samsung-galaxy-s26-ultra' ? [
@@ -159,7 +162,7 @@ export default function ArticlePage() {
                         <div className="sidebar-card">
                             <h4 className="sidebar-card-title">
                                 <span className="material-icons-round">library_books</span>
-                                Related
+                                {getTranslation('Related', lang)}
                             </h4>
                             <div className="related-list">
                                 {related.map(a => (
@@ -170,7 +173,7 @@ export default function ArticlePage() {
                                     >
                                         <img src={a.img} alt={a.title} className="related-img" />
                                         <div>
-                                            <p className="related-title">{a.title}</p>
+                                            <p className="related-title">{lang === 'bn' && a.title_bn ? a.title_bn : a.title}</p>
                                             <p className="related-date">{a.date}</p>
                                         </div>
                                     </div>
