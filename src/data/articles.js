@@ -134,6 +134,11 @@ export const ARTICLES = [
                 text: "While the standard Galaxy S26 and S26+ models are relying on Samsung's in-house Exynos 2600 chipset in certain global regions, the S26 Ultra avoids handset fragmentation completely. Every Galaxy S26 Ultra unit sold globally is powered by the customized Qualcomm Snapdragon 8 Elite Gen 5 Mobile Platform for Galaxy. This chip delivers substantial year-over-year gains across the CPU, GPU, and NPU, focusing particularly on heavily optimized local AI task processing, thermal management, and power efficiency during sustained loads.",
             },
             {
+                type: 'image',
+                src: 'https://images.samsung.com/uk/smartphones/galaxy-s26-ultra/images/galaxy-s26-ultra-features-ap-a-start.jpg',
+                caption: "The S26 Ultra is powered globally by the Snapdragon 8 Elite Gen 5 for Galaxy platform.",
+            },
+            {
                 type: 'h2',
                 text: '60W Super Fast Charging 3.0',
             },
@@ -142,10 +147,15 @@ export const ARTICLES = [
                 text: "Battery capacity remains unchanged from the previous generation, but Samsung has finally addressed charging speeds. The Galaxy S26 Ultra upgrades to Super Fast Charging 3.0, allowing the device to draw up to 60W over a wire. According to Samsung's figures, this translates to roughly a 75% charge in just 30 minutes, drastically cutting down time spent tethered to a wall. To support the new standard, Samsung has also introduced a new 60W USB-C power adapter alongside the device.",
             },
             {
+                type: 'image',
+                src: 'https://images.samsung.com/uk/smartphones/galaxy-s26-ultra/images/galaxy-s26-ultra-features-nightography-start.jpg',
+                caption: "Samsung promises significant upgrades in charging speeds, getting you back to taking photos faster.",
+            },
+            {
                 type: 'specs',
                 title: 'Samsung Galaxy S26 Ultra — Key Specs',
                 items: [
-                    ['Display', '6.9\" QHD+ LTPO AMOLED, 120Hz, Built-in Privacy Display'],
+                    ['Display', '6.9" QHD+ LTPO AMOLED, 120Hz, Built-in Privacy Display'],
                     ['Chipset', 'Snapdragon 8 Elite Gen 5 for Galaxy (Global)'],
                     ['RAM / Storage', 'Up to 20GB / 2TB'],
                     ['Battery', '5,000mAh'],
