@@ -43,6 +43,10 @@
   --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.6);
 }
 
+html[lang="bn"] {
+  --font: 'Inter', 'Tiro Bangla', system-ui, sans-serif;
+}
+
 *,
 *::before,
 *::after {

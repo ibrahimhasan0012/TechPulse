@@ -26,6 +26,7 @@ export const AppProvider = ({ children }) => {
 
     useEffect(() => {
         localStorage.setItem('lang', lang);
+        document.documentElement.lang = lang;
     }, [lang]);
 
     const toggleTheme = () => setTheme(prev => prev === 'light' ? 'dark' : 'light');
