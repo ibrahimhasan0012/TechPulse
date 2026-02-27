@@ -57,6 +57,11 @@ export const ARTICLES = [
                 text: "To accompany the pink reveal, Nothing published a video exploring the \"design secrets\" of the Phone (4a), featuring commentary from the company's Industrial Design team. The pink version takes center stage, giving viewers an in-depth look at how this new colorway was developed alongside Nothing's trademark transparent-back aesthetic.",
             },
             {
+                type: 'youtube',
+                videoId: 'fngzyCbHndk',
+                title: 'Watch the Nothing Phone (4a) in Action',
+            },
+            {
                 type: 'h2',
                 text: 'What the Specs Look Like So Far',
             },
@@ -133,6 +138,11 @@ export const ARTICLES = [
             {
                 type: 'paragraph',
                 text: "গোলাপী রঙের সংস্করণটি প্রকাশের পাশাপাশি, নাথিং ফোন (4a) এর \"নকশার গোপন রহস্য\" সম্পর্কে একটি ভিডিও প্রকাশ করেছে, যেখানে তাদের ইন্ডাস্ট্রিয়াল ডিজাইন দলের সদস্যরা কথা বলেছেন। এই ভিডিওতে গোলাপী সংস্করণটিই সবচেয়ে বেশি প্রাধান্য পেয়েছে, যা দর্শকদের দেখায় কীভাবে এই নতুন রংটিকে নাথিংয়ের সিগনেচার স্বচ্ছ পিছনের ডিজাইনের সাথে মিলিয়ে তৈরি করা হয়েছে।",
+            },
+            {
+                type: 'youtube',
+                videoId: 'fngzyCbHndk',
+                title: 'অ্যাকশনে দেখুন নাথিং ফোন (4a)',
             },
             {
                 type: 'h2',

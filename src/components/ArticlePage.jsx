@@ -43,6 +43,23 @@ function ArticleContent({ blocks }) {
                         )
                     case 'specs':
                         return <SpecTable key={i} title={block.title} items={block.items} />
+                    case 'youtube':
+                        return (
+                            <div key={i} className="video-section">
+                                {block.title && <h3 className="video-title">{block.title}</h3>}
+                                <div className="video-container">
+                                    <iframe
+                                        width="100%"
+                                        height="600"
+                                        src={`https://www.youtube.com/embed/${block.videoId}`}
+                                        title={block.title || "YouTube video player"}
+                                        frameBorder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowFullScreen>
+                                    </iframe>
+                                </div>
+                            </div>
+                        )
                     default:
                         return null
                 }
