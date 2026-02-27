@@ -11,8 +11,10 @@ export const ARTICLES = [
         excerpt_bn:
             "নাথিং তাদের ৫ই মার্চের লঞ্চের জন্য প্রস্তুতি নিচ্ছে এবং বড় উন্মোচনের আগেই কোম্পানিটি একটি আকর্ষণীয় নতুন গোলাপী ফিনিশে ফোন (4a) উন্মোচন করেছে — যা ব্র্যান্ডটির জন্য প্রথম। এখানে নতুন রঙ এবং এখন পর্যন্ত আমাদের জানা সবকিছুর একটি বিশদ দৃষ্টি দেওয়া হলো।",
         author: 'Ibrahim Hassan',
+        author_bn: 'ইব্রাহিম হাসান',
         authorBio: 'Ibrahim covers mobile hardware and consumer tech at TechPulse.',
         date: 'Feb 27, 2026',
+        date_bn: '২৭ ফেব, ২০২৬',
         readTime: '4 min read',
         img: 'https://st.gsmarena.com/imgroot/news/26/02/nothing-phone-4a-pink/-1220x526/gsmarena_000.jpg',
         content: [

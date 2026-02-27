@@ -35,8 +35,8 @@
   --bg-card: #121926;
   --bg-chip: #1e2638;
   --text-primary: #e6e9f0;
-  --text-secondary: #9aa5c3;
-  --text-muted: #64739a;
+  --text-secondary: #a9b5d6;
+  --text-muted: #8492b4;
   --border: #212d45;
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
   --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.5);
@@ -61,6 +61,7 @@ body {
   color: var(--text-primary);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  transition: background-color var(--transition), color var(--transition);
 }
 
 img {

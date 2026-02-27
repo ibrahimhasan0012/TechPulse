@@ -122,6 +122,22 @@ export const translations = {
     FooterTagline: {
         en: 'Your daily source for technology news, analysis, and insights that matter.',
         bn: 'প্রযুক্তি খবর, বিশ্লেষণ এবং গুরুত্বপূর্ণ দৃষ্টিভঙ্গির আপনার দৈনিক উৎস।'
+    },
+    Hardware: {
+        en: 'Hardware',
+        bn: 'হার্ডওয়্যার'
+    },
+    Startups: {
+        en: 'Startups',
+        bn: 'স্টার্টআপ'
+    },
+    Featured: {
+        en: 'Featured',
+        bn: 'ফিচারড'
+    },
+    ReadArticle: {
+        en: 'Read Article',
+        bn: 'নিবন্ধটি পড়ুন'
     }
 };
 
