@@ -101,7 +101,7 @@ export const ARTICLES = [
         authorBio: 'Ibrahim covers mobile hardware and consumer tech at TechPulse.',
         date: 'Feb 27, 2026',
         readTime: '5 min read',
-        img: 'https://fdn.gsmarena.com/imgroot/news/26/02/samsung-galaxy-s26-ultra-official/-1220x526/gsmarena_000.jpg',
+        img: 'https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-s26-ultra-1.jpg',
         content: [
             {
                 type: 'lead',
@@ -109,7 +109,7 @@ export const ARTICLES = [
             },
             {
                 type: 'image',
-                src: 'https://fdn.gsmarena.com/imgroot/news/26/02/samsung-galaxy-s26-ultra-official/inline/-1200/gsmarena_001.jpg',
+                src: 'https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-s26-ultra-1.jpg',
                 caption: 'The Samsung Galaxy S26 Ultra, officially unveiled at Galaxy Unpacked on February 26, 2026.',
             },
             {
@@ -130,7 +130,7 @@ export const ARTICLES = [
             },
             {
                 type: 'image',
-                src: 'https://fdn.gsmarena.com/imgroot/news/26/02/samsung-galaxy-s26-ultra-official/inline/-1200/gsmarena_002.jpg',
+                src: 'https://images.unsplash.com/photo-1610945264803-c22b62d2a7b3?w=1200&q=80',
                 caption: "Samsung's new Privacy Display mode limits screen visibility to the person directly in front of the phone.",
             },
             {
