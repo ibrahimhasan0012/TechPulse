@@ -15,6 +15,29 @@ export const AppProvider = ({ children }) => {
         return saved || 'en';
     });
 
+    const [articles, setArticles] = useState([]);
+    const [loadingArticles, setLoadingArticles] = useState(true);
+
+    useEffect(() => {
+        const fetchArticles = async () => {
+            try {
+                // Fetch from the public folder dynamically
+                const response = await fetch(`${import.meta.env.BASE_URL}data/articles.json`);
+                if (response.ok) {
+                    const data = await response.json();
+                    setArticles(data);
+                } else {
+                    console.error("Failed to fetch articles:", response.status);
+                }
+            } catch (error) {
+                console.error("Error fetching articles data:", error);
+            } finally {
+                setLoadingArticles(false);
+            }
+        };
+        fetchArticles();
+    }, []);
+
     useEffect(() => {
         localStorage.setItem('theme', theme);
         if (theme === 'dark') {
@@ -33,7 +56,7 @@ export const AppProvider = ({ children }) => {
     const toggleLang = () => setLang(prev => prev === 'en' ? 'bn' : 'en');
 
     return (
-        <AppContext.Provider value={{ theme, lang, toggleTheme, toggleLang }}>
+        <AppContext.Provider value={{ theme, lang, toggleTheme, toggleLang, articles, loadingArticles }}>
             {children}
         </AppContext.Provider>
     );

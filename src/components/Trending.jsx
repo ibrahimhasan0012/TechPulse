@@ -1,14 +1,17 @@
 import { Link } from 'react-router-dom'
 import { useAppContext } from '../context/AppContext'
 import { getTranslation } from '../data/translations'
-import { ARTICLES } from '../data/articles'
 import './Trending.css'
 
 export default function Trending() {
-    const { lang } = useAppContext()
+    const { lang, articles, loadingArticles } = useAppContext()
+
+    if (loadingArticles) {
+        return <div className="trending-card" style={{ opacity: 0.5 }}>Loading trending...</div>
+    }
 
     // Dynamically calculate trending by getting the top 3 newest articles
-    const trendingList = [...ARTICLES]
+    const trendingList = [...articles]
         .sort((a, b) => new Date(b.date) - new Date(a.date))
         .slice(0, 3)
 

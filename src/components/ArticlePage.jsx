@@ -2,7 +2,6 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useAppContext } from '../context/AppContext'
 import { getTranslation } from '../data/translations'
-import { getArticleById, ARTICLES } from '../data/articles'
 import './ArticlePage.css'
 
 function SpecTable({ title, items }) {
@@ -71,10 +70,15 @@ function ArticleContent({ blocks }) {
 export default function ArticlePage() {
     const { id } = useParams()
     const navigate = useNavigate()
-    const { lang } = useAppContext()
-    const article = getArticleById(id)
+    const { lang, articles, loadingArticles } = useAppContext()
 
     useEffect(() => { window.scrollTo(0, 0) }, [id])
+
+    if (loadingArticles) {
+        return <div className="article-page" style={{ textAlign: 'center', padding: '100px', opacity: 0.5 }}>Loading...</div>
+    }
+
+    const article = articles.find(a => String(a.id) === String(id));
 
     if (!article) {
         return (
@@ -86,12 +90,12 @@ export default function ArticlePage() {
         )
     }
 
-    const related = ARTICLES.filter(a => a.id !== id && a.category === article.category).slice(0, 2)
+    const related = articles.filter(a => a.id !== id && a.category === article.category).slice(0, 2)
 
     return (
         <div className="article-page">
             {/* Hero banner */}
-            <div className="article-hero" style={{ backgroundImage: `url(${article.img})` }}>
+            <div className="article-hero" style={{ backgroundImage: `url(${article.imageUrl || article.img})` }}>
                 <div className="article-hero-overlay" />
                 <div className="container article-hero-content">
                     <button className="back-btn" onClick={() => navigate('/')}>
@@ -123,7 +127,15 @@ export default function ArticlePage() {
             {/* Article body */}
             <div className="container article-layout">
                 <article className="article-body-col">
-                    <ArticleContent blocks={lang === 'bn' && article.content_bn ? article.content_bn : article.content} />
+                    <ArticleContent blocks={(lang === 'bn' && article.content_bn) ? article.content_bn : (article.content || [])} />
+
+                    {article.url && article.source && (
+                        <div style={{ marginTop: '2.5rem', marginBottom: '2.5rem', textAlign: 'center' }}>
+                            <a href={article.url} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', padding: '14px 28px', background: 'var(--accent)', color: 'white', borderRadius: '8px', fontWeight: 'bold', fontSize: '1.1rem', transition: 'var(--transition)' }}>
+                                {lang === 'bn' ? 'মূল ওয়েবসাইটে পড়ুন' : `Read Full Article on ${article.source}`}
+                            </a>
+                        </div>
+                    )}
 
                     {/* Author card */}
                     <div className="author-card">
@@ -188,7 +200,7 @@ export default function ArticlePage() {
                                         className="related-item"
                                         onClick={() => navigate(`/article/${a.id}`)}
                                     >
-                                        <img src={a.img} alt={a.title} className="related-img" />
+                                        <img src={a.imageUrl || a.img} alt={a.title} className="related-img" />
                                         <div>
                                             <p className="related-title">{lang === 'bn' && a.title_bn ? a.title_bn : a.title}</p>
                                             <p className="related-date">{a.date}</p>

@@ -1,12 +1,22 @@
 import { useNavigate } from 'react-router-dom'
 import { useAppContext } from '../context/AppContext'
 import { getTranslation } from '../data/translations'
-import { ARTICLES } from '../data/articles'
 import './LatestArticles.css'
 
 export default function LatestArticles() {
     const navigate = useNavigate()
-    const { lang } = useAppContext()
+    const { lang, articles, loadingArticles } = useAppContext()
+
+    if (loadingArticles) {
+        return (
+            <section className="latest">
+                <div className="latest-header">
+                    <h2 className="latest-title">{getTranslation('LatestArticles', lang)}</h2>
+                </div>
+                <div style={{ padding: '2rem 0', opacity: 0.5 }}>Loading feeds...</div>
+            </section>
+        )
+    }
 
     return (
         <section className="latest">
@@ -18,7 +28,7 @@ export default function LatestArticles() {
                 </a>
             </div>
             <div className="articles-list">
-                {ARTICLES.map((article, i) => (
+                {articles.map((article, i) => (
                     <article
                         key={article.id}
                         className="article-card animate-fade-up"
@@ -26,7 +36,7 @@ export default function LatestArticles() {
                         onClick={() => navigate(`/article/${article.id}`)}
                     >
                         <div className="article-image-wrap">
-                            <img src={article.img} alt={lang === 'bn' && article.title_bn ? article.title_bn : article.title} className="article-image" />
+                            <img src={article.imageUrl || article.img} alt={lang === 'bn' && article.title_bn ? article.title_bn : article.title} className="article-image" />
                         </div>
                         <div className="article-body">
                             <span className="chip">{article.category}</span>
