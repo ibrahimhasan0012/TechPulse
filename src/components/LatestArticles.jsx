@@ -3,6 +3,16 @@ import './LatestArticles.css'
 const ARTICLES = [
     {
         id: 1,
+        category: 'Hardware',
+        title: 'Nothing Phone 4a: The Transparent Disruptor Is Back and Better Than Ever',
+        excerpt: 'Nothing\'s latest mid-range phone packs a punchier Glyph Interface, a cleaner NothingOS 3.0, and surprisingly great cameras — all for under $400. Here\'s our full hands-on.',
+        author: 'Ibrahim Hassan',
+        date: 'Feb 27, 2026',
+        readTime: '5 min read',
+        img: 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=600&q=80',
+    },
+    {
+        id: 2,
         category: 'Development',
         title: 'Optimizing React Performance in 2024',
         excerpt: 'Deep dive into the new compiler and rendering strategies that are changing how we build React apps.',
@@ -12,7 +22,7 @@ const ARTICLES = [
         img: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=600&q=80',
     },
     {
-        id: 2,
+        id: 3,
         category: 'Leadership',
         title: 'Leading Remote Engineering Teams',
         excerpt: 'Strategies for maintaining culture and productivity in a distributed-first world.',
@@ -22,7 +32,7 @@ const ARTICLES = [
         img: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80',
     },
     {
-        id: 3,
+        id: 4,
         category: 'Design',
         title: 'UI Trends to Watch in Q4',
         excerpt: 'From glassmorphism to neo-brutalism, what\'s sticking around and what\'s fading out.',
@@ -32,7 +42,7 @@ const ARTICLES = [
         img: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&q=80',
     },
     {
-        id: 4,
+        id: 5,
         category: 'AI',
         title: 'Building with Large Language Models: A Practical Guide',
         excerpt: 'Everything you need to know to integrate LLMs into your production applications safely and efficiently.',
@@ -42,7 +52,7 @@ const ARTICLES = [
         img: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=600&q=80',
     },
     {
-        id: 5,
+        id: 6,
         category: 'Hardware',
         title: 'The New Era of Edge Computing Chips',
         excerpt: 'How custom silicon is pushing AI inference to the very edge of the network.',

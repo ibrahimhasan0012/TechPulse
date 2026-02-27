@@ -47,7 +47,7 @@ export default function Footer() {
                 </div>
 
                 <div className="footer-bottom">
-                    <p>© 2024 TechPulse. All rights reserved.</p>
+                    <p>© 2026 TechPulse. All rights reserved.</p>
                     <p>Built with ❤️ for curious minds</p>
                 </div>
             </div>
