@@ -63,20 +63,34 @@
 }
 
 .trending-label {
+    display: block;
     font-size: 13px;
     font-weight: 600;
     color: var(--text-primary);
     line-height: 1.4;
     margin-bottom: 6px;
+    text-decoration: none;
+    transition: color var(--transition);
+}
+
+.trending-item:hover .trending-label {
+    color: var(--accent);
 }
 
 .trending-meta {
     display: flex;
     align-items: center;
     gap: 8px;
+    margin-bottom: 2px;
 }
 
 .trending-time {
     font-size: 11px;
     color: var(--text-muted);
+}
+
+.trending-author {
+    font-size: 11px;
+    color: var(--text-secondary);
+    font-weight: 500;
 }

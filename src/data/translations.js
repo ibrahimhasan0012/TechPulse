@@ -138,6 +138,10 @@ export const translations = {
     ReadArticle: {
         en: 'Read Article',
         bn: 'নিবন্ধটি পড়ুন'
+    },
+    By: {
+        en: 'By',
+        bn: 'লিখেছেন'
     }
 };
 
