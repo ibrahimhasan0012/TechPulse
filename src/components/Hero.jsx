@@ -1,18 +1,12 @@
+import { useNavigate } from 'react-router-dom'
+import { ARTICLES } from '../data/articles'
 import './Hero.css'
 
-const FEATURED = {
-    category: 'AI',
-    tag: 'Featured',
-    title: 'The Future of AI in Mobile Development: Beyond Chatbots',
-    excerpt:
-        'Exploring how generative AI models are reshaping the architectural landscape of modern mobile applications and user experiences.',
-    author: 'Sarah Chen',
-    date: 'Oct 24, 2023',
-    readTime: '8 min read',
-    img: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=1200&q=80',
-}
+const FEATURED = ARTICLES[0] // Nothing Phone 4a is always first = featured
 
 export default function Hero() {
+    const navigate = useNavigate()
+
     return (
         <section className="hero">
             <div className="container">
@@ -24,7 +18,11 @@ export default function Hero() {
                 </div>
 
                 {/* Featured card */}
-                <div className="hero-card animate-fade-up">
+                <div
+                    className="hero-card animate-fade-up"
+                    onClick={() => navigate(`/article/${FEATURED.id}`)}
+                    style={{ cursor: 'pointer' }}
+                >
                     <div className="hero-image-wrap">
                         <img
                             src={FEATURED.img}
@@ -49,7 +47,10 @@ export default function Hero() {
                                     <p className="hero-date">{FEATURED.date} · {FEATURED.readTime}</p>
                                 </div>
                             </div>
-                            <button className="btn-read">
+                            <button
+                                className="btn-read"
+                                onClick={e => { e.stopPropagation(); navigate(`/article/${FEATURED.id}`) }}
+                            >
                                 Read Article
                                 <span className="material-icons-round">arrow_forward</span>
                             </button>
