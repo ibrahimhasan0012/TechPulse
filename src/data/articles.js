@@ -101,7 +101,7 @@ export const ARTICLES = [
         authorBio: 'Ibrahim covers mobile hardware and consumer tech at TechPulse.',
         date: 'Feb 27, 2026',
         readTime: '4 min read',
-        img: 'https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-s26-ultra-1.jpg',
+        img: 'https://images.samsung.com/uk/smartphones/galaxy-s26-ultra/images/galaxy-s26-ultra-features-kv.jpg',
         content: [
             {
                 type: 'lead',
@@ -109,7 +109,7 @@ export const ARTICLES = [
             },
             {
                 type: 'image',
-                src: 'https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-s26-ultra-1.jpg',
+                src: 'https://images.samsung.com/uk/smartphones/galaxy-s26-ultra/images/galaxy-s26-ultra-features-kv.jpg',
                 caption: 'The Samsung Galaxy S26 Ultra.',
             },
             {
@@ -122,7 +122,7 @@ export const ARTICLES = [
             },
             {
                 type: 'image',
-                src: 'https://images.unsplash.com/photo-1610945264803-c22b62d2a7b3?w=1200&q=80',
+                src: 'https://images.samsung.com/uk/smartphones/galaxy-s26-ultra/images/galaxy-s26-ultra-share-image.jpg',
                 caption: "The Privacy Display limits viewing angles to protect sensitive on-screen information.",
             },
             {
