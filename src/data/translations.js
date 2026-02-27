@@ -9,11 +9,11 @@ export const translations = {
     },
     AI: {
         en: 'AI',
-        bn: 'এআই'
+        bn: 'কৃত্রিম বুদ্ধিমত্তা'
     },
     Development: {
         en: 'Development',
-        bn: 'ডেভেলপমেন্ট'
+        bn: 'সফটওয়্যার ডেভেলপমেন্ট'
     },
     Design: {
         en: 'Design',
@@ -21,11 +21,11 @@ export const translations = {
     },
     Subscribe: {
         en: 'Subscribe',
-        bn: 'সাবস্ক্রাইব'
+        bn: 'সাবস্ক্রাইব করুন'
     },
     BackToHome: {
         en: '← Back to Home',
-        bn: '← হোমে ফিরে যান'
+        bn: '← মূল পাতায় ফিরে যান'
     },
     Back: {
         en: 'Back',
@@ -33,79 +33,79 @@ export const translations = {
     },
     ArticleNotFound: {
         en: 'Article not found',
-        bn: 'নিবন্ধটি পাওয়া যায়নি'
+        bn: 'প্রবন্ধটি খুঁজে পাওয়া যায়নি'
     },
     QuickSpecs: {
         en: 'Quick Specs',
-        bn: 'একনজরে স্পেকস'
+        bn: 'একনজরে স্পেসিফিকেশন'
     },
     Related: {
         en: 'Related',
-        bn: 'সম্পর্কিত'
+        bn: 'সম্পর্কিত প্রবন্ধ'
     },
     LatestArticles: {
         en: 'Latest Articles',
-        bn: 'সর্বশেষ সংবাদ'
+        bn: 'সাম্প্রতিক নিবন্ধ'
     },
     TrendingNow: {
         en: 'Trending Now',
-        bn: 'ট্রেন্ডিং'
+        bn: 'বর্তমানে জনপ্রিয়'
     },
     NewsletterTitle: {
         en: 'Stay inside the loop',
-        bn: 'আপডেট থাকুন'
+        bn: 'সবশেষ খবরের সাথে যুক্ত থাকুন'
     },
     NewsletterDesc: {
         en: 'Get our weekly newsletter delivered directly to your inbox.',
-        bn: 'সরাসরি ইনবক্সে সাপ্তাহিক নিউজলেটার পান।'
+        bn: 'আমাদের সাপ্তাহিক নিউজলেটার সরাসরি আপনার ইনবক্সে পেতে সাবস্ক্রাইব করুন।'
     },
     NewsletterPlaceholder: {
         en: 'Email address',
-        bn: 'ইমেইল অ্যাড্রেস'
+        bn: 'আপনার ইমেইল ঠিকানা'
     },
     ReadPrefix: {
         en: 'Read ',
-        bn: 'পড়তে '
+        bn: ''
     },
     ReadSuffix: {
         en: ' min',
-        bn: ' মিনিট'
+        bn: ' মিনিটের পাঠ'
     },
     ApplesNewChip: {
         en: "Apple's New Chip Announcement",
-        bn: "অ্যাপলের নতুন চিপ ঘোষণা"
+        bn: "অ্যাপলের নতুন চিপ উন্মোচন"
     },
     Python4Rumors: {
         en: 'Python 4.0 Rumors Debunked',
-        bn: 'পাইথন ৪.০ এর গুজব খণ্ডিত'
+        bn: 'পাইথন ৪.০-এর গুঞ্জনের অবসান'
     },
     RiseOfLocalLLMs: {
         en: 'The Rise of Local LLMs',
-        bn: 'লোকাল এলএলএম এর উত্থান'
+        bn: 'লোকাল এলএলএম-এর ক্রমবর্ধমান জনপ্রিয়তা'
     },
     ZeroDayExploit: {
         en: 'Zero-Day Exploit Found in Major Framework',
-        bn: 'প্রধান ফ্রেমওয়ার্কে জিরো-ডে এক্সপ্লয়েট'
+        bn: 'জনপ্রিয় ফ্রেমওয়ার্কে জিরো-ডে ত্রুটি শনাক্ত'
     },
     AWSSoutheastAsia: {
         en: 'AWS Announces New Region in Southeast Asia',
-        bn: 'এডব্লিউএস দক্ষিণ-পূর্ব এশিয়ায় নতুন রিজিয়ন ঘোষণা করেছে'
+        bn: 'দক্ষিণ-পূর্ব এশিয়ায় নতুন রিজিওন চালুর ঘোষণা দিল এডব্লিউএস'
     },
     StayUpdated: {
         en: 'Stay Updated',
-        bn: 'আপডেট থাকুন'
+        bn: 'সবশেষ আপডেট পান'
     },
     NewsletterDescDetailed: {
         en: 'Get the latest tech news delivered to your inbox weekly. No spam, ever.',
-        bn: 'আপনার ইনবক্সে সাপ্তাহিক সর্বশেষ প্রযুক্তি খবর পান। কোন স্প্যাম নেই, কখনই না।'
+        bn: 'প্রতি সপ্তাহে প্রযুক্তি বিশ্বের সবশেষ খবর পান সরাসরি আপনার ইনবক্সে। কোনো স্প্যাম পাঠানো হবে না, এটা আমাদের প্রতিশ্রুতি।'
     },
     SubscribedSuccess: {
         en: "You're subscribed! Welcome aboard.",
-        bn: 'আপনি সাবস্ক্রাইব করেছেন! স্বাগতম।'
+        bn: 'আপনার সাবস্ক্রিপশন সম্পন্ন হয়েছে! আমাদের সাথে যুক্ত থাকার জন্য ধন্যবাদ।'
     },
     NewsletterNote: {
         en: 'Join 28,400+ readers · Cancel anytime',
-        bn: '২৮,৪০০+ পাঠকের সাথে যোগ দিন · যে কোনো সময় বাতিল করুন'
+        bn: 'যুক্ত হোন আমাদের ২৮,৪০০+ পাঠকের সাথে · চাইলে যেকোনো সময় আনসাবস্ক্রাইব করতে পারবেন'
     },
     AboutUs: {
         en: 'About Us',
@@ -113,19 +113,19 @@ export const translations = {
     },
     Careers: {
         en: 'Careers',
-        bn: 'ক্যারিয়ার'
+        bn: 'ক্যারিয়ার'
     },
     Contact: {
         en: 'Contact',
-        bn: 'যোগাযোগ'
+        bn: 'যোগাযোগ করুন'
     },
     FooterTagline: {
         en: 'Your daily source for technology news, analysis, and insights that matter.',
-        bn: 'প্রযুক্তি খবর, বিশ্লেষণ এবং গুরুত্বপূর্ণ দৃষ্টিভঙ্গির আপনার দৈনিক উৎস।'
+        bn: 'প্রযুক্তি বিষয়ক খবর, গভীর বিশ্লেষণ এবং গুরুত্বপূর্ণ অন্তর্দৃষ্টির জন্য আপনার বিশ্বস্ত প্ল্যাটফর্ম।'
     },
     Hardware: {
         en: 'Hardware',
-        bn: 'হার্ডওয়্যার'
+        bn: 'হার্ডওয়্যার'
     },
     Startups: {
         en: 'Startups',
@@ -133,11 +133,11 @@ export const translations = {
     },
     Featured: {
         en: 'Featured',
-        bn: 'ফিচারড'
+        bn: 'বিশেষ আয়োজন'
     },
     ReadArticle: {
         en: 'Read Article',
-        bn: 'নিবন্ধটি পড়ুন'
+        bn: 'বিস্তারিত পড়ুন'
     },
     By: {
         en: 'By',
