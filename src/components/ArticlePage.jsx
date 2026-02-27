@@ -118,14 +118,23 @@ export default function ArticlePage() {
                 {/* Sidebar */}
                 <aside className="article-sidebar">
                     {/* Quick specs for hardware articles */}
-                    {article.category === 'Hardware' && article.id === 'nothing-phone-4a' && (
+                    {article.category === 'Hardware' && (article.id === 'nothing-phone-4a' || article.id === 'samsung-galaxy-s26-ultra') && (
                         <div className="sidebar-card">
                             <h4 className="sidebar-card-title">
                                 <span className="material-icons-round">memory</span>
                                 Quick Specs
                             </h4>
                             <ul className="quick-specs">
-                                {[
+                                {(article.id === 'samsung-galaxy-s26-ultra' ? [
+                                    ['Display', '6.9" QHD+ AMOLED, 120Hz'],
+                                    ['Chip', 'Snapdragon 8 Elite Gen 5'],
+                                    ['RAM', 'Up to 20GB'],
+                                    ['Storage', 'Up to 2TB'],
+                                    ['Battery', '5,000mAh, 60W'],
+                                    ['OS', 'Android 16, One UI 8.5'],
+                                    ['Build', '7.9mm, 214g'],
+                                    ['Launch', 'March 11, 2026'],
+                                ] : [
                                     ['Display', '6.7" 1.5K AMOLED, 120Hz'],
                                     ['Chip', 'Snapdragon 7s Gen 4'],
                                     ['RAM', 'Up to 12GB'],
@@ -134,7 +143,7 @@ export default function ArticlePage() {
                                     ['OS', 'Android 16, NothingOS 4.0'],
                                     ['IP Rating', 'IP65'],
                                     ['Launch', 'March 5, 2026'],
-                                ].map(([k, v]) => (
+                                ]).map(([k, v]) => (
                                     <li key={k} className="quick-spec-row">
                                         <span className="qs-label">{k}</span>
                                         <span className="qs-value">{v}</span>
@@ -143,6 +152,7 @@ export default function ArticlePage() {
                             </ul>
                         </div>
                     )}
+
 
                     {/* Related articles */}
                     {related.length > 0 && (
