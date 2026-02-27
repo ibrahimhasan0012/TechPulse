@@ -388,6 +388,69 @@ export const ARTICLES = [
             { type: 'paragraph', text: "Apple's Neural Engine, Qualcomm's Hexagon NPU, and Google's Tensor G4 are not incremental chip updates — they represent a fundamental shift in where computation happens. Moving inference from the cloud to the device cuts latency, preserves privacy, and eliminates the need for a network connection." },
         ],
     },
+    {
+        id: 'nintendo-switch-2-revealed',
+        category: 'Gaming',
+        title: 'Nintendo Switch 2 Officially Announced: 4K Upscaling and OLED Standard',
+        title_bn: 'নিন্টেন্ডো সুইচ ২ আনুষ্ঠানিকভাবে ঘোষণা করা হয়েছে: ফোর-কে আপস্কেলিং এবং ওএলইডি স্ট্যান্ডার্ড',
+        excerpt: 'After years of rumors, Nintendo has finally unveiled the successor to the Switch. Launching holiday 2026, it features DLSS support, a larger 8-inch OLED screen, and backward compatibility.',
+        excerpt_bn: 'কয়েক বছরের গুঞ্জনের পর অবশেষে সুইচের উত্তরসূরি উন্মোচন করেছে নিন্টেন্ডো। ২০২৬ সালের শেষের দিকে বাজারে আসা এই কনসোলে থাকছে ডিএলএসএস সাপোর্ট, বড় ৮ ইঞ্চি ওএলইডি স্ক্রিন এবং ব্যাকওয়ার্ড কম্প্যাটিবিলিটি।',
+        author: 'Sarah Jenkins',
+        authorBio: 'Sarah is the lead gaming editor at TechPulse.',
+        date: 'Feb 26, 2026',
+        readTime: '3 min read',
+        img: 'https://images.unsplash.com/photo-1605901309584-818e25960b8f?w=1200&q=80',
+        content: [
+            { type: 'lead', text: 'The wait is over. Nintendo has officially announced the "Switch 2" (official working title pending), promising a significant leap in graphical fidelity while maintaining the hybrid console format that made its predecessor a global phenomenon.' },
+            { type: 'paragraph', text: 'The new console will come standard with an 8-inch OLED display, eliminating the LCD tier entirely. Under the hood, a custom Nvidia chip supports DLSS upscaling, allowing games to output at 4K resolution when docked. Most importantly for existing owners, the system is fully backward compatible with both physical and digital Switch games.' }
+        ],
+        content_bn: [
+            { type: 'lead', text: 'অবশেষে অপেক্ষার অবসান। নিন্টেন্ডো আনুষ্ঠানিকভাবে "সুইচ ২" (নামটি এখনো চূড়ান্ত নয়) ঘোষণা করেছে, যা আগের হাইব্রিড কনসোল ফরম্যাট ধরে রেখে গ্রাফিক্সের দিক থেকে উল্লেখযোগ্য উন্নতির প্রতিশ্রুতি দেয়।' },
+            { type: 'paragraph', text: 'নতুন কনসোলটিতে একটি ৮ ইঞ্চির ওএলইডি ডিসপ্লে থাকবে, অর্থাৎ এলসিডি ভার্সনটি একেবারে বাদ দেওয়া হয়েছে। এর ভেতরে থাকবে একটি কাস্টম এনভিডিয়া চিপ যা ডিএলএসএস আপস্কেলিং সমর্থন করবে, ফলে ডক করা অবস্থায় গেমগুলো ফোর-কে রেজোলিউশনে খেলা যাবে। সবচেয়ে বড় খবর হলো, এটি আগের সব ফিজিক্যাল এবং ডিজিটাল সুইচ গেম সমর্থন করবে।' }
+        ]
+    },
+    {
+        id: 'openai-gpt-5-unveiled',
+        category: 'AI',
+        title: 'OpenAI Unveils GPT-5: A Quantum Leap in Reasoning and Multimodal AI',
+        title_bn: 'ওপেনএআই-এর জিপিটি-৫ উন্মোচন: রিজনিং এবং মাল্টিমডাল এআই-তে যুগান্তকারী অগ্রগতি',
+        excerpt: 'The next generation of OpenAI\'s flagship model is here. GPT-5 promises significantly reduced hallucinations, native processing of hour-long videos, and agentic workflows that can execute complex chained tasks.',
+        excerpt_bn: 'ওপেনএআই-এর ফ্ল্যাগশিপ মডেলের পরবর্তী প্রজন্ম এসে গেছে। জিপিটি-৫ হ্যালুসিনেশন উল্লেখযোগ্যভাবে কমানোর প্রতিশ্রুতি দেয়, সাথে রয়েছে দীর্ঘ ভিডিও প্রসেসিং এবং জটিল কাজ সম্পন্ন করতে সক্ষম এজেন্ট ফ্রেমওয়ার্ক।',
+        author: 'Alex Rivera',
+        authorBio: 'Alex is an AI engineer specializing in LLM integration and safety.',
+        date: 'Feb 25, 2026',
+        readTime: '5 min read',
+        img: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&q=80',
+        content: [
+            { type: 'lead', text: 'OpenAI has officially launched GPT-5, marking a massive shift from simple text generation to true autonomous reasoning and multimodal understanding.' },
+            { type: 'paragraph', text: 'Unlike GPT-4, which often required extensive prompt engineering to maintain logic across long contexts, GPT-5 introduces dynamic "chain-of-thought" validation. The model can natively ingest hour-long 4K videos, process hundreds of documents simultaneously, and act as an autonomous agent in web environments without external frameworks like AutoGPT.' }
+        ],
+        content_bn: [
+            { type: 'lead', text: 'ওপেনএআই আনুষ্ঠানিকভাবে জিপিটি-৫ চালু করেছে, যা সাধারণ টেক্সট জেনারেশন থেকে সত্যিকারের স্বয়ংক্রিয় রিজনিং এবং মাল্টিমডাল বোঝার দিকে একটি বড় পরিবর্তন।' },
+            { type: 'paragraph', text: 'জিপিটি-৪ এর বিপরীতে, যেখানে দীর্ঘ কথোপকথনে লজিক বজায় রাখতে অনেক প্রম্পট ইঞ্জিনিয়ারিংয়ের প্রয়োজন হতো, জিপিটি-৫ সেখানে ডাইনামিক "চেইন-অফ-থট" ভ্যালিডেশন নিয়ে এসেছে। মডেলটি এক ঘণ্টারও বেশি দৈর্ঘ্যের ফোর-কে ভিডিও প্রসেস全面, একসাথে শত শত ডকুমেন্ট পড়তে পারে এবং কোনো থার্ড-পার্টি ফ্রেমওয়ার্ক ছাড়াই ওয়েবে একটি স্বয়ংক্রিয় এজেন্ট হিসেবে কাজ করতে পারে।' }
+        ]
+    },
+    {
+        id: 'apple-vision-air-launch',
+        category: 'Hardware',
+        title: 'Apple Vision Air: Spatial Computing Gets Lighter and Cheaper',
+        title_bn: 'অ্যাপল ভিশন এয়ার: স্পেশিয়াল কম্পিউটিং এখন আরও হালকা এবং সস্তা',
+        excerpt: 'Apple\'s follow-up to the Vision Pro strips away the outward-facing display and premium materials to hit a $1,499 price point, aiming to bring mixed reality to the masses.',
+        excerpt_bn: 'ভিশন প্রো-এর পর অ্যাপলের নতুন এই ডিভাইসে বাইরের দিকের ডিসপ্লে এবং দামি উপাদান বাদ দিয়ে দাম নির্ধারণ করা হয়েছে ১,৪৯৯ ডলার, যার লক্ষ্য মিক্সড রিয়েলিটি সাধারণ মানুষের কাছে পৌঁছে দেওয়া।',
+        author: 'Liam Torres',
+        authorBio: 'Liam covers Apple and augmented reality.',
+        date: 'Feb 24, 2026',
+        readTime: '4 min read',
+        img: 'https://images.unsplash.com/photo-1593508512255-86ab42a8e620?w=1200&q=80',
+        content: [
+            { type: 'lead', text: 'After the high price and niche appeal of the Vision Pro, Apple has introduced the Vision Air, a $1,499 headset designed to make spatial computing accessible.' },
+            { type: 'paragraph', text: 'To achieve the dramatic price reduction, Apple removed the external EyeSight display, replaced the aluminum frame with high-grade composites, and shifted to an internal M-series derivative chip. The result is a headset that is 40% lighter, significantly more comfortable for extended wear, and fundamentally better positioned to compete with Meta\'s Quest line.' }
+        ],
+        content_bn: [
+            { type: 'lead', text: 'ভিশন প্রো-এর উচ্চমূল্য এবং নির্দিষ্ট ক্রেতাদের আকর্ষণের পর, অ্যাপল এবার নিয়ে এসেছে ভিশন এয়ার, একটি ১,৪৯৯ ডলারের হেডসেট যা স্পেশিয়াল কম্পিউটিংকে আরও সহজলভ্য করার জন্য তৈরি।' },
+            { type: 'paragraph', text: 'দাম এতটা কমানোর জন্য অ্যাপল বাইরের আইসাইট ডিসপ্লেটি বাদ দিয়েছে, অ্যালুমিনিয়াম ফ্রেমের বদলে হাই-গ্রেড কম্পোজিট ব্যবহার করেছে এবং ভেতরে এম-সিরিজের ডেরিভেটিভ চিপ ব্যবহার করেছে। এর ফলে হেডসেটটি আগের চেয়ে ৪০% হালকা হয়েছে, দীর্ঘক্ষণ ব্যবহারের জন্য অনেক বেশি আরামদায়ক হয়েছে এবং মেটা কোয়েস্টের সাথে প্রতিযোগিতা করতে আরও ভালো অবস্থানে পৌঁছেছে।' }
+        ]
+    }
 ]
 
 export function getArticleById(id) {
