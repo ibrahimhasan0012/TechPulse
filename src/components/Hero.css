@@ -25,7 +25,7 @@
     border-color: var(--accent);
     color: var(--accent);
     background: var(--accent-glow);
-    box-shadow: 0 2px 10px rgba(30, 59, 138, 0.1);
+    box-shadow: 0 2px 10px rgba(230, 57, 70, 0.1);
 }
 
 /* Hero card */
@@ -42,7 +42,7 @@
 
 .hero-card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 12px 50px rgba(30, 59, 138, 0.18);
+    box-shadow: 0 12px 50px rgba(230, 57, 70, 0.18);
 }
 
 /* Image */
@@ -65,7 +65,7 @@
 .hero-image-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(30, 59, 138, 0.2) 0%, transparent 60%);
+    background: linear-gradient(135deg, rgba(230, 57, 70, 0.2) 0%, transparent 60%);
 }
 
 .hero-badge {
@@ -144,7 +144,7 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    box-shadow: 0 4px 12px rgba(30, 59, 138, 0.25);
+    box-shadow: 0 4px 12px rgba(230, 57, 70, 0.25);
 }
 
 .author-name {
@@ -171,7 +171,7 @@
     font-size: 14px;
     font-weight: 600;
     transition: background var(--transition), box-shadow var(--transition), transform var(--transition);
-    box-shadow: 0 4px 16px rgba(30, 59, 138, 0.28);
+    box-shadow: 0 4px 16px rgba(230, 57, 70, 0.28);
     white-space: nowrap;
 }
 
@@ -183,7 +183,7 @@
 .btn-read:hover {
     background: var(--accent-light);
     transform: translateX(2px);
-    box-shadow: 0 6px 20px rgba(30, 59, 138, 0.38);
+    box-shadow: 0 6px 20px rgba(230, 57, 70, 0.38);
 }
 
 .btn-read:hover .material-icons-round {

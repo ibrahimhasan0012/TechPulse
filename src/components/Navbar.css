@@ -40,7 +40,7 @@
     justify-content: center;
     color: white;
     font-size: 20px;
-    box-shadow: 0 4px 12px rgba(30, 59, 138, 0.3);
+    box-shadow: 0 4px 12px rgba(230, 57, 70, 0.3);
 }
 
 .logo-icon .material-icons-round {
@@ -119,12 +119,12 @@
     font-size: 13px;
     font-weight: 600;
     transition: background var(--transition), box-shadow var(--transition), transform var(--transition);
-    box-shadow: 0 4px 14px rgba(30, 59, 138, 0.25);
+    box-shadow: 0 4px 14px rgba(230, 57, 70, 0.25);
 }
 
 .btn-subscribe:hover {
     background: var(--accent-light);
-    box-shadow: 0 6px 20px rgba(30, 59, 138, 0.35);
+    box-shadow: 0 6px 20px rgba(230, 57, 70, 0.35);
     transform: translateY(-1px);
 }
 

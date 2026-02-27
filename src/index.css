@@ -4,20 +4,20 @@
    ============================================= */
 
 :root {
-  --accent: #1e3b8a;
-  --accent-light: #2d52c4;
-  --accent-bright: #4f6edb;
-  --accent-glow: rgba(30, 59, 138, 0.12);
-  --bg: #f5f7fc;
-  --bg-card: #ffffff;
-  --bg-chip: #eef1fa;
-  --text-primary: #0d1b3e;
-  --text-secondary: #546094;
-  --text-muted: #8a9bc8;
-  --border: #e0e7f5;
-  --shadow-sm: 0 2px 8px rgba(30, 59, 138, 0.06);
-  --shadow-md: 0 4px 20px rgba(30, 59, 138, 0.10);
-  --shadow-lg: 0 8px 40px rgba(30, 59, 138, 0.15);
+  --accent: #E63946;
+  --accent-light: #F25C69;
+  --accent-bright: #FF6B6B;
+  --accent-glow: rgba(230, 57, 70, 0.12);
+  --bg: #F8F8F8;
+  --bg-card: #FFFFFF;
+  --bg-chip: #FFEEEE;
+  --text-primary: #1A1A1A;
+  --text-secondary: #4A4A4A;
+  --text-muted: #888888;
+  --border: #EAEAEA;
+  --shadow-sm: 0 2px 8px rgba(230, 57, 70, 0.06);
+  --shadow-md: 0 4px 20px rgba(230, 57, 70, 0.10);
+  --shadow-lg: 0 8px 40px rgba(230, 57, 70, 0.15);
   --radius-sm: 10px;
   --radius-md: 16px;
   --radius-lg: 24px;
@@ -27,17 +27,17 @@
 }
 
 :root.dark {
-  --accent: #4f6edb;
-  --accent-light: #5d7fe8;
-  --accent-bright: #7c98f2;
-  --accent-glow: rgba(79, 110, 219, 0.15);
-  --bg: #0a0e17;
-  --bg-card: #121926;
-  --bg-chip: #1e2638;
-  --text-primary: #e6e9f0;
-  --text-secondary: #a9b5d6;
-  --text-muted: #8492b4;
-  --border: #212d45;
+  --accent: #FF6B6B;
+  --accent-light: #FF8A8A;
+  --accent-bright: #FFA6A6;
+  --accent-glow: rgba(255, 107, 107, 0.15);
+  --bg: #121212;
+  --bg-card: #1A1A1A;
+  --bg-chip: #2C1A1A;
+  --text-primary: #FFFFFF;
+  --text-secondary: #CCCCCC;
+  --text-muted: #999999;
+  --border: #333333;
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
   --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.5);
   --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.6);
