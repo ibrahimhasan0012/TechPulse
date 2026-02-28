@@ -49,7 +49,7 @@ async function summarizeArticles() {
                 const response = await openai.chat.completions.create({
                     model: "gpt-4o-mini", // Using fast mini model for CI/CD speed
                     messages: [
-                        { role: "system", content: "You are an expert technology journalist. Summarize the provided article content into a high-quality 150-250 word summary. Ensure it captures the key takeaways, tone, and context. Do not include introductory phrases like 'This article discusses'; just write the summary engagingly." },
+                        { role: "system", content: "You are an expert technology journalist focusing on the South Asian market (Bangladesh, India, Pakistan). Summarize the provided article into a high-quality 150-250 word summary. Crucially, highlight any relevance to South Asian readers. For global news, emphasize regional availability or impact. If pricing is mentioned, convert and display it in local currencies: BDT (Bangladesh Taka), INR (Indian Rupee), and PKR (Pakistani Rupee). Do not include introductory phrases like 'This article discusses'; just write the summary engagingly." },
                         { role: "user", content: textToSummarize }
                     ],
                     max_tokens: 350,

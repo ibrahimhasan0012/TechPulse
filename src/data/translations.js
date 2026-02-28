@@ -51,6 +51,30 @@ export const translations = {
         en: 'Trending Now',
         bn: 'বর্তমানে জনপ্রিয়'
     },
+    TrendingInSouthAsia: {
+        en: 'Trending in South Asia',
+        bn: 'দক্ষিণ এশিয়ায় জনপ্রিয়'
+    },
+    TrendingGlobally: {
+        en: 'Trending Globally',
+        bn: 'বিশ্বজুড়ে জনপ্রিয়'
+    },
+    LatestBangladesh: {
+        en: 'Latest Bangladesh News',
+        bn: 'বাংলাদেশ: সর্বশেষ খবর'
+    },
+    LatestIndia: {
+        en: 'Latest India News',
+        bn: 'ভারত: সর্বশেষ খবর'
+    },
+    LatestPakistan: {
+        en: 'Latest Pakistan News',
+        bn: 'পাকিস্তান: সর্বশেষ খবর'
+    },
+    GlobalTechNews: {
+        en: 'Global Tech News',
+        bn: 'বিশ্ব প্রযুক্তি খবর'
+    },
     NewsletterTitle: {
         en: 'Stay inside the loop',
         bn: 'সবশেষ খবরের সাথে যুক্ত থাকুন'

@@ -2,9 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Hero from './components/Hero'
-import LatestArticles from './components/LatestArticles'
-import Trending from './components/Trending'
-import Newsletter from './components/Newsletter'
+import Home from './components/Home'
 import ArticlePage from './components/ArticlePage'
 import './App.css'
 
@@ -12,17 +10,7 @@ function HomePage() {
   return (
     <>
       <Hero />
-      <section className="content-section">
-        <div className="container content-grid">
-          <div className="main-col">
-            <LatestArticles />
-          </div>
-          <aside className="side-col">
-            <Trending />
-            <Newsletter />
-          </aside>
-        </div>
-      </section>
+      <Home />
     </>
   )
 }
