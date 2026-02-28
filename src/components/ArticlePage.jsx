@@ -154,17 +154,24 @@ export default function ArticlePage() {
                         </figcaption>
                     </figure>
 
-                    {/* Render paraphrased content (stored in summary) */}
-                    {article.summary && (
+                    {/* Render paraphrased content */}
+                    {(article.paragraph1 || article.summary) && (
                         <div className="paraphrased-content" style={{ marginBottom: '2.5rem' }}>
                             <div style={{ fontSize: '1.15rem', lineHeight: '1.8', whiteSpace: 'pre-wrap', color: 'var(--text-primary)', marginBottom: '2rem' }}>
-                                {(summaryLang === 'en' ? article.summary : (article.summary_bn || article.summary))
-                                    .split('\n')
-                                    .filter(p => p.trim() !== '')
-                                    .map((paragraph, idx) => (
-                                        <p key={idx} style={{ marginBottom: '1.5rem' }}>{paragraph.trim()}</p>
-                                    ))
-                                }
+                                {article.paragraph1 ? (
+                                    <>
+                                        <p style={{ marginBottom: '1.5rem' }}>{summaryLang === 'en' ? article.paragraph1 : (article.bangla_paragraph1 || article.paragraph1)}</p>
+                                        {article.paragraph2 && <p style={{ marginBottom: '1.5rem' }}>{summaryLang === 'en' ? article.paragraph2 : (article.bangla_paragraph2 || article.paragraph2)}</p>}
+                                        {article.paragraph3 && <p style={{ marginBottom: '1.5rem' }}>{summaryLang === 'en' ? article.paragraph3 : (article.bangla_paragraph3 || article.paragraph3)}</p>}
+                                    </>
+                                ) : (
+                                    (summaryLang === 'en' ? article.summary : (article.summary_bn || article.summary))
+                                        .split('\n')
+                                        .filter(p => p.trim() !== '')
+                                        .map((paragraph, idx) => (
+                                            <p key={idx} style={{ marginBottom: '1.5rem' }}>{paragraph.trim()}</p>
+                                        ))
+                                )}
                             </div>
 
                             <div style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
@@ -173,13 +180,13 @@ export default function ArticlePage() {
                                 <span><strong>Source:</strong> {article.source}</span>
                             </div>
 
-                            <a href={article.url} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '12px 24px', background: 'var(--primary)', color: 'white', borderRadius: '8px', fontWeight: 'bold', fontSize: '1rem', textDecoration: 'none', marginBottom: '2rem', transition: 'opacity 0.2s ease' }} onMouseOver={e => e.currentTarget.style.opacity = '0.9'} onMouseOut={e => e.currentTarget.style.opacity = '1'}>
-                                {lang === 'bn' ? 'মূল নিবন্ধ পড়ুন' : 'Read Full Article'} <span className="material-icons-round" style={{ fontSize: '1.2rem' }}>arrow_forward</span>
+                            <a href={article.url} target="_blank" rel="noopener noreferrer" className="read-full-article">
+                                {lang === 'bn' ? 'মূল নিবন্ধ পড়ুন' : 'Read Full Article'} <span className="material-icons-round">arrow_forward</span>
                             </a>
 
                             <hr style={{ border: 'none', borderTop: '1px solid var(--border)', margin: '2rem 0' }} />
 
-                            {article.summary_bn && (
+                            {(article.bangla_paragraph1 || article.summary_bn) && (
                                 <button
                                     onClick={() => setSummaryLang(prev => prev === 'en' ? 'bn' : 'en')}
                                     style={{ background: 'transparent', border: '1px solid var(--primary)', color: 'var(--primary)', padding: '8px 16px', borderRadius: '6px', cursor: 'pointer', fontSize: '0.95rem', display: 'flex', alignItems: 'center', gap: '6px', fontWeight: '600', transition: 'all 0.2s ease' }}
@@ -194,13 +201,13 @@ export default function ArticlePage() {
                     )}
 
                     {/* Fallback to legacy blocks if needed */}
-                    {!article.summary && (
+                    {!(article.paragraph1 || article.summary) && (
                         <>
                             <ArticleContent blocks={(lang === 'bn' && article.content_bn) ? article.content_bn : (article.content || [])} />
                             {article.url && article.source && (
                                 <div style={{ marginTop: '2.5rem', marginBottom: '2.5rem' }}>
-                                    <a href={article.url} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '12px 24px', background: 'var(--primary)', color: 'white', borderRadius: '8px', fontWeight: 'bold', fontSize: '1rem', textDecoration: 'none' }}>
-                                        {lang === 'bn' ? 'মূল নিবন্ধ পড়ুন' : 'Read Full Article'} <span className="material-icons-round" style={{ fontSize: '1.2rem' }}>arrow_forward</span>
+                                    <a href={article.url} target="_blank" rel="noopener noreferrer" className="read-full-article">
+                                        {lang === 'bn' ? 'মূল নিবন্ধ পড়ুন' : 'Read Full Article'} <span className="material-icons-round">arrow_forward</span>
                                     </a>
                                 </div>
                             )}

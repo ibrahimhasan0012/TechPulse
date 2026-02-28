@@ -517,3 +517,36 @@
     border-top: 1px solid var(--border);
     font-style: italic;
 }
+
+/* Read Full Article Button */
+.read-full-article {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1rem;
+    text-decoration: none;
+    margin-bottom: 2rem;
+    color: #000000;
+    transition: all 0.2s ease;
+    border: 1px solid var(--border);
+}
+
+.read-full-article .material-icons-round {
+    font-size: 1.2rem;
+    color: inherit;
+}
+
+.read-full-article:hover {
+    color: #DC143C;
+}
+
+:root.dark .read-full-article {
+    color: #FFFFFF;
+}
+
+:root.dark .read-full-article:hover {
+    color: #FF6B6B;
+}

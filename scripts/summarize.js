@@ -28,7 +28,7 @@ async function summarizeArticles() {
     for (let i = 0; i < articles.length; i++) {
         let article = articles[i];
 
-        if (article.summary || (!article.fullText && !article.excerpt)) {
+        if (article.paragraph1 || article.summary || (!article.fullText && !article.excerpt)) {
             // Cleanup memory if returning to an older article
             delete article.fullText;
             continue;
@@ -48,15 +48,33 @@ async function summarizeArticles() {
 
                 const response = await openai.chat.completions.create({
                     model: "gpt-4o-mini", // Using fast mini model for CI/CD speed
+                    response_format: { type: "json_object" },
                     messages: [
-                        { role: "system", content: "You are an expert technology journalist focusing on the South Asian market (Bangladesh, India, Pakistan). Paraphrase the provided article in your own words strictly into 2-3 distinct properly-spaced paragraphs without plagiarizing. Maintain a professional tone. Highlight relevance to South Asian readers, and convert any mentioned pricing to local currencies (BDT, INR, PKR). Do not include introductory phrases like 'This article discusses'; present it as original reporting." },
+                        {
+                            role: "system",
+                            content: `You are an expert technology journalist focusing on the South Asian market (Bangladesh, India, Pakistan). 
+Paraphrase the provided article in your own words. Maintain a professional tone. Highlight relevance to South Asian readers, and convert any mentioned pricing to local currencies (BDT, INR, PKR). Do not include introductory phrases like 'This article discusses'; present it as original reporting.
+
+You MUST provide your response strictly as a JSON object with the following structure:
+{
+  "paragraph1": "Introduction & main news (3-4 sentences)",
+  "paragraph2": "Details & specifications (3-5 sentences)",
+  "paragraph3": "Context/impact (Optional, can be empty string)"
+}`
+                        },
                         { role: "user", content: textToSummarize }
                     ],
-                    max_tokens: 500,
+                    max_tokens: 800,
                     temperature: 0.5
                 });
 
-                article.summary = response.choices[0].message.content.trim();
+                const parsed = JSON.parse(response.choices[0].message.content.trim());
+                article.paragraph1 = parsed.paragraph1 || '';
+                article.paragraph2 = parsed.paragraph2 || '';
+                if (parsed.paragraph3) article.paragraph3 = parsed.paragraph3;
+
+                // Clear old summary if it exists
+                if (article.summary) delete article.summary;
 
                 // Sleep specifically to avoid free-tier OpenAI Rate Limiting 
                 await delay(2000);
@@ -64,7 +82,8 @@ async function summarizeArticles() {
             updatedCount++;
         } catch (error) {
             console.error(`Failed to summarize: ${article.title} - ${error.message}`);
-            article.summary = article.excerpt;
+            article.paragraph1 = article.excerpt;
+            article.paragraph2 = '';
         }
 
         // Clean up fullText
