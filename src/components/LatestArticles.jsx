@@ -79,7 +79,9 @@ export default function LatestArticles() {
                                 <span className="chip" style={{ background: 'var(--bg-secondary)', color: 'var(--text-secondary)' }}>{article.source}</span>
                             </div>
                             <h3 className="article-title">{lang === 'bn' && article.title_bn ? article.title_bn : article.title}</h3>
-                            <p className="article-excerpt">{lang === 'bn' && article.excerpt_bn ? article.excerpt_bn : article.excerpt}</p>
+                            <p className="article-excerpt">
+                                {lang === 'bn' ? (article.bangla_paragraph1 || article.excerpt_bn || article.excerpt) : (article.paragraph1 || article.excerpt)}
+                            </p>
                             <div className="article-meta">
                                 <div className="article-author">
                                     <div className="article-avatar">{article.author ? article.author[0] : 'T'}</div>

@@ -64,7 +64,9 @@ export default function ArticleCard({ article, index = 0 }) {
                 </div>
 
                 <h3 className="article-title">{lang === 'bn' && article.title_bn ? article.title_bn : article.title}</h3>
-                <p className="article-excerpt">{lang === 'bn' && article.excerpt_bn ? article.excerpt_bn : article.excerpt}</p>
+                <p className="article-excerpt">
+                    {lang === 'bn' ? (article.bangla_paragraph1 || article.excerpt_bn || article.excerpt) : (article.paragraph1 || article.excerpt)}
+                </p>
 
                 <div className="article-meta">
                     <div className="article-author">

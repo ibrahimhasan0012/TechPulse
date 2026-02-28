@@ -43,7 +43,9 @@ export default function Hero() {
                     <div className="hero-content">
                         <span className="chip dark">{getTranslation(FEATURED.category, lang)}</span>
                         <h1 className="hero-title">{lang === 'bn' && FEATURED.title_bn ? FEATURED.title_bn : FEATURED.title}</h1>
-                        <p className="hero-excerpt">{lang === 'bn' && FEATURED.excerpt_bn ? FEATURED.excerpt_bn : FEATURED.excerpt}</p>
+                        <p className="hero-excerpt">
+                            {lang === 'bn' ? (FEATURED.bangla_paragraph1 || FEATURED.excerpt_bn || FEATURED.excerpt) : (FEATURED.paragraph1 || FEATURED.excerpt)}
+                        </p>
                         <div className="hero-meta">
                             <div className="hero-author">
                                 <div className="author-avatar">{FEATURED.author[0]}</div>
