@@ -127,12 +127,28 @@ export default function ArticlePage() {
             {/* Article body */}
             <div className="container article-layout">
                 <article className="article-body-col">
-                    <ArticleContent blocks={(lang === 'bn' && article.content_bn) ? article.content_bn : (article.content || [])} />
+                    {/* Render new AI summary if it exists */}
+                    {article.summary && (
+                        <div className="ai-summary" style={{ padding: '2rem', background: 'var(--bg-secondary)', borderRadius: '12px', borderLeft: '4px solid var(--primary)', marginBottom: '2rem' }}>
+                            <div className="ai-summary-badge" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--primary)', fontWeight: '600', marginBottom: '1rem', textTransform: 'uppercase', fontSize: '0.85rem', letterSpacing: '1px' }}>
+                                <span className="material-icons-round" style={{ fontSize: '1.1rem' }}>auto_awesome</span>
+                                {lang === 'bn' ? 'এআই সারসংক্ষেপ' : 'AI Summary Brief'}
+                            </div>
+                            <p style={{ fontSize: '1.15rem', lineHeight: '1.8', whiteSpace: 'pre-wrap', color: 'var(--text-primary)' }}>
+                                {lang === 'bn' && article.summary_bn ? article.summary_bn : article.summary}
+                            </p>
+                        </div>
+                    )}
+
+                    {/* Fallback to legacy blocks if needed */}
+                    {!article.summary && (
+                        <ArticleContent blocks={(lang === 'bn' && article.content_bn) ? article.content_bn : (article.content || [])} />
+                    )}
 
                     {article.url && article.source && (
                         <div style={{ marginTop: '2.5rem', marginBottom: '2.5rem', textAlign: 'center' }}>
                             <a href={article.url} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', padding: '14px 28px', background: 'var(--accent)', color: 'white', borderRadius: '8px', fontWeight: 'bold', fontSize: '1.1rem', transition: 'var(--transition)' }}>
-                                {lang === 'bn' ? 'মূল ওয়েবসাইটে পড়ুন' : `Read Full Article on ${article.source}`}
+                                {lang === 'bn' ? 'মূল ওয়েবসাইটে পড়ুন' : `Read Original on ${article.source}`}
                             </a>
                         </div>
                     )}

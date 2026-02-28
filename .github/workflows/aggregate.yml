@@ -24,6 +24,11 @@ jobs:
       - name: Fetch Latest Articles
         run: node scripts/fetchArticles.js
         
+      - name: Generate AI Intelligence Briefs
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: node scripts/summarize.js
+        
       - name: Translate Articles to Bengali
         run: node scripts/translate.js
 

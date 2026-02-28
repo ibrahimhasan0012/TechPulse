@@ -39,11 +39,17 @@ async function runTranslations() {
 
         // We hijack the title_bn as a flag. If it's identical to the English 'title'
         // it signifies it hasn't been translated yet by the fetch script.
-        if (article.title === article.title_bn) {
+        if (article.title === article.title_bn || (article.summary && article.summary === article.summary_bn)) {
             console.log(`Translating Article [${i + 1}/${articles.length}]: ${article.title.substring(0, 30)}...`);
 
-            article.title_bn = await translateText(article.title);
-            article.excerpt_bn = await translateText(article.excerpt);
+            if (article.title === article.title_bn) {
+                article.title_bn = await translateText(article.title);
+                article.excerpt_bn = await translateText(article.excerpt);
+            }
+
+            if (article.summary && article.summary !== article.summary_bn) {
+                article.summary_bn = await translateText(article.summary);
+            }
 
             changesMade = true;
 

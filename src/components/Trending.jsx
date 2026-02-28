@@ -10,10 +10,20 @@ export default function Trending() {
         return <div className="trending-card" style={{ opacity: 0.5 }}>Loading trending...</div>
     }
 
-    // Dynamically calculate trending by getting the top 3 newest articles
+    // Dynamically calculate trending: boost "Launch" items weight, then sort by newest date
     const trendingList = [...articles]
-        .sort((a, b) => new Date(b.date) - new Date(a.date))
-        .slice(0, 3)
+        .sort((a, b) => {
+            const aIsLaunch = String(a.type || '').includes('Launch') ? 1 : 0;
+            const bIsLaunch = String(b.type || '').includes('Launch') ? 1 : 0;
+
+            // Prioritize launches
+            if (aIsLaunch > bIsLaunch) return -1;
+            if (aIsLaunch < bIsLaunch) return 1;
+
+            // Fallback to recency
+            return new Date(b.date) - new Date(a.date);
+        })
+        .slice(0, 3);
 
     return (
         <div className="trending-card">
