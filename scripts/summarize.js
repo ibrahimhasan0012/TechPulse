@@ -28,7 +28,7 @@ async function summarizeArticles() {
     for (let i = 0; i < articles.length; i++) {
         let article = articles[i];
 
-        if (article.paragraph1 || article.summary || (!article.fullText && !article.excerpt)) {
+        if (article.paragraph1 || (!article.fullText && !article.excerpt)) {
             // Cleanup memory if returning to an older article
             delete article.fullText;
             continue;
