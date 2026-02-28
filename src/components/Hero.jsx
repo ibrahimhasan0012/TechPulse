@@ -1,14 +1,16 @@
 import { useNavigate } from 'react-router-dom'
 import { useAppContext } from '../context/AppContext'
 import { getTranslation } from '../data/translations'
-import { ARTICLES } from '../data/articles'
 import './Hero.css'
-
-const FEATURED = ARTICLES[0] // Nothing Phone 4a is always first = featured
-
 export default function Hero() {
     const navigate = useNavigate()
-    const { lang } = useAppContext()
+    const { lang, articles, loadingArticles } = useAppContext()
+
+    if (loadingArticles || !articles || articles.length === 0) {
+        return <section className="hero"><div className="container" style={{ padding: '4rem 0', opacity: 0.5, textAlign: 'center' }}>Loading featured narrative...</div></section>
+    }
+
+    const FEATURED = articles[0]
 
     return (
         <section className="hero">
@@ -28,7 +30,7 @@ export default function Hero() {
                 >
                     <div className="hero-image-wrap">
                         <img
-                            src={FEATURED.img}
+                            src={FEATURED.imageUrl || FEATURED.img}
                             alt={FEATURED.title}
                             className="hero-image"
                         />
