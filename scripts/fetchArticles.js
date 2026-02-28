@@ -268,11 +268,9 @@ async function aggregateAll() {
 
             // Backward compatibility
             content: [
-                { type: 'lead', text: `This story was aggregated automatically from ${meta.source}.` },
                 { type: 'paragraph', text: meta.rawExcerpt }
             ],
             content_bn: [
-                { type: 'lead', text: `${meta.source} থেকে অটোমেটিক এগ্রিগেট করা হয়েছে।` },
                 { type: 'paragraph', text: meta.rawExcerpt }
             ]
         });
