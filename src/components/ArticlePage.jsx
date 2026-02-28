@@ -96,7 +96,7 @@ export default function ArticlePage() {
     return (
         <div className="article-page">
             {/* Hero banner */}
-            <div className="article-hero" style={{ backgroundImage: `url(${article.imageUrl || article.img})` }}>
+            <div className="article-hero" style={{ background: 'linear-gradient(135deg, var(--accent-bright), var(--accent))' }}>
                 <div className="article-hero-overlay" />
                 <div className="container article-hero-content">
                     <button className="back-btn" onClick={() => navigate('/')}>
@@ -128,6 +128,32 @@ export default function ArticlePage() {
             {/* Article body */}
             <div className="container article-layout">
                 <article className="article-body-col">
+                    {/* Featured Image Block */}
+                    <figure className="article-featured-image">
+                        {article.localImageWebp ? (
+                            <picture>
+                                <source srcSet={`${import.meta.env.BASE_URL}${article.localImageWebp}`} type="image/webp" />
+                                <source srcSet={`${import.meta.env.BASE_URL}${article.localImageJpg}`} type="image/jpeg" />
+                                <img
+                                    src={`${import.meta.env.BASE_URL}${article.localImageJpg}`}
+                                    alt={lang === 'bn' && article.title_bn ? article.title_bn : article.title}
+                                    className="featured-img"
+                                    loading="lazy"
+                                />
+                            </picture>
+                        ) : (
+                            <img
+                                src={article.imageUrl || article.img}
+                                alt={lang === 'bn' && article.title_bn ? article.title_bn : article.title}
+                                className="featured-img"
+                                loading="lazy"
+                            />
+                        )}
+                        <figcaption className="featured-caption">
+                            {lang === 'bn' ? 'ছবি ও উৎস' : 'Image Source'}: <strong>{article.source}</strong>
+                        </figcaption>
+                    </figure>
+
                     {/* Render paraphrased content (stored in summary) */}
                     {article.summary && (
                         <div className="paraphrased-content" style={{ marginBottom: '2.5rem' }}>

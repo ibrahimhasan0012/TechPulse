@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { fileURLToPath } from 'url';
 import { JSDOM } from 'jsdom';
 import { Readability } from '@mozilla/readability';
+import sharp from 'sharp';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -107,14 +108,64 @@ async function fetchFullText(url) {
             timeout: 10000
         });
         const dom = new JSDOM(response.data, { url });
-        const reader = new Readability(dom.window.document);
+        const document = dom.window.document;
+
+        let ogImage = '';
+        const ogImageMeta = document.querySelector('meta[property="og:image"]');
+        if (ogImageMeta) ogImage = ogImageMeta.getAttribute('content');
+
+        if (!ogImage) {
+            const firstImg = document.querySelector('article img') || document.querySelector('main img') || document.querySelector('img');
+            if (firstImg) ogImage = firstImg.src;
+        }
+
+        const reader = new Readability(document);
         const article = reader.parse();
-        return article ? article.textContent.trim() : '';
+        return {
+            text: article ? article.textContent.trim() : '',
+            ogImage: ogImage
+        };
     } catch (err) {
-        // console.error(`   -> Failed full-text extraction for ${url}:`, err.message);
-        return '';
+        return { text: '', ogImage: '' };
     }
 }
+
+const downloadAndOptimizeImage = async (url, articleId, dateObj) => {
+    try {
+        if (!url || url.startsWith('data:')) return null;
+
+        const dateStr = dateObj.toISOString().split('T')[0];
+        const dateDir = path.join(__dirname, '../public/images/articles', dateStr);
+        if (!fs.existsSync(dateDir)) {
+            fs.mkdirSync(dateDir, { recursive: true });
+        }
+
+        const webpFilename = `${articleId}.webp`;
+        const jpgFilename = `${articleId}.jpg`;
+        const webpPath = path.join(dateDir, webpFilename);
+        const jpgPath = path.join(dateDir, jpgFilename);
+
+        const response = await axios.get(url, { responseType: 'arraybuffer', timeout: 15000 });
+        const buffer = Buffer.from(response.data);
+
+        await sharp(buffer)
+            .resize(800, 500, { fit: 'cover', withoutEnlargement: false })
+            .webp({ quality: 80 })
+            .toFile(webpPath);
+
+        await sharp(buffer)
+            .resize(800, 500, { fit: 'cover', withoutEnlargement: false })
+            .jpeg({ quality: 80 })
+            .toFile(jpgPath);
+
+        return {
+            webp: `images/articles/${dateStr}/${webpFilename}`,
+            jpg: `images/articles/${dateStr}/${jpgFilename}`
+        };
+    } catch (err) {
+        return null;
+    }
+};
 
 async function fetchHackerNews() {
     console.log('Fetching Hacker News Top Stories...');
@@ -236,13 +287,18 @@ async function aggregateAll() {
     // Now fetch full text for the unique new ones
     let processedNewArticles = [];
     for (const meta of deduplicatedMeta) {
-        console.log(`Extracting full text for: ${meta.title.substring(0, 40)}...`);
-        const fullText = await fetchFullText(meta.url);
+        console.log(`Extracting full text and optimizing images for: ${meta.title.substring(0, 40)}...`);
+        const fullTextData = await fetchFullText(meta.url);
+        const fullText = fullTextData.text;
+
+        const id = uuidv4();
+        let targetImageUrl = fullTextData.ogImage || meta.imageUrl;
+        let localImages = await downloadAndOptimizeImage(targetImageUrl, id, meta.date);
 
         // If it's a launch article, let's bump its weight/category mapping later.
 
         processedNewArticles.push({
-            id: uuidv4(),
+            id: id,
             source: meta.source,
             category: meta.category,
             region: meta.region,
@@ -259,7 +315,9 @@ async function aggregateAll() {
             date_bn: meta.date.toLocaleDateString('bn-BD', { month: 'short', day: 'numeric', year: 'numeric' }),
             readTime: '5 min read',
             readTime_bn: '৫ মিনিটের পাঠ',
-            imageUrl: meta.imageUrl,
+            imageUrl: targetImageUrl || meta.imageUrl,
+            localImageWebp: localImages ? localImages.webp : null,
+            localImageJpg: localImages ? localImages.jpg : null,
 
             // New V2 Payload entries
             fullText: fullText, // Temporary hold for summarize.js

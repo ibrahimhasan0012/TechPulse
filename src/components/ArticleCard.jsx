@@ -26,11 +26,25 @@ export default function ArticleCard({ article, index = 0 }) {
             onClick={() => navigate(`/article/${article.id}`)}
         >
             <div className="article-image-wrap">
-                <img
-                    src={article.imageUrl || article.img}
-                    alt={lang === 'bn' && article.title_bn ? article.title_bn : article.title}
-                    className="article-image"
-                />
+                {article.localImageWebp ? (
+                    <picture>
+                        <source srcSet={`${import.meta.env.BASE_URL}${article.localImageWebp}`} type="image/webp" />
+                        <source srcSet={`${import.meta.env.BASE_URL}${article.localImageJpg}`} type="image/jpeg" />
+                        <img
+                            src={`${import.meta.env.BASE_URL}${article.localImageJpg}`}
+                            alt={lang === 'bn' && article.title_bn ? article.title_bn : article.title}
+                            className="article-image"
+                            loading="lazy"
+                        />
+                    </picture>
+                ) : (
+                    <img
+                        src={article.imageUrl || article.img}
+                        alt={lang === 'bn' && article.title_bn ? article.title_bn : article.title}
+                        className="article-image"
+                        loading="lazy"
+                    />
+                )}
                 <div style={{ position: 'absolute', top: '10px', right: '10px', background: 'rgba(0,0,0,0.7)', color: 'white', padding: '4px 8px', borderRadius: '4px', fontSize: '0.8rem', fontWeight: 'bold' }}>
                     {getRegionBadge(article.region)}
                 </div>

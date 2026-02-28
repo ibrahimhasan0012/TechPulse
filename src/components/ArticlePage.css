@@ -490,3 +490,30 @@
         font-size: 17px;
     }
 }
+
+/* Featured Image Block */
+.article-featured-image {
+    margin-bottom: 32px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+}
+
+.featured-img {
+    width: 100%;
+    max-height: 480px;
+    object-fit: cover;
+    display: block;
+}
+
+.featured-caption {
+    padding: 12px 18px;
+    font-size: 13px;
+    color: var(--text-muted);
+    text-align: right;
+    background: var(--bg-card);
+    border-top: 1px solid var(--border);
+    font-style: italic;
+}
