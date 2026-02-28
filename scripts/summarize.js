@@ -38,7 +38,9 @@ async function summarizeArticles() {
 
         try {
             if (!process.env.OPENAI_API_KEY || process.env.OPENAI_API_KEY.length < 5) {
-                article.summary = `[AI Summary placeholder. Please inject OPENAI_API_KEY into GitHub Secrets to generate the 200-word intelligent wrapper.] \n\nExcerpt: ${article.excerpt}`;
+                // Do nothing. Leaving article.summary empty will force the frontend
+                // to gracefully render the standard fallback reading components.
+                console.log(`Skipping AI summarization for ${article.title.substring(0, 20)}... (No API Key)`);
             } else {
                 const textToSummarize = article.fullText && article.fullText.trim().length > 100
                     ? article.fullText.substring(0, 8000)
