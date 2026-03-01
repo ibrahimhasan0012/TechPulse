@@ -39,7 +39,7 @@ P2: ${(article.paragraph2 || '').substring(0, 200)}`;
     for (let attempt = 1; attempt <= retries; attempt++) {
         try {
             const res = await groq.chat.completions.create({
-                model: 'llama-3.1-8b-instant',
+                model: 'llama-3.3-70b-versatile',
                 messages: [{ role: 'system', content: SYS }, { role: 'user', content: input }],
                 temperature: 0.3,
                 max_tokens: 1500,
