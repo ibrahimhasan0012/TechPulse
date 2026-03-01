@@ -61,7 +61,7 @@ async function summarizeArticle(article) {
                 { role: 'user', content: `Article title: ${article.title}\n\nArticle text:\n${sourceText.substring(0, 4000)}` }
             ],
             temperature: 0.4,
-            max_tokens: 700,
+            max_tokens: 2500,
         });
 
         const raw = completion.choices[0]?.message?.content?.trim() || '';

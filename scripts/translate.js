@@ -45,7 +45,7 @@ P5: ${article.paragraph5 || ''}`;
                 model: 'openai/gpt-oss-120b',
                 messages: [{ role: 'system', content: SYS }, { role: 'user', content: input }],
                 temperature: 0.3,
-                max_tokens: 1500,
+                max_tokens: 4000,
             });
             let raw = res.choices[0]?.message?.content?.trim() || '';
             // Strip markdown code fences: ```json ... ``` or ``` ... ```
