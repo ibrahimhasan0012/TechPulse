@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useAppContext } from '../context/AppContext';
 import ArticleCard from './ArticleCard';
 import Trending from './Trending';
@@ -23,7 +24,12 @@ export default function Home() {
     const indiaFeed = southAsiaArticles.filter(a => a.region === 'India').slice(0, 4);
     const pakistanFeed = southAsiaArticles.filter(a => a.region === 'Pakistan').slice(0, 4);
 
-    const globalFeed = globalArticles.slice(3, 9);
+    const [visibleArticles, setVisibleArticles] = useState(9);
+    const globalFeed = globalArticles.slice(3, visibleArticles);
+
+    const handleLoadMore = () => {
+        setVisibleArticles(prev => prev + 6);
+    };
 
     return (
         <section className="content-section">
@@ -83,6 +89,19 @@ export default function Home() {
                             <div className="articles-list">
                                 {globalFeed.map((article, i) => <ArticleCard key={article.id} article={article} index={i} />)}
                             </div>
+                            {visibleArticles < globalArticles.length && (
+                                <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+                                    <button
+                                        onClick={handleLoadMore}
+                                        style={{ background: 'var(--bg-secondary)', color: 'var(--text-primary)', border: '1px solid var(--border)', padding: '10px 24px', borderRadius: '8px', cursor: 'pointer', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '8px', margin: '0 auto', transition: 'all 0.2s ease' }}
+                                        onMouseOver={(e) => e.currentTarget.style.background = 'var(--primary)'}
+                                        onMouseOut={(e) => e.currentTarget.style.background = 'var(--bg-secondary)'}
+                                    >
+                                        <span className="material-icons-round">expand_more</span>
+                                        {lang === 'bn' ? 'আরও দেখুন' : 'Load More'}
+                                    </button>
+                                </div>
+                            )}
                         </div>
                     )}
 
