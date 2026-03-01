@@ -46,9 +46,6 @@ const SOURCES = {
     YourStory: { url: 'https://yourstory.com/feed', region: 'India', category: 'Startups' },
     MintTech: { url: 'https://www.livemint.com/rss/technology', region: 'India', category: 'Technology' },
 
-    // Pakistan
-    TechJuice: { url: 'https://www.techjuice.pk/feed/', region: 'Pakistan', category: 'Technology' },
-
     // Global – Hardware
     AndroidAuth: { url: 'https://www.androidauthority.com/feed/', region: 'Global', category: 'Hardware' },
     TomsHardware: { url: 'https://www.tomshardware.com/feeds/all', region: 'Global', category: 'Hardware' },
@@ -65,12 +62,35 @@ const SOURCES = {
     Sifted: { url: 'https://sifted.eu/feed/', region: 'Europe', category: 'Startups' },
 };
 
-// Keywords to filter out non-tech / political content
-const BLOCK_KEYWORDS = ['trump', 'election', 'biden', 'republican', 'democrat', 'senate', 'congress', 'hegseth', 'musk lawsuit'];
+// Strictly block non-tech / off-topic content
+const BLOCK_KEYWORDS = [
+    // Politics
+    'trump', 'election', 'biden', 'republican', 'democrat', 'senate', 'congress', 'hegseth',
+    'parliament', 'minister', 'government', 'military', 'army', 'war', 'drone strike', 'attack',
+    // Religion / culture
+    'iftar', 'ramadan', 'eid', 'prayer', 'mosque', 'church', 'temple', 'festival', 'cricket', 'football',
+    // Sports (unless e-sports)
+    't20', 'ipl', 'world cup', 'match', 'tournament', 'wicket', 'batting',
+    // Crime / social
+    'murder', 'rape', 'accident', 'flood', 'earthquake', 'fire', 'arrest', 'police',
+    // Finance non-tech
+    'stock market', 'gold price', 'real estate', 'property',
+];
 
-function isBlocked(text = '') {
-    const lower = text.toLowerCase();
-    return BLOCK_KEYWORDS.some(kw => lower.includes(kw));
+// Topic must include at least one tech keyword to be included
+const REQUIRE_KEYWORDS = [
+    'ai', 'artificial intelligence', 'machine learning', 'startup', 'app', 'software', 'hardware',
+    'tech', 'mobile', 'phone', 'laptop', 'chip', 'gpu', 'cpu', 'cloud', 'data', 'robot',
+    'funding', 'venture', 'ipo', 'saas', 'developer', 'coding', 'programming', 'cybersecurity',
+    'electric vehicle', 'ev', 'semiconductor', 'battery', 'processor', 'device',
+];
+
+function isBlocked(title = '', excerpt = '') {
+    const text = (title + ' ' + excerpt).toLowerCase();
+    if (BLOCK_KEYWORDS.some(kw => text.includes(kw))) return true;
+    // Must match at least one tech keyword
+    if (!REQUIRE_KEYWORDS.some(kw => text.includes(kw))) return true;
+    return false;
 }
 
 // ── Text helpers ──────────────────────────────────────────────────────────
@@ -168,7 +188,8 @@ async function main() {
             if (!url || existingUrls.has(url)) continue;
 
             const title = item.title?.trim() || '';
-            if (!title || isBlocked(title)) continue;
+            const rawExcerptPreview = (item.contentSnippet || item.summary || '').substring(0, 150);
+            if (!title || isBlocked(title, rawExcerptPreview)) continue;
 
             process.stdout.write(`  + ${title.substring(0, 55)}... `);
 
