@@ -33,20 +33,22 @@ const groq = new Groq({ apiKey: GROQ_KEY });
 
 const SYSTEM_PROMPT = `You are a tech journalist writing for TechPulse, a South Asian technology news platform.
 
-Given the raw text of a tech article, write a clean, paraphrased version in exactly 2-3 short paragraphs:
+Given the raw text of a tech article, write a clean, paraphrased version in exactly 3-5 short paragraphs:
 - Paragraph 1 (2-3 sentences): What happened — the main news
 - Paragraph 2 (2-4 sentences): Key details, specs, numbers, or context  
-- Paragraph 3 (1-3 sentences, optional): Impact for South Asian readers (Bangladesh, India, Pakistan). If not relevant leave empty string.
+- Paragraph 3 (2-4 sentences): Additional important context or quotes
+- Paragraph 4 (1-3 sentences, optional): Secondary details. If not relevant leave empty string.
+- Paragraph 5 (1-3 sentences, optional): Impact for South Asian readers (Bangladesh, India, Pakistan). If not relevant leave empty string.
 
 Rules:
 - Write in your own words — do NOT copy sentences from the source
 - Professional but accessible tone
 - If prices are mentioned, convert to BDT/INR/PKR where sensible
 - Return ONLY valid JSON in this exact format (no markdown, no extra text):
-{"paragraph1": "...", "paragraph2": "...", "paragraph3": "..."}`;
+{"paragraph1": "...", "paragraph2": "...", "paragraph3": "...", "paragraph4": "...", "paragraph5": "..."}`;
 
 async function summarizeArticle(article) {
-    const sourceText = [article.paragraph1, article.paragraph2, article.paragraph3]
+    const sourceText = [article.paragraph1, article.paragraph2, article.paragraph3, article.paragraph4, article.paragraph5]
         .filter(Boolean).join(' ') || article.excerpt || '';
 
     if (sourceText.trim().length < 80) return null; // Not enough content
@@ -72,6 +74,8 @@ async function summarizeArticle(article) {
             paragraph1: (parsed.paragraph1 || '').trim(),
             paragraph2: (parsed.paragraph2 || '').trim(),
             paragraph3: (parsed.paragraph3 || '').trim(),
+            paragraph4: (parsed.paragraph4 || '').trim(),
+            paragraph5: (parsed.paragraph5 || '').trim(),
         };
     } catch (e) {
         console.log(`  ✗ Groq error: ${e.message}`);
@@ -93,7 +97,7 @@ async function main() {
     // We detect "not AI-generated" if paragraph1 is short (< 100 chars) — raw sentence split
     const toProcess = articles.filter(a =>
         !a.aiSummarized &&
-        (a.paragraph1.length < 100 || !a.paragraph2)
+        (!a.paragraph1 || a.paragraph1.length < 100 || !a.paragraph2)
     );
 
     console.log(`Processing ${toProcess.length} articles...`);
@@ -107,6 +111,8 @@ async function main() {
             article.paragraph1 = result.paragraph1;
             article.paragraph2 = result.paragraph2;
             article.paragraph3 = result.paragraph3;
+            article.paragraph4 = result.paragraph4;
+            article.paragraph5 = result.paragraph5;
             article.aiSummarized = true;
             console.log(`✓`);
         } else {

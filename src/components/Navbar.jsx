@@ -1,15 +1,30 @@
 import { useState, useEffect } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { useAppContext } from '../context/AppContext'
 import { getTranslation } from '../data/translations'
 import './Navbar.css'
 
-const navLinks = ['Home', 'Technology', 'AI', 'Development', 'Design']
-
 export default function Navbar() {
-    const { theme, toggleTheme, lang, toggleLang } = useAppContext()
+    const { theme, toggleTheme, lang, toggleLang, articles } = useAppContext()
     const [scrolled, setScrolled] = useState(false)
-    const [active, setActive] = useState('Home')
     const [menuOpen, setMenuOpen] = useState(false)
+
+    const navigate = useNavigate()
+    const location = useLocation()
+
+    // Dynamic Categories
+    const categories = Array.from(new Set(articles.map(a => a.category))).filter(Boolean).slice(0, 4)
+    const navLinks = ['Home', ...categories]
+
+    // Determine active route
+    const activeRoute = location.pathname === '/' ? 'Home' : decodeURIComponent(location.pathname.split('/').pop())
+
+    const handleNavClick = (e, link) => {
+        e.preventDefault()
+        setMenuOpen(false)
+        if (link === 'Home') navigate('/')
+        else navigate(`/category/${encodeURIComponent(link)}`)
+    }
 
     useEffect(() => {
         const onScroll = () => setScrolled(window.scrollY > 20)
@@ -21,7 +36,7 @@ export default function Navbar() {
         <header className={`navbar ${scrolled ? 'scrolled' : ''}`}>
             <div className="container navbar-inner">
                 {/* Logo */}
-                <a href="#" className="navbar-logo">
+                <a href="/" onClick={(e) => handleNavClick(e, 'Home')} className="navbar-logo">
                     <div className="logo-icon">
                         <span className="material-icons-round">bolt</span>
                     </div>
@@ -33,11 +48,11 @@ export default function Navbar() {
                     {navLinks.map(link => (
                         <a
                             key={link}
-                            href="#"
-                            className={`nav-link ${active === link ? 'active' : ''}`}
-                            onClick={() => setActive(link)}
+                            href={link === 'Home' ? '/' : `/category/${encodeURIComponent(link)}`}
+                            className={`nav-link ${activeRoute === link ? 'active' : ''}`}
+                            onClick={(e) => handleNavClick(e, link)}
                         >
-                            {getTranslation(link, lang)}
+                            {link === 'Home' ? getTranslation('Home', lang) : link}
                         </a>
                     ))}
                 </nav>
@@ -72,11 +87,11 @@ export default function Navbar() {
                 {navLinks.map(link => (
                     <a
                         key={link}
-                        href="#"
-                        className={`mobile-nav-link ${active === link ? 'active' : ''}`}
-                        onClick={() => { setActive(link); setMenuOpen(false) }}
+                        href={link === 'Home' ? '/' : `/category/${encodeURIComponent(link)}`}
+                        className={`mobile-nav-link ${activeRoute === link ? 'active' : ''}`}
+                        onClick={(e) => handleNavClick(e, link)}
                     >
-                        {getTranslation(link, lang)}
+                        {link === 'Home' ? getTranslation('Home', lang) : link}
                     </a>
                 ))}
             </div>

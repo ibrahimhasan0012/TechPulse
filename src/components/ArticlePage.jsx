@@ -168,6 +168,8 @@ export default function ArticlePage() {
                                         <p style={{ marginBottom: '1.5rem' }}>{summaryLang === 'en' ? article.paragraph1 : (article.bangla_paragraph1 || article.paragraph1)}</p>
                                         {article.paragraph2 && <p style={{ marginBottom: '1.5rem' }}>{summaryLang === 'en' ? article.paragraph2 : (article.bangla_paragraph2 || article.paragraph2)}</p>}
                                         {article.paragraph3 && <p style={{ marginBottom: '1.5rem' }}>{summaryLang === 'en' ? article.paragraph3 : (article.bangla_paragraph3 || article.paragraph3)}</p>}
+                                        {article.paragraph4 && <p style={{ marginBottom: '1.5rem' }}>{summaryLang === 'en' ? article.paragraph4 : (article.bangla_paragraph4 || article.paragraph4)}</p>}
+                                        {article.paragraph5 && <p style={{ marginBottom: '1.5rem' }}>{summaryLang === 'en' ? article.paragraph5 : (article.bangla_paragraph5 || article.paragraph5)}</p>}
                                     </>
                                 ) : (
                                     (summaryLang === 'en' ? article.summary : (article.summary_bn || article.summary))

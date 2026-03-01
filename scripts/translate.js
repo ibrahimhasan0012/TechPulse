@@ -29,12 +29,15 @@ Rules:
 - Keep technical/brand/product names in English (AI, CPU, GPU, iPhone, Samsung, etc.)
 - Do NOT add any commentary
 - Return ONLY valid JSON with no markdown code blocks:
-{"title_bn":"...","bangla_paragraph1":"...","bangla_paragraph2":"...","bangla_paragraph3":"..."}`;
+{"title_bn":"...", "bangla_paragraph1":"...", "bangla_paragraph2":"...", "bangla_paragraph3":"...", "bangla_paragraph4":"...", "bangla_paragraph5":"..."}`;
 
 async function translateArticle(article, retries = 3) {
     const input = `Title: ${article.title}
-P1: ${article.paragraph1.substring(0, 300)}
-P2: ${(article.paragraph2 || '').substring(0, 200)}`;
+P1: ${article.paragraph1 || ''}
+P2: ${article.paragraph2 || ''}
+P3: ${article.paragraph3 || ''}
+P4: ${article.paragraph4 || ''}
+P5: ${article.paragraph5 || ''}`;
 
     for (let attempt = 1; attempt <= retries; attempt++) {
         try {
@@ -60,6 +63,8 @@ P2: ${(article.paragraph2 || '').substring(0, 200)}`;
                 bangla_paragraph1: (p.bangla_paragraph1 || '').trim(),
                 bangla_paragraph2: (p.bangla_paragraph2 || '').trim(),
                 bangla_paragraph3: (p.bangla_paragraph3 || '').trim(),
+                bangla_paragraph4: (p.bangla_paragraph4 || '').trim(),
+                bangla_paragraph5: (p.bangla_paragraph5 || '').trim(),
             };
         } catch (e) {
             const msg = e.message || '';

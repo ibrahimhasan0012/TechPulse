@@ -95,20 +95,22 @@ function isBlocked(title = '', excerpt = '') {
 
 // ── Text helpers ──────────────────────────────────────────────────────────
 function splitParagraphs(text) {
-    if (!text || text.trim().length < 50) return ['', '', ''];
+    if (!text || text.trim().length < 50) return ['', '', '', '', ''];
 
     const cleaned = text.replace(/\s+/g, ' ').trim();
     const sentences = cleaned.match(/[^.!?]+[.!?]+["')]*\s*/g) || [];
 
-    if (sentences.length === 0) return [cleaned.substring(0, 400), '', ''];
+    if (sentences.length === 0) return [cleaned.substring(0, 400), '', '', '', ''];
 
     const s = (start, count) => sentences.slice(start, start + count).join('').trim();
 
     const p1 = s(0, Math.min(3, sentences.length));
     const p2 = sentences.length > 3 ? s(3, Math.min(4, sentences.length - 3)) : '';
-    const p3 = sentences.length > 7 ? s(7, Math.min(3, sentences.length - 7)) : '';
+    const p3 = sentences.length > 7 ? s(7, Math.min(4, sentences.length - 7)) : '';
+    const p4 = sentences.length > 11 ? s(11, Math.min(4, sentences.length - 11)) : '';
+    const p5 = sentences.length > 15 ? s(15, Math.min(5, sentences.length - 15)) : '';
 
-    return [p1, p2, p3];
+    return [p1, p2, p3, p4, p5];
 }
 
 function estimateReadTime(text = '') {
@@ -200,7 +202,7 @@ async function main() {
             const rawExcerpt = (item.contentSnippet || item.summary || '')
                 .replace(/\s+/g, ' ').trim().substring(0, 250);
 
-            const [p1, p2, p3] = splitParagraphs(text || rawExcerpt);
+            const [p1, p2, p3, p4, p5] = splitParagraphs(text || rawExcerpt);
 
             const article = {
                 id: uuidv4(),
@@ -218,9 +220,13 @@ async function main() {
                 paragraph1: p1,
                 paragraph2: p2,
                 paragraph3: p3,
+                paragraph4: p4,
+                paragraph5: p5,
                 bangla_paragraph1: '',    // filled by translate.js
                 bangla_paragraph2: '',
                 bangla_paragraph3: '',
+                bangla_paragraph4: '',
+                bangla_paragraph5: '',
             };
 
             db.push(article);
