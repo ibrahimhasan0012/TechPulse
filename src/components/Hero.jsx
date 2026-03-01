@@ -15,13 +15,7 @@ export default function Hero() {
     return (
         <section className="hero">
             <div className="container">
-                {/* Category pills */}
-                <div className="hero-pills animate-fade-in">
-                    {['AI', 'Development', 'Design', 'Hardware', 'Startups'].map(c => (
-                        <a key={c} href="#" className="pill">{getTranslation(c, lang)}</a>
-                    ))}
-                </div>
-
+                {/* Removed Category pills */}
                 {/* Featured card */}
                 <div
                     className="hero-card animate-fade-up"
