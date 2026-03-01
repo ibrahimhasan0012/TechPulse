@@ -1,79 +1,129 @@
-import { translate } from '@vitalets/google-translate-api';
+/**
+ * translate.js — TechPulse Bangla Translator (Groq-powered)
+ *
+ * Responsibility: Translate untranslated articles to natural Bangla using Groq.
+ * Translates: title, paragraph1, paragraph2, paragraph3
+ *
+ * Skips articles that already have a Bangla title different from the English title.
+ */
+
+import Groq from 'groq-sdk';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { config } from 'dotenv';
+
+config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const OUTPUT_FILE = path.join(__dirname, '../public/data/articles.json');
 
-const OUTPUT_DIR = path.join(__dirname, '../public/data');
-const OUTPUT_FILE = path.join(OUTPUT_DIR, 'articles.json');
+const delay = ms => new Promise(r => setTimeout(r, ms));
 
-// Delay helper to prevent aggressive rate limiting blocks
-const delay = ms => new Promise(res => setTimeout(res, ms));
+const GROQ_KEY = process.env.GROQ_API_KEY;
+if (!GROQ_KEY) {
+    console.log('⚠ No GROQ_API_KEY found. Skipping Bangla translation.');
+    process.exit(0);
+}
 
-async function translateText(text) {
-    if (!text) return '';
+const groq = new Groq({ apiKey: GROQ_KEY });
+
+const TRANSLATE_PROMPT = `You are a professional Bangla translator for a technology news platform. 
+Translate the following English tech content into natural, fluent Bangla (বাংলা).
+
+Rules:
+- Use natural Bangladeshi/Bengali vocabulary (not overly formal)
+- Keep technical terms (AI, CPU, startup, etc.) in English where Bangla readers would expect them
+- Do NOT translate brand names, company names, or product names
+- Return ONLY valid JSON in exactly this format (no markdown, no extra text):
+{"title_bn": "...", "bangla_paragraph1": "...", "bangla_paragraph2": "...", "bangla_paragraph3": "..."}`;
+
+async function translateArticle(article) {
+    const content = `Title: ${article.title}
+
+Paragraph 1: ${article.paragraph1}
+
+Paragraph 2: ${article.paragraph2 || ''}
+
+Paragraph 3: ${article.paragraph3 || ''}`;
+
     try {
-        const res = await translate(text, { to: 'bn' });
-        return res.text;
+        const completion = await groq.chat.completions.create({
+            model: 'llama-3.1-8b-instant',
+            messages: [
+                { role: 'system', content: TRANSLATE_PROMPT },
+                { role: 'user', content }
+            ],
+            temperature: 0.3,
+            max_tokens: 800,
+        });
+
+        const raw = completion.choices[0]?.message?.content?.trim() || '';
+        const jsonMatch = raw.match(/\{[\s\S]*\}/);
+        if (!jsonMatch) return null;
+
+        const parsed = JSON.parse(jsonMatch[0]);
+        return {
+            title_bn: (parsed.title_bn || article.title).trim(),
+            bangla_paragraph1: (parsed.bangla_paragraph1 || '').trim(),
+            bangla_paragraph2: (parsed.bangla_paragraph2 || '').trim(),
+            bangla_paragraph3: (parsed.bangla_paragraph3 || '').trim(),
+        };
     } catch (e) {
-        console.error(`Translation Error for "${text.substring(0, 20)}...":`, e.message);
-        return text; // Fallback to English on error
+        console.log(`  ✗ Groq error: ${e.message}`);
+        return null;
     }
 }
 
-async function runTranslations() {
-    console.log('--- Starting Bengali Translation Pass ---');
+async function main() {
+    console.log('=== TechPulse Translate to Bangla (Groq) ===');
 
     if (!fs.existsSync(OUTPUT_FILE)) {
-        console.log('No articles.json found. Please run fetchArticles.js first.');
+        console.log('No articles.json found. Run fetch.js first.');
         return;
     }
 
     let articles = JSON.parse(fs.readFileSync(OUTPUT_FILE, 'utf8'));
-    let changesMade = false;
 
-    for (let i = 0; i < articles.length; i++) {
-        let article = articles[i];
+    // Articles needing translation: title_bn is same as title (placeholder) or bangla_paragraph1 is empty
+    const toProcess = articles.filter(a =>
+        a.title === a.title_bn || !a.bangla_paragraph1
+    );
 
-        // We hijack the title_bn as a flag. If it's identical to the English 'title'
-        // it signifies it hasn't been translated yet by the fetch script.
-        const needsTitleTrans = article.title === article.title_bn;
-        const needsP1Trans = article.paragraph1 && (!article.bangla_paragraph1 || article.paragraph1 === article.bangla_paragraph1);
+    console.log(`Translating ${toProcess.length} articles...`);
+    let done = 0;
 
-        if (needsTitleTrans || needsP1Trans) {
-            console.log(`Translating Article [${i + 1}/${articles.length}]: ${article.title.substring(0, 30)}...`);
-
-            if (needsTitleTrans) {
-                article.title_bn = await translateText(article.title);
-                article.excerpt_bn = await translateText(article.excerpt);
-            }
-
-            if (needsP1Trans) {
-                article.bangla_paragraph1 = await translateText(article.paragraph1);
-                if (article.paragraph2) article.bangla_paragraph2 = await translateText(article.paragraph2);
-                if (article.paragraph3) article.bangla_paragraph3 = await translateText(article.paragraph3);
-            }
-
-            // Also handle old standard 'summary' property arrays
-            if (article.summary && article.summary !== article.summary_bn) {
-                article.summary_bn = await translateText(article.summary);
-            }
-
-            changesMade = true;
-
-            // Wait 2.5 seconds between translations to avoid Google's IP soft-ban
-            await delay(2500);
+    for (const article of toProcess) {
+        if (!article.paragraph1) {
+            console.log(`  — Skipping "${article.title.substring(0, 40)}" (no content yet)`);
+            continue;
         }
+
+        process.stdout.write(`[${++done}/${toProcess.length}] ${article.title.substring(0, 50)}... `);
+
+        const result = await translateArticle(article);
+        if (result) {
+            article.title_bn = result.title_bn;
+            article.bangla_paragraph1 = result.bangla_paragraph1;
+            article.bangla_paragraph2 = result.bangla_paragraph2;
+            article.bangla_paragraph3 = result.bangla_paragraph3;
+            console.log(`✓`);
+        } else {
+            console.log(`— skipped`);
+        }
+
+        // Save every 10
+        if (done % 10 === 0) {
+            fs.writeFileSync(OUTPUT_FILE, JSON.stringify(articles, null, 2));
+        }
+
+        // Rate limit delay
+        await delay(2500);
     }
 
-    if (changesMade) {
-        fs.writeFileSync(OUTPUT_FILE, JSON.stringify(articles, null, 2));
-        console.log('Translate pass complete. Database updated.');
-    } else {
-        console.log('All articles are already translated up-to-date.');
-    }
+    fs.writeFileSync(OUTPUT_FILE, JSON.stringify(articles, null, 2));
+    console.log(`\n=== Done: translated ${done} articles to Bangla ===`);
 }
 
-runTranslations();
+main().catch(console.error);

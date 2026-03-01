@@ -10,7 +10,11 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "fetch": "node scripts/fetch.js",
+    "summarize": "node scripts/summarize.js",
+    "translate": "node scripts/translate.js",
+    "pipeline": "node scripts/fetch.js && node scripts/summarize.js && node scripts/translate.js"
   },
   "dependencies": {
     "@mozilla/readability": "^0.6.0",
