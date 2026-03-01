@@ -71,9 +71,14 @@ export default function ArticlePage() {
     const { id } = useParams()
     const navigate = useNavigate()
     const { lang, articles, loadingArticles } = useAppContext()
-    const [summaryLang, setSummaryLang] = useState('en')
+    const [summaryLang, setSummaryLang] = useState(lang)
 
     useEffect(() => { window.scrollTo(0, 0) }, [id])
+
+    // Sync summaryLang when global language changes
+    useEffect(() => {
+        setSummaryLang(lang)
+    }, [lang])
 
     if (loadingArticles) {
         return <div className="article-page" style={{ textAlign: 'center', padding: '100px', opacity: 0.5 }}>Loading...</div>
