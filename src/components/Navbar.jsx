@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useAppContext } from '../context/AppContext'
 import { getTranslation } from '../data/translations'
@@ -8,6 +8,9 @@ export default function Navbar() {
     const { theme, toggleTheme, lang, toggleLang, articles } = useAppContext()
     const [scrolled, setScrolled] = useState(false)
     const [menuOpen, setMenuOpen] = useState(false)
+    const [searchOpen, setSearchOpen] = useState(false)
+    const [searchQuery, setSearchQuery] = useState('')
+    const searchInputRef = useRef(null)
 
     const navigate = useNavigate()
     const location = useLocation()
@@ -31,6 +34,37 @@ export default function Navbar() {
         window.addEventListener('scroll', onScroll)
         return () => window.removeEventListener('scroll', onScroll)
     }, [])
+
+    useEffect(() => {
+        if (searchOpen && searchInputRef.current) {
+            searchInputRef.current.focus()
+        }
+    }, [searchOpen])
+
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.key === 'Escape' && searchOpen) {
+                setSearchOpen(false)
+                setSearchQuery('')
+            }
+        }
+        window.addEventListener('keydown', handleKeyDown)
+        return () => window.removeEventListener('keydown', handleKeyDown)
+    }, [searchOpen])
+
+    const handleSearchClick = (e, articleId) => {
+        e.preventDefault()
+        setSearchOpen(false)
+        setSearchQuery('')
+        navigate(`/article/${articleId}`)
+    }
+
+    const searchResults = searchQuery.trim() === ''
+        ? []
+        : articles.filter(a =>
+            a.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            (a.title_bn && a.title_bn.includes(searchQuery))
+        ).slice(0, 5)
 
     return (
         <header className={`navbar ${scrolled ? 'scrolled' : ''}`}>
@@ -65,7 +99,7 @@ export default function Navbar() {
                     <button className="lang-toggle" onClick={toggleLang} aria-label="Toggle Language">
                         {lang.toUpperCase()}
                     </button>
-                    <button className="icon-btn" aria-label="Search">
+                    <button className="icon-btn" onClick={() => setSearchOpen(true)} aria-label="Search">
                         <span className="material-icons-round">search</span>
                     </button>
                     <button className="icon-btn" aria-label="Bookmarks">
@@ -95,6 +129,44 @@ export default function Navbar() {
                     </a>
                 ))}
             </div>
+
+            {/* Search Overlay */}
+            {searchOpen && (
+                <div className="search-overlay">
+                    <div className="container search-overlay-inner">
+                        <span className="material-icons-round search-icon-large">search</span>
+                        <input
+                            ref={searchInputRef}
+                            type="text"
+                            className="search-input"
+                            placeholder={getTranslation('SearchPlaceholder', lang)}
+                            value={searchQuery}
+                            onChange={e => setSearchQuery(e.target.value)}
+                        />
+                        <button className="icon-btn close-search" onClick={() => { setSearchOpen(false); setSearchQuery('') }} aria-label="Close Search">
+                            <span className="material-icons-round">close</span>
+                        </button>
+                    </div>
+                    {searchQuery.trim() !== '' && (
+                        <div className="container">
+                            <div className="search-results">
+                                {searchResults.length > 0 ? searchResults.map(a => (
+                                    <div key={a.id} className="search-result-item" onClick={(e) => handleSearchClick(e, a.id)}>
+                                        <div className="search-result-content">
+                                            <h4>{lang === 'bn' && a.title_bn ? a.title_bn : a.title}</h4>
+                                            <span>{a.category}</span>
+                                        </div>
+                                    </div>
+                                )) : (
+                                    <div className="search-no-results">
+                                        {getTranslation('NoResults', lang)}
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    )}
+                </div>
+            )}
         </header>
     )
 }

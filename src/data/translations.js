@@ -166,6 +166,14 @@ export const translations = {
     By: {
         en: 'By',
         bn: 'লিখেছেন'
+    },
+    SearchPlaceholder: {
+        en: 'Search articles...',
+        bn: 'প্রবন্ধ খুঁজুন...'
+    },
+    NoResults: {
+        en: 'No articles found',
+        bn: 'কোনো প্রবন্ধ পাওয়া যায়নি'
     }
 };
 

@@ -22,6 +22,7 @@ const __dirname = path.dirname(__filename);
 const OUTPUT_DIR = path.join(__dirname, '../public/data');
 const OUTPUT_FILE = path.join(OUTPUT_DIR, 'articles.json');
 const MAX_ARTICLES = 200;
+const MAX_NEW_PER_RUN = 20;
 
 if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 
@@ -199,6 +200,11 @@ async function main() {
         }
 
         for (const item of (feed.items || []).slice(0, 10)) {
+            if (added >= MAX_NEW_PER_RUN) {
+                console.log(`\nReached max new articles cap (${MAX_NEW_PER_RUN}). Stopping fetch.`);
+                break;
+            }
+
             const url = item.link || item.guid;
             if (!url || existingUrls.has(url)) continue;
 
@@ -250,6 +256,7 @@ async function main() {
             // Small delay to be polite
             await new Promise(r => setTimeout(r, 300));
         }
+        if (added >= MAX_NEW_PER_RUN) break;
     }
 
     // Keep only the newest MAX_ARTICLES, trim oldest
