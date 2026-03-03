@@ -42,21 +42,35 @@ P5: ${article.paragraph5 || ''}`;
     for (let attempt = 1; attempt <= retries; attempt++) {
         try {
             const res = await groq.chat.completions.create({
-                model: 'qwen/qwen3-32b',
+                model: 'llama-3.3-70b-versatile',
                 messages: [{ role: 'system', content: SYS }, { role: 'user', content: input }],
                 temperature: 0.3,
                 max_tokens: 4000,
+                response_format: { type: 'json_object' },
             });
             let raw = res.choices[0]?.message?.content?.trim() || '';
-            // Strip markdown code fences: ```json ... ``` or ``` ... ```
-            raw = raw.replace(/^```(?:json)?\s*/i, '').replace(/\s*```\s*$/i, '');
-            const m = raw.match(/\{[\s\S]*\}/);
-            if (!m) {
-                console.log(`    Attempt ${attempt}: No JSON in response (raw: ${raw.substring(0, 80)})`);
+            // 1. Strip <think>...</think> reasoning blocks (Qwen/DeepSeek models)
+            raw = raw.replace(/<think>[\s\S]*?<\/think>/gi, '').trim();
+            // 2. Strip markdown code fences
+            raw = raw.replace(/^```(?:json)?\s*/i, '').replace(/\s*```\s*$/i, '').trim();
+            // 3. Extract JSON object
+            const jsonMatch = raw.match(/\{[\s\S]*\}/);
+            if (!jsonMatch) {
+                console.log(`    Attempt ${attempt}: No JSON found. Preview: ${raw.substring(0, 120)}...`);
                 continue;
             }
             let parsed;
-            try { parsed = JSON.parse(m[0]); } catch { parsed = JSON.parse(m[0].replace(/[\u0000-\u001F]/g, ' ')); }
+            try {
+                // 4. Normalize curly/smart quotes and control chars before parsing
+                const cleaned = jsonMatch[0]
+                    .replace(/[\u201C\u201D\u201E\u201F\u2033\u2036]/g, '"') // curly double quotes → "
+                    .replace(/[\u2018\u2019\u201A\u201B\u2032\u2035]/g, "'") // curly single quotes → '
+                    .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, ' '); // control chars
+                parsed = JSON.parse(cleaned);
+            } catch (e) {
+                console.log(`    Attempt ${attempt} parse error: ${e.message?.substring(0, 80)}`);
+                continue;
+            }
             const p = parsed;
             return {
                 title_bn: (p.title_bn || article.title).trim(),
