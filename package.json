@@ -17,8 +17,8 @@
     "pipeline": "node scripts/fetch.js && node scripts/summarize.js && node scripts/translate.js"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.24.1",
     "@mozilla/readability": "^0.6.0",
-    "@vitalets/google-translate-api": "^9.2.1",
     "axios": "^1.13.6",
     "cheerio": "^1.2.0",
     "dotenv": "^17.3.1",
