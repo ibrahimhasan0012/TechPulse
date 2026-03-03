@@ -1,6 +1,6 @@
 /**
  * translate.js — TechPulse Bangla Translator (Groq-powered)
- * Uses gemma2-9b-it for natural Bangla translation.
+ * Uses mixtral-8x7b-32768 for natural Bangla translation.
  * Has retry logic and longer delays to handle free-tier rate limits.
  */
 
@@ -42,7 +42,7 @@ P5: ${article.paragraph5 || ''}`;
     for (let attempt = 1; attempt <= retries; attempt++) {
         try {
             const res = await groq.chat.completions.create({
-                model: 'gemma2-9b-it',
+                model: 'qwen/qwen3-32b',
                 messages: [{ role: 'system', content: SYS }, { role: 'user', content: input }],
                 temperature: 0.3,
                 max_tokens: 4000,
