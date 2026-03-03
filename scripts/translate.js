@@ -1,6 +1,6 @@
 /**
  * translate.js — TechPulse Bangla Translator (Groq-powered)
- * Uses llama-3.1-8b-instant for natural Bangla translation.
+ * Uses gemma2-9b-it for natural Bangla translation.
  * Has retry logic and longer delays to handle free-tier rate limits.
  */
 
@@ -42,7 +42,7 @@ P5: ${article.paragraph5 || ''}`;
     for (let attempt = 1; attempt <= retries; attempt++) {
         try {
             const res = await groq.chat.completions.create({
-                model: 'openai/gpt-oss-120b',
+                model: 'gemma2-9b-it',
                 messages: [{ role: 'system', content: SYS }, { role: 'user', content: input }],
                 temperature: 0.3,
                 max_tokens: 4000,
@@ -83,12 +83,16 @@ async function main() {
 
     let articles = JSON.parse(fs.readFileSync(OUTPUT_FILE, 'utf8'));
     const toProcess = articles.filter(a => a.paragraph1 && !a.bangla_paragraph1);
-    console.log(`Translating ${toProcess.length} articles (5s delay between each)...`);
+
+    const MAX_PER_RUN = 30;
+    const batch = toProcess.slice(0, MAX_PER_RUN);
+
+    console.log(`Translating ${batch.length} of ${toProcess.length} pending articles (Cap: ${MAX_PER_RUN})...`);
 
     let done = 0;
     let succeeded = 0;
-    for (const article of toProcess) {
-        process.stdout.write(`[${++done}/${toProcess.length}] ${article.title.substring(0, 48)}... `);
+    for (const article of batch) {
+        process.stdout.write(`[${++done}/${batch.length}] ${article.title.substring(0, 48)}... `);
         const result = await translateArticle(article);
         if (result) {
             Object.assign(article, result);

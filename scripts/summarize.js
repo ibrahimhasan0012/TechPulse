@@ -55,7 +55,7 @@ async function summarizeArticle(article) {
 
     try {
         const completion = await groq.chat.completions.create({
-            model: 'openai/gpt-oss-120b',
+            model: 'llama-3.3-70b-versatile',
             messages: [
                 { role: 'system', content: SYSTEM_PROMPT },
                 { role: 'user', content: `Article title: ${article.title}\n\nArticle text:\n${sourceText.substring(0, 4000)}` }
@@ -100,11 +100,14 @@ async function main() {
         (!a.paragraph1 || a.paragraph1.length < 100 || !a.paragraph2)
     );
 
-    console.log(`Processing ${toProcess.length} articles...`);
+    const MAX_PER_RUN = 30;
+    const batch = toProcess.slice(0, MAX_PER_RUN);
+
+    console.log(`Processing ${batch.length} of ${toProcess.length} pending articles (Cap: ${MAX_PER_RUN})...`);
     let done = 0;
 
-    for (const article of toProcess) {
-        process.stdout.write(`[${++done}/${toProcess.length}] ${article.title.substring(0, 50)}... `);
+    for (const article of batch) {
+        process.stdout.write(`[${++done}/${batch.length}] ${article.title.substring(0, 50)}... `);
 
         const result = await summarizeArticle(article);
         if (result) {
