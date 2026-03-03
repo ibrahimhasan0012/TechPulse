@@ -98,17 +98,26 @@ function splitParagraphs(text) {
     if (!text || text.trim().length < 50) return ['', '', '', '', ''];
 
     const cleaned = text.replace(/\s+/g, ' ').trim();
+    // Improved sentence splitting to handle more edge cases
     const sentences = cleaned.match(/[^.!?]+[.!?]+["')]*\s*/g) || [];
 
-    if (sentences.length === 0) return [cleaned.substring(0, 400), '', '', '', ''];
+    if (sentences.length === 0) return [cleaned.substring(0, 500), '', '', '', ''];
+
+    const total = sentences.length;
+    // Distribute sentences more evenly across 5 paragraphs
+    const p1Count = Math.ceil(total * 0.20);
+    const p2Count = Math.ceil(total * 0.20);
+    const p3Count = Math.ceil(total * 0.20);
+    const p4Count = Math.ceil(total * 0.20);
 
     const s = (start, count) => sentences.slice(start, start + count).join('').trim();
 
-    const p1 = s(0, Math.min(3, sentences.length));
-    const p2 = sentences.length > 3 ? s(3, Math.min(4, sentences.length - 3)) : '';
-    const p3 = sentences.length > 7 ? s(7, Math.min(4, sentences.length - 7)) : '';
-    const p4 = sentences.length > 11 ? s(11, Math.min(4, sentences.length - 11)) : '';
-    const p5 = sentences.length > 15 ? s(15, Math.min(5, sentences.length - 15)) : '';
+    let current = 0;
+    const p1 = s(current, p1Count); current += p1Count;
+    const p2 = s(current, p2Count); current += p2Count;
+    const p3 = s(current, p3Count); current += p3Count;
+    const p4 = s(current, p4Count); current += p4Count;
+    const p5 = s(current, total - current);
 
     return [p1, p2, p3, p4, p5];
 }
@@ -136,8 +145,12 @@ function extractRssImage(item) {
 async function fetchArticlePage(url) {
     try {
         const { data } = await axios.get(url, {
-            timeout: 10000,
-            headers: { 'User-Agent': 'Mozilla/5.0 (compatible; TechPulseBot/1.0)' }
+            timeout: 15000,
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
+                'Accept-Language': 'en-US,en;q=0.9'
+            }
         });
 
         const dom = new JSDOM(data, { url });
