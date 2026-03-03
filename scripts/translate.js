@@ -84,7 +84,7 @@ async function main() {
     let articles = JSON.parse(fs.readFileSync(OUTPUT_FILE, 'utf8'));
     const toProcess = articles.filter(a => a.paragraph1 && !a.bangla_paragraph1);
 
-    const MAX_PER_RUN = 30;
+    const MAX_PER_RUN = 20;
     const batch = toProcess.slice(0, MAX_PER_RUN);
 
     console.log(`Translating ${batch.length} of ${toProcess.length} pending articles (Cap: ${MAX_PER_RUN})...`);
@@ -105,7 +105,7 @@ async function main() {
             fs.writeFileSync(OUTPUT_FILE, JSON.stringify(articles, null, 2));
             console.log(`  → Checkpoint: ${succeeded}/${done} translated so far`);
         }
-        await delay(5000); // 5s between each article
+        await delay(8000); // 8s between each article
     }
 
     fs.writeFileSync(OUTPUT_FILE, JSON.stringify(articles, null, 2));
