@@ -233,6 +233,7 @@ async function main() {
                 category: meta.category,
                 author: 'TechPulse',
                 date: formatDate(item.isoDate || item.pubDate),
+                timestamp: item.isoDate || item.pubDate || new Date().toISOString(),
                 readTime: estimateReadTime(text || p1),
                 imageUrl,
                 excerpt: rawExcerpt,
@@ -260,7 +261,8 @@ async function main() {
     }
 
     // Keep only the newest MAX_ARTICLES, trim oldest
-    db.sort((a, b) => new Date(b.date) - new Date(a.date));
+    // Keep only the newest MAX_ARTICLES, using precise timestamp for sorting
+    db.sort((a, b) => new Date(b.timestamp || b.date).getTime() - new Date(a.timestamp || a.date).getTime());
     db = db.slice(0, MAX_ARTICLES);
 
     fs.writeFileSync(OUTPUT_FILE, JSON.stringify(db, null, 2));
