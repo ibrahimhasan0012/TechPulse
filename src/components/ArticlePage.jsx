@@ -96,7 +96,14 @@ export default function ArticlePage() {
         )
     }
 
-    const related = articles.filter(a => a.id !== id && a.category === article.category).slice(0, 2)
+    // Use smart interlinked IDs if available, otherwise fall back to same-category
+    const related = article.related_articles && article.related_articles.length > 0
+        ? article.related_articles
+            .map(relId => articles.find(a => a.id === relId))
+            .filter(Boolean)
+            .slice(0, 3)
+        : articles.filter(a => a.id !== id && a.category === article.category).slice(0, 3)
+
 
     return (
         <div className="article-page">
