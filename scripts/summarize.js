@@ -101,7 +101,7 @@ async function main() {
         (!a.paragraph1 || a.paragraph1.length < 100 || !a.paragraph2)
     );
 
-    const MAX_PER_RUN = 20;
+    const MAX_PER_RUN = 10;
     const batch = toProcess.slice(0, MAX_PER_RUN);
 
     console.log(`Processing ${batch.length} of ${toProcess.length} pending articles (Cap: ${MAX_PER_RUN})...`);

@@ -25,7 +25,7 @@ async function translateArticleBatch(article) {
         throw new Error('GEMINI_API_KEY environment variable is missing.');
     }
 
-    const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
+    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
     const prompt = `
 You are an expert tech translator. Translate the following English Tech News article fields into natural, journalistic Bengali (Bangla).
@@ -109,8 +109,8 @@ async function main() {
                 console.log('✗ skipped');
             }
 
-            // Wait 4.5s to respect Gemini 15 RPM free tier limits
-            await delay(4500);
+            // Wait 1.5s to respect Gemini 15 RPM free tier limits
+            await delay(1500);
         }
     }
 
