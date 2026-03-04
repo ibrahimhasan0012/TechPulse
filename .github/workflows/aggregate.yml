@@ -54,6 +54,13 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     if: always()
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -67,7 +74,17 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build and deploy to GitHub Pages
-        run: |
-          npm run build
-          npx gh-pages -d dist -u "github-actions-bot <support+actions@github.com>" --repo "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Build
+        run: npm run build
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
