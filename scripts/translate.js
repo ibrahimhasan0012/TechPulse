@@ -1,12 +1,12 @@
 /**
- * translate.js — TechPulse Translation Script (Gemini Flash API)
- * 
+ * translate.js — TechPulse Translation Script (NLLB-200 via HF Spaces)
+ *
  * Responsibility: For each article without bangla_paragraph1, translate the title
- * and 5 paragraphs to Bengali using Gemini 2.5 Flash via @google/generative-ai.
+ * and 5 paragraphs to Bengali using Meta's NLLB-200 model hosted on HF Spaces.
+ * No API key required — uses the public community NLLB API endpoint.
  */
 
 import 'dotenv/config';
-import { GoogleGenerativeAI } from '@google/generative-ai';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -18,60 +18,32 @@ const OUTPUT_FILE = path.join(__dirname, '../public/data/articles.json');
 const delay = ms => new Promise(r => setTimeout(r, ms));
 const MAX_PER_RUN = 20;
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
+// Public community-hosted NLLB API on Hugging Face Spaces — no API key needed
+const NLLB_API = 'https://winstxnhdw-nllb-api.hf.space/api/v4/translator';
 
-async function translateArticleBatch(article) {
-    if (!process.env.GEMINI_API_KEY) {
-        throw new Error('GEMINI_API_KEY environment variable is missing.');
-    }
-
-    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
-
-    const prompt = `
-You are an expert tech translator. Translate the following English Tech News article fields into natural, journalistic Bengali (Bangla).
-Ensure technical terms are kept natural (e.g., 'MacBook Air' should be phonetically 'ম্যাকবুক এয়ার' or left in English if commonly used).
-
-Respond strictly in valid JSON format with the following keys exactly:
-- "title_bn"
-- "bangla_paragraph1"
-- "bangla_paragraph2"
-- "bangla_paragraph3"
-- "bangla_paragraph4"
-- "bangla_paragraph5"
-
-English content to translate:
-{
-  "title": ${JSON.stringify(article.title)},
-  "paragraph1": ${JSON.stringify(article.paragraph1)},
-  "paragraph2": ${JSON.stringify(article.paragraph2)},
-  "paragraph3": ${JSON.stringify(article.paragraph3)},
-  "paragraph4": ${JSON.stringify(article.paragraph4)},
-  "paragraph5": ${JSON.stringify(article.paragraph5)}
-}
-`;
-
+async function translateText(text) {
+    if (!text || text.trim().length === 0) return '';
     try {
-        const result = await model.generateContent(prompt);
-        const responseText = result.response.text();
+        // Trim to 500 chars max to keep API calls fast and stable
+        const trimmed = text.substring(0, 500);
+        const url = `${NLLB_API}?text=${encodeURIComponent(trimmed)}&source=eng_Latn&target=ben_Beng`;
 
-        // Extract JSON even if wrapped in markdown formatting
-        const jsonMatch = responseText.match(/\{[\s\S]*\}/);
-        if (!jsonMatch) throw new Error('Could not parse JSON from Gemini response.');
+        const response = await fetch(url, { signal: AbortSignal.timeout(15000) });
 
-        return JSON.parse(jsonMatch[0]);
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${await response.text()}`);
+        }
+
+        const result = await response.json();
+        return result.result || text;
     } catch (e) {
-        console.error(`\n  [Error] Translation failed for ID ${article.id}: ${e.message}`);
-        return null; // Signals failure
+        console.error(`\n  [Error] Translation failed: ${e.message}`);
+        return text; // fallback to original on error
     }
 }
 
 async function main() {
-    console.log('=== TechPulse Translate to Bangla (Gemini 1.5 Flash) ===');
-
-    if (!process.env.GEMINI_API_KEY) {
-        console.log('Please set GEMINI_API_KEY in your .env file to run translation.');
-        return;
-    }
+    console.log('=== TechPulse Translate to Bangla (NLLB-200 via HF Spaces) ===');
 
     let db = [];
     if (fs.existsSync(OUTPUT_FILE)) {
@@ -90,27 +62,21 @@ async function main() {
         if (!article.bangla_paragraph1 || article.bangla_paragraph1.trim() === '') {
             process.stdout.write(`[${translatedCount + 1}/${Math.min(pending.length, MAX_PER_RUN)}] ${article.title.substring(0, 50)}... `);
 
-            const translatedData = await translateArticleBatch(article);
+            article.title_bn = await translateText(article.title);
+            article.bangla_paragraph1 = await translateText(article.paragraph1);
+            article.bangla_paragraph2 = await translateText(article.paragraph2);
+            article.bangla_paragraph3 = await translateText(article.paragraph3);
+            article.bangla_paragraph4 = await translateText(article.paragraph4);
+            article.bangla_paragraph5 = await translateText(article.paragraph5);
 
-            if (translatedData) {
-                article.title_bn = translatedData.title_bn || article.title;
-                article.bangla_paragraph1 = translatedData.bangla_paragraph1 || article.paragraph1;
-                article.bangla_paragraph2 = translatedData.bangla_paragraph2 || article.paragraph2;
-                article.bangla_paragraph3 = translatedData.bangla_paragraph3 || article.paragraph3;
-                article.bangla_paragraph4 = translatedData.bangla_paragraph4 || article.paragraph4;
-                article.bangla_paragraph5 = translatedData.bangla_paragraph5 || article.paragraph5;
+            translatedCount++;
+            console.log('✓');
 
-                translatedCount++;
-                console.log('✓');
+            // Save immediately after each successful translation
+            fs.writeFileSync(OUTPUT_FILE, JSON.stringify(db, null, 2));
 
-                // Save immediately after each successful translation stack
-                fs.writeFileSync(OUTPUT_FILE, JSON.stringify(db, null, 2));
-            } else {
-                console.log('✗ skipped');
-            }
-
-            // Wait 1.5s to respect Gemini 15 RPM free tier limits
-            await delay(1500);
+            // Polite delay between articles
+            await delay(1000);
         }
     }
 
