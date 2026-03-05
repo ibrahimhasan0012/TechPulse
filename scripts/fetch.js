@@ -27,6 +27,7 @@ const MAX_NEW_PER_RUN = 20;
 if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 
 const parser = new Parser({
+    timeout: 15000, // Strict 15s timeout to prevent hanging pipeline
     customFields: {
         item: [
             ['media:thumbnail', 'thumbnail'],
