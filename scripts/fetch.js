@@ -41,7 +41,7 @@ const parser = new Parser({
 const SOURCES = {
     // Bangladesh
     DhakaTribune: { url: 'https://www.dhakatribune.com/feed/tech', region: 'Bangladesh', category: 'Technology' },
-    PCBuilderBD: { url: 'https://pcbuilderbd.com/blog/feed/', region: 'Bangladesh', category: 'Hardware' },
+    ProthomAloBD: { url: 'https://www.prothomalo.com/api/v1/stories?section=technology&limit=20', region: 'Bangladesh', category: 'Technology', isQuintype: true },
 
     // India
     Inc42: { url: 'https://inc42.com/feed/', region: 'India', category: 'Startups' },
@@ -62,6 +62,9 @@ const SOURCES = {
     // Europe
     TechEU: { url: 'https://tech.eu/feed/', region: 'Europe', category: 'Startups' },
     Sifted: { url: 'https://sifted.eu/feed/', region: 'Europe', category: 'Startups' },
+
+    // Global - General Tech
+    ProthomAloEN: { url: 'https://en.prothomalo.com/api/v1/stories?section=science&limit=20', region: 'Global', category: 'Technology', isQuintype: true },
 };
 
 // Strictly block non-tech / off-topic content
@@ -85,6 +88,8 @@ const REQUIRE_KEYWORDS = [
     'tech', 'mobile', 'phone', 'laptop', 'chip', 'gpu', 'cpu', 'cloud', 'data', 'robot',
     'funding', 'venture', 'ipo', 'saas', 'developer', 'coding', 'programming', 'cybersecurity',
     'electric vehicle', 'ev', 'semiconductor', 'battery', 'processor', 'device',
+    // Bangla tech keywords
+    'প্রযুক্তি', 'মোবাইল', 'ল্যাপটপ', 'অ্যাপ', 'গুগল', 'ফেসবুক', 'ইন্টারনেট', 'স্মার্টফোন', 'এআই', 'কৃত্রিম বুদ্ধিমত্তা', 'ডিভাইস', 'সফটওয়্যার'
 ];
 
 function isBlocked(title = '', excerpt = '') {
@@ -193,20 +198,35 @@ async function main() {
 
     for (const [sourceName, meta] of Object.entries(SOURCES)) {
         console.log(`\nFetching ${sourceName}...`);
-        let feed;
+        let items = [];
         try {
             const response = await fetch(meta.url, {
                 signal: AbortSignal.timeout(15000),
                 headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36' }
             });
-            const xml = await response.text();
-            feed = await parser.parseString(xml);
+
+            if (meta.isQuintype) {
+                const json = await response.json();
+                items = (json.items || [])
+                    .filter(i => i.story)
+                    .map(i => ({
+                        title: i.story.headline,
+                        link: i.story.url,
+                        summary: i.story.summary || i.story.seo?.['meta-description'] || '',
+                        isoDate: new Date(i.story['published-at']).toISOString(),
+                        imageUrl: i.story['hero-image-s3-key'] ? `https://images.prothomalo.com/${i.story['hero-image-s3-key']}` : ''
+                    }));
+            } else {
+                const xml = await response.text();
+                const feed = await parser.parseString(xml);
+                items = feed.items || [];
+            }
         } catch (e) {
             console.log(`  ✗ Failed: ${e.message}`);
             continue;
         }
 
-        for (const item of (feed.items || []).slice(0, 10)) {
+        for (const item of items.slice(0, 10)) {
             if (added >= MAX_NEW_PER_RUN) {
                 console.log(`\nReached max new articles cap (${MAX_NEW_PER_RUN}). Stopping fetch.`);
                 break;
@@ -216,16 +236,19 @@ async function main() {
             if (!url || existingUrls.has(url)) continue;
 
             const title = item.title?.trim() || '';
-            const rawExcerptPreview = (item.contentSnippet || item.summary || '').substring(0, 150);
-            if (!title || isBlocked(title, rawExcerptPreview)) continue;
+            const rawExcerptPreview = (item.summary || item.contentSnippet || '').substring(0, 150);
+            if (!title || isBlocked(title, rawExcerptPreview)) {
+                if (meta.isQuintype) console.log('  - Blocked:', title);
+                continue;
+            }
 
             process.stdout.write(`  + ${title.substring(0, 55)}... `);
 
             const { text, ogImage } = await fetchArticlePage(url);
-            const rssImage = extractRssImage(item);
+            const rssImage = item.imageUrl || extractRssImage(item);
             const imageUrl = ogImage || rssImage;
 
-            const rawExcerpt = (item.contentSnippet || item.summary || '')
+            const rawExcerpt = (item.summary || item.contentSnippet || '')
                 .replace(/\s+/g, ' ').trim().substring(0, 250);
 
             const [p1, p2, p3, p4, p5] = splitParagraphs(text || rawExcerpt);
