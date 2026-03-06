@@ -218,6 +218,15 @@
             "parameters": {
                 "method": "POST",
                 "url": "https://graph.facebook.com/v18.0/511985038657941/photos",
+                "sendQuery": true,
+                "queryParameters": {
+                    "parameters": [
+                        {
+                            "name": "access_token",
+                            "value": "EAAR2rImmHOoBQ6g5XRlAisvsz6jw6HIK6IjJsDKh8lh0LWUMdNTu3Q3USQUJSfkprLLASYCaAAbZCK0PfEHZARvELe4dg0QaesZBcZAjDSzH0SSHKZAAqfER9BRY0RpWaAMfeYfDT4rYKRi54t7k5rKEyEo8ZBkub8CmRuFZAnYRBRUB5EZAWX5PyWbIs6lWcYQHDguQ0nZCBTy5TZAOBxfcTrW4qw5qr1i80E"
+                        }
+                    ]
+                },
                 "sendBody": true,
                 "contentType": "multipart-form-data",
                 "bodyParameters": {
@@ -225,10 +234,6 @@
                         {
                             "name": "message",
                             "value": "={{ $('Build Poster HTML').first().json.caption }}"
-                        },
-                        {
-                            "name": "access_token",
-                            "value": "EAAR2rImmHOoBQ6g5XRlAisvsz6jw6HIK6IjJsDKh8lh0LWUMdNTu3Q3USQUJSfkprLLASYCaAAbZCK0PfEHZARvELe4dg0QaesZBcZAjDSzH0SSHKZAAqfER9BRY0RpWaAMfeYfDT4rYKRi54t7k5rKEyEo8ZBkub8CmRuFZAnYRBRUB5EZAWX5PyWbIs6lWcYQHDguQ0nZCBTy5TZAOBxfcTrW4qw5qr1i80E"
                         },
                         {
                             "name": "published",
@@ -239,7 +244,7 @@
                             "value": "={{ Math.floor(new Date().getTime() / 1000) + 900 }}"
                         },
                         {
-                            "parameterType": "formBinary",
+                            "parameterType": "formBinaryData",
                             "name": "source",
                             "inputDataFieldName": "data"
                         }
