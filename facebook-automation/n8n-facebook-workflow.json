@@ -1,0 +1,89 @@
+{
+  "name": "Facebook Page Poster",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "trigger-node",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "content": "={{ $json.message }}",
+        "additionalFields": {}
+      },
+      "id": "set-content",
+      "name": "Set Post Content",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [450, 300],
+      "notes": "Define your post message here"
+    },
+    {
+      "parameters": {
+        "url": "https://graph.facebook.com/v18.0/511985038657941/feed",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpQueryAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "access_token",
+              "value": "EAAR2rImmHOoBQ9dsaZBZACmcZAJit8Oe2ZB4zPYQQeoe4atmp8OfNDcdZAZAj5IRejLA1BAtsNyZC82ZBOZBtQn4AScyBj9PxoZCZCZAIX4mG6pqHMwngOQ0e1PPCrEmQ3X6rTZAFeZBuyPE41dVHGwSJsIBv9a6uHOAZBuIAKr7ZCaV9H4PnfjItrQioLkqZCWN22ZCzcJnQLZBBc2kJXIxuCpxSrPb7cLT7f7KWspgOrbijyG7ZBGYR0xOJXNaWqS5ZBwQkv6ddhOVlB2x7h9vcsiOYWinXcp2H1gZDZD"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "message",
+              "value": "={{ $json.message }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "facebook-post",
+      "name": "Post to Facebook",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [650, 300]
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Set Post Content",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Post Content": {
+      "main": [
+        [
+          {
+            "node": "Post to Facebook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-03-05T00:00:00.000Z",
+  "versionId": "1"
+}

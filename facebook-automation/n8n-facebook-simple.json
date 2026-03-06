@@ -1,0 +1,95 @@
+{
+  "name": "Facebook Post - Simple Test",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "manual-trigger",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "message-field",
+              "name": "message",
+              "value": "Hello from n8n! This is a test post. #automation",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "id": "set-message",
+      "name": "Set Message",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [460, 300],
+      "notes": "Edit the message value to change your post content"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v18.0/511985038657941/feed",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "access_token",
+              "value": "EAAR2rImmHOoBQ9dsaZBZACmcZAJit8Oe2ZB4zPYQQeoe4atmp8OfNDcdZAZAj5IRejLA1BAtsNyZC82ZBOZBtQn4AScyBj9PxoZCZCZAIX4mG6pqHMwngOQ0e1PPCrEmQ3X6rTZAFeZBuyPE41dVHGwSJsIBv9a6uHOAZBuIAKr7ZCaV9H4PnfjItrQioLkqZCWN22ZCzcJnQLZBBc2kJXIxuCpxSrPb7cLT7f7KWspgOrbijyG7ZBGYR0xOJXNaWqS5ZBwQkv6ddhOVlB2x7h9vcsiOYWinXcp2H1gZDZD"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "json",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "message",
+              "value": "={{ $json.message }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "http-request",
+      "name": "Post to Facebook Page",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [680, 300]
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Set Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Message": {
+      "main": [
+        [
+          {
+            "node": "Post to Facebook Page",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0
+}

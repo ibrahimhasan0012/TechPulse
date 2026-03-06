@@ -1,0 +1,289 @@
+{
+  "name": "Facebook Poster - Google Sheets + Images",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 6
+            }
+          ]
+        }
+      },
+      "id": "schedule-trigger",
+      "name": "Schedule (Every 6 Hours)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "notes": "Adjust schedule as needed"
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "mode": "url",
+          "value": "YOUR_GOOGLE_SHEET_URL_HERE"
+        },
+        "sheetName": "Posts",
+        "options": {}
+      },
+      "id": "google-sheets",
+      "name": "Get Content from Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [450, 300],
+      "notes": "Configure your Google Sheets credential and URL",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SETUP_REQUIRED",
+          "name": "Google Sheets OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.posted }}",
+              "operation": "equals",
+              "value2": ""
+            }
+          ]
+        }
+      },
+      "id": "filter-unposted",
+      "name": "Only Unposted",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.image_url }}",
+              "operation": "isNotEmpty"
+            }
+          ]
+        }
+      },
+      "id": "check-image",
+      "name": "Has Image?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [850, 300]
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.image_url }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "id": "download-image",
+      "name": "Download Image",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [1050, 200],
+      "notes": "Downloads image from URL"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v18.0/511985038657941/photos",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "access_token",
+              "value": "EAAR2rImmHOoBQ9dsaZBZACmcZAJit8Oe2ZB4zPYQQeoe4atmp8OfNDcdZAZAj5IRejLA1BAtsNyZC82ZBOZBtQn4AScyBj9PxoZCZCZAIX4mG6pqHMwngOQ0e1PPCrEmQ3X6rTZAFeZBuyPE41dVHGwSJsIBv9a6uHOAZBuIAKr7ZCaV9H4PnfjItrQioLkqZCWN22ZCzcJnQLZBBc2kJXIxuCpxSrPb7cLT7f7KWspgOrbijyG7ZBGYR0xOJXNaWqS5ZBwQkv6ddhOVlB2x7h9vcsiOYWinXcp2H1gZDZD"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "source",
+              "inputDataFieldName": "data",
+              "type": "binary"
+            },
+            {
+              "name": "caption",
+              "value": "={{ $json.message }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "post-with-image",
+      "name": "Post Photo to Facebook",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [1250, 200]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v18.0/511985038657941/feed",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "access_token",
+              "value": "EAAR2rImmHOoBQ9dsaZBZACmcZAJit8Oe2ZB4zPYQQeoe4atmp8OfNDcdZAZAj5IRejLA1BAtsNyZC82ZBOZBtQn4AScyBj9PxoZCZCZAIX4mG6pqHMwngOQ0e1PPCrEmQ3X6rTZAFeZBuyPE41dVHGwSJsIBv9a6uHOAZBuIAKr7ZCaV9H4PnfjItrQioLkqZCWN22ZCzcJnQLZBBc2kJXIxuCpxSrPb7cLT7f7KWspgOrbijyG7ZBGYR0xOJXNaWqS5ZBwQkv6ddhOVlB2x7h9vcsiOYWinXcp2H1gZDZD"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "json",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "message",
+              "value": "={{ $json.message }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "post-text-only",
+      "name": "Post Text to Facebook",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [1050, 400]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "mode": "url",
+          "value": "YOUR_GOOGLE_SHEET_URL_HERE"
+        },
+        "sheetName": "Posts",
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "posted": "YES",
+            "posted_at": "={{ $now.toISO() }}"
+          }
+        },
+        "options": {}
+      },
+      "id": "mark-posted",
+      "name": "Mark as Posted",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [1450, 300],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SETUP_REQUIRED",
+          "name": "Google Sheets OAuth2"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Schedule (Every 6 Hours)": {
+      "main": [
+        [
+          {
+            "node": "Get Content from Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Content from Sheets": {
+      "main": [
+        [
+          {
+            "node": "Only Unposted",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Only Unposted": {
+      "main": [
+        [
+          {
+            "node": "Has Image?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Image?": {
+      "main": [
+        [
+          {
+            "node": "Download Image",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Post Text to Facebook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download Image": {
+      "main": [
+        [
+          {
+            "node": "Post Photo to Facebook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Post Photo to Facebook": {
+      "main": [
+        [
+          {
+            "node": "Mark as Posted",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Post Text to Facebook": {
+      "main": [
+        [
+          {
+            "node": "Mark as Posted",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": []
+}

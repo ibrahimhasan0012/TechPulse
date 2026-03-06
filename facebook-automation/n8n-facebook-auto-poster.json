@@ -1,0 +1,164 @@
+{
+  "name": "Facebook Auto Poster - Complete",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 24
+            }
+          ]
+        }
+      },
+      "id": "schedule-trigger",
+      "name": "Daily Schedule",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "notes": "Runs every 24 hours - adjust as needed"
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "mode": "url"
+        },
+        "sheetUrl": "YOUR_GOOGLE_SHEET_URL",
+        "sheetName": "Sheet1",
+        "options": {}
+      },
+      "id": "google-sheets",
+      "name": "Get Content from Sheet",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [450, 300],
+      "notes": "Reads post content from Google Sheets - replace with your sheet URL",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SETUP_IN_N8N",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.posted }}",
+              "operation": "isEmpty"
+            }
+          ]
+        }
+      },
+      "id": "filter-unposted",
+      "name": "Filter Unposted",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [650, 300],
+      "notes": "Only posts content that hasn't been posted yet"
+    },
+    {
+      "parameters": {
+        "url": "https://graph.facebook.com/v18.0/511985038657941/feed",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "access_token",
+              "value": "EAAR2rImmHOoBQ9dsaZBZACmcZAJit8Oe2ZB4zPYQQeoe4atmp8OfNDcdZAZAj5IRejLA1BAtsNyZC82ZBOZBtQn4AScyBj9PxoZCZCZAIX4mG6pqHMwngOQ0e1PPCrEmQ3X6rTZAFeZBuyPE41dVHGwSJsIBv9a6uHOAZBuIAKr7ZCaV9H4PnfjItrQioLkqZCWN22ZCzcJnQLZBBc2kJXIxuCpxSrPb7cLT7f7KWspgOrbijyG7ZBGYR0xOJXNaWqS5ZBwQkv6ddhOVlB2x7h9vcsiOYWinXcp2H1gZDZD"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ message: $json.message }) }}",
+        "options": {}
+      },
+      "id": "facebook-post",
+      "name": "Post to Facebook",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [850, 200]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "mode": "url"
+        },
+        "sheetUrl": "YOUR_GOOGLE_SHEET_URL",
+        "sheetName": "Sheet1",
+        "columns": {
+          "mappingMode": "autoMapInputData"
+        },
+        "options": {}
+      },
+      "id": "mark-posted",
+      "name": "Mark as Posted",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [1050, 200],
+      "notes": "Updates the row to mark as posted"
+    }
+  ],
+  "connections": {
+    "Daily Schedule": {
+      "main": [
+        [
+          {
+            "node": "Get Content from Sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Content from Sheet": {
+      "main": [
+        [
+          {
+            "node": "Filter Unposted",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter Unposted": {
+      "main": [
+        [
+          {
+            "node": "Post to Facebook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Post to Facebook": {
+      "main": [
+        [
+          {
+            "node": "Mark as Posted",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-03-05T00:00:00.000Z",
+  "versionId": "1"
+}

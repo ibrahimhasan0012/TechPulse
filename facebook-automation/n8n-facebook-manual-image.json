@@ -1,0 +1,199 @@
+{
+  "name": "Facebook - Manual Post with Image",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "manual-trigger",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "msg",
+              "name": "message",
+              "value": "Your post caption here! Edit this before running.",
+              "type": "string"
+            },
+            {
+              "id": "img",
+              "name": "image_url",
+              "value": "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "id": "set-content",
+      "name": "Set Content",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [450, 300],
+      "notes": "Edit message and image_url values"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.image_url }}",
+              "operation": "isNotEmpty"
+            }
+          ]
+        }
+      },
+      "id": "has-image",
+      "name": "Has Image?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.image_url }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "id": "get-image",
+      "name": "Download Image",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [850, 200]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v18.0/511985038657941/photos",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "access_token",
+              "value": "EAAR2rImmHOoBQ9dsaZBZACmcZAJit8Oe2ZB4zPYQQeoe4atmp8OfNDcdZAZAj5IRejLA1BAtsNyZC82ZBOZBtQn4AScyBj9PxoZCZCZAIX4mG6pqHMwngOQ0e1PPCrEmQ3X6rTZAFeZBuyPE41dVHGwSJsIBv9a6uHOAZBuIAKr7ZCaV9H4PnfjItrQioLkqZCWN22ZCzcJnQLZBBc2kJXIxuCpxSrPb7cLT7f7KWspgOrbijyG7ZBGYR0xOJXNaWqS5ZBwQkv6ddhOVlB2x7h9vcsiOYWinXcp2H1gZDZD"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "source",
+              "inputDataFieldName": "data",
+              "type": "binary"
+            },
+            {
+              "name": "caption",
+              "value": "={{ $json.message }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "post-photo",
+      "name": "Post Photo",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [1050, 200]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v18.0/511985038657941/feed",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "access_token",
+              "value": "EAAR2rImmHOoBQ9dsaZBZACmcZAJit8Oe2ZB4zPYQQeoe4atmp8OfNDcdZAZAj5IRejLA1BAtsNyZC82ZBOZBtQn4AScyBj9PxoZCZCZAIX4mG6pqHMwngOQ0e1PPCrEmQ3X6rTZAFeZBuyPE41dVHGwSJsIBv9a6uHOAZBuIAKr7ZCaV9H4PnfjItrQioLkqZCWN22ZCzcJnQLZBBc2kJXIxuCpxSrPb7cLT7f7KWspgOrbijyG7ZBGYR0xOJXNaWqS5ZBwQkv6ddhOVlB2x7h9vcsiOYWinXcp2H1gZDZD"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "json",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "message",
+              "value": "={{ $json.message }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "post-text",
+      "name": "Post Text Only",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [850, 400]
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Set Content",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Content": {
+      "main": [
+        [
+          {
+            "node": "Has Image?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Image?": {
+      "main": [
+        [
+          {
+            "node": "Download Image",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Post Text Only",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download Image": {
+      "main": [
+        [
+          {
+            "node": "Post Photo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": []
+}
