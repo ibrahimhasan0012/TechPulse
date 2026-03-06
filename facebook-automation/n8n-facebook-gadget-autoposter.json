@@ -1,0 +1,445 @@
+{
+    "name": "Gadget Breeze BD Auto-Poster",
+    "nodes": [
+        {
+            "parameters": {
+                "rule": {
+                    "interval": [
+                        {
+                            "field": "cronExpression",
+                            "expression": "0 5,8,11,14,17 * * *"
+                        }
+                    ]
+                }
+            },
+            "id": "1",
+            "name": "Schedule (5x Daily)",
+            "type": "n8n-nodes-base.scheduleTrigger",
+            "typeVersion": 1.1,
+            "position": [
+                0,
+                200
+            ],
+            "notes": "Runs at 11AM, 2PM, 5PM, 8PM, 11PM BDT (UTC+6)"
+        },
+        {
+            "parameters": {
+                "url": "https://gadgetbreeze.com.bd/shop/",
+                "options": {
+                    "redirect": {
+                        "followRedirects": true
+                    }
+                }
+            },
+            "id": "2",
+            "name": "Scrape Category Page",
+            "type": "n8n-nodes-base.httpRequest",
+            "typeVersion": 4.2,
+            "position": [
+                200,
+                200
+            ]
+        },
+        {
+            "parameters": {
+                "jsCode": "const html = $input.first().json.data;\nlet products = [];\n\n// Split by Woodmart product wrapper start\n// Improved regex to handle variations in attributes\nconst chunks = html.split(/<div [^>]*class=\"[^\"]*product-grid-item/gi);\n\n// Skip first chunk\nfor (let i = 1; i < chunks.length; i++) {\n  const block = chunks[i];\n  \n  let urlMatch = block.match(/href=\"(https?:\\/\\/(?:www\\.)?gadgetbreeze\\.com\\.bd\\/product\\/[^\"]+)\"/);\n  let nameMatch = block.match(/<h3 class=\"wd-entities-title\"><a[^>]*>(.*?)<\\/a><\\/h3>/);\n  let priceMatch = block.match(/<ins>.*?<bdi>([^<]+)/);\n  if(!priceMatch) {\n      priceMatch = block.match(/<span class=\"price\">.*?<bdi>([^<]+)/);\n  }\n  let imgMatch = block.match(/<img[^>]*src=\"([^\"]+)\"/);\n  \n  if (urlMatch && nameMatch) {\n    products.push({\n      url: urlMatch[1],\n      name: nameMatch[1].replace(/<[^>]*>?/gm, '').trim(),\n      price: priceMatch ? priceMatch[1].trim() + ' ৳' : 'N/A',\n      image: imgMatch ? imgMatch[1] : ''\n    });\n  }\n}\n\n// Debug: if no products found, return a dummy to see where it stops\nif (products.length === 0) {\n  return [{ json: { url: 'DEBUG_NONE', name: 'No Products Found' } }];\n}\n\nreturn products.map(p => ({ json: p }));"
+            },
+            "id": "3",
+            "name": "Parse Product Links",
+            "type": "n8n-nodes-base.code",
+            "typeVersion": 2,
+            "position": [
+                400,
+                200
+            ]
+        },
+        {
+            "parameters": {
+                "operation": "read",
+                "documentId": {
+                    "__rl": true,
+                    "mode": "url"
+                },
+                "sheetUrl": "YOUR_GOOGLE_SHEET_URL",
+                "sheetName": "Sheet1",
+                "options": {}
+            },
+            "id": "4",
+            "name": "Get Posted Products",
+            "type": "n8n-nodes-base.googleSheets",
+            "typeVersion": 4.3,
+            "position": [
+                600,
+                200
+            ],
+            "credentials": {
+                "googleSheetsOAuth2Api": {
+                    "id": "SETUP_IN_N8N",
+                    "name": "Google Sheets account"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "jsCode": "let products = [];\nlet posted = [];\n\ntry {\n  products = $input.all(0).map(i => i.json);\n} catch (e) {}\n\ntry {\n  posted = $input.all(1).map(i => i.json);\n} catch (e) {}\n\n// Get YYYY-MM-DD for today\nconst today = new Date().toISOString().split('T')[0];\n\n// Get URLs posted TODAY specifically\nconst postedTodayUrls = new Set(\n  posted\n    .filter(p => p && p.posted_at && p.posted_at.toString().startsWith(today))\n    .map(p => p.product_url || p.url)\n);\n\n// Find first product (from arrival list) that hasn't been posted TODAY\nconst nextToPost = products.find(p => p && p.url && p.url !== 'DEBUG_NONE' && !postedTodayUrls.has(p.url));\n\nif (nextToPost) {\n  return [ { json: nextToPost } ];\n}\n\n// If everything fails but we have products, just post the first one as a fallback if the user is desperate\n// But honoring the 'not same day' request strictly:\nreturn [];"
+            },
+            "id": "5",
+            "name": "Find Unposted Product",
+            "type": "n8n-nodes-base.code",
+            "typeVersion": 2,
+            "position": [
+                800,
+                200
+            ]
+        },
+        {
+            "parameters": {
+                "url": "={{ $json.url }}",
+                "options": {}
+            },
+            "id": "6",
+            "name": "Get Product Details",
+            "type": "n8n-nodes-base.httpRequest",
+            "typeVersion": 4.2,
+            "position": [
+                1000,
+                200
+            ]
+        },
+        {
+            "parameters": {
+                "jsCode": "const html = $input.first().json.data;\nconst prevJson = $('Find Unposted Product').first().json;\n\nlet description = '';\n// Try woo-commerce description tab first (found on Gadget Breeze)\nconst descMatch = html.match(/<div class=\"[^\"]*woocommerce-Tabs-panel--description[^\"]*\"[^>]*>([\\s\\S]*?)<\\/div>\\s*<\\/div>/i);\n// Fallback to short description\nconst shortDescMatch = html.match(/<div class=\"[^\"]*woocommerce-product-details__short-description[^\"]*\"[^>]*>([\\s\\S]*?)<\\/div>/i);\n\nif (shortDescMatch) {\n  description = shortDescMatch[1].replace(/<[^>]*>?/gm, '').trim();\n} else if (descMatch) {\n  description = descMatch[1].replace(/<[^>]*>?/gm, '').trim();\n}\n\n// Truncate for safety\ndescription = description.substring(0, 1000);\n\nreturn [{ json: {\n  ...prevJson,\n  description: description\n}}];"
+            },
+            "id": "7",
+            "name": "Extract Product Info",
+            "type": "n8n-nodes-base.code",
+            "typeVersion": 2,
+            "position": [
+                1200,
+                200
+            ]
+        },
+        {
+            "parameters": {
+                "method": "POST",
+                "url": "https://openrouter.ai/api/v1/chat/completions",
+                "sendHeaders": true,
+                "headerParameters": {
+                    "parameters": [
+                        {
+                            "name": "Authorization",
+                            "value": "Bearer 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"
+                        },
+                        {
+                            "name": "HTTP-Referer",
+                            "value": "https://n8n.io"
+                        },
+                        {
+                            "name": "X-OpenRouter-Title",
+                            "value": "n8n Gadget Auto-Poster"
+                        }
+                    ]
+                },
+                "sendBody": true,
+                "specifyBody": "json",
+                "jsonBody": "={{ JSON.stringify({\n  model: \"openai/gpt-4o-mini\",\n  messages: [\n    {\n      role: \"system\",\n      content: \"You are an expert social media manager for Gadget Breeze BD. Write engaging, viral Facebook posts in a mix of English and Bengali. Use emojis. Include hashtags. End with a call to action to buy.\"\n    },\n    {\n      role: \"user\",\n      content: \"Product: \" + $json.name + \"\\nPrice: \" + $json.price + \"\\nDescription: \" + $json.description + \"\\nURL: \" + $json.url\n    }\n  ],\n  temperature: 0.7\n}) }}",
+                "options": {}
+            },
+            "id": "8",
+            "name": "Generate Caption",
+            "type": "n8n-nodes-base.httpRequest",
+            "typeVersion": 4.2,
+            "position": [
+                1400,
+                200
+            ]
+        },
+        {
+            "parameters": {
+                "jsCode": "const prevJson = $('Extract Product Info').first().json;\nconst groqResponse = $input.first().json;\n\nconst caption = groqResponse.choices[0].message.content;\n\nreturn [{ json: {\n  ...prevJson,\n  caption: caption\n}}];"
+            },
+            "id": "9",
+            "name": "Parse Caption",
+            "type": "n8n-nodes-base.code",
+            "typeVersion": 2,
+            "position": [
+                1600,
+                200
+            ]
+        },
+        {
+            "parameters": {
+                "url": "={{ $json.image }}",
+                "responseFormat": "file",
+                "options": {}
+            },
+            "id": "10",
+            "name": "Download Product Image",
+            "type": "n8n-nodes-base.httpRequest",
+            "typeVersion": 4.2,
+            "position": [
+                1800,
+                200
+            ]
+        },
+        {
+            "parameters": {
+                "jsCode": "const info = $('Extract Product Info').first().json;\nconst cap = $('Parse Caption').first().json;\nconst binaryObj = $input.first().binary.data;\nconst imageBase64 = binaryObj.data;\nconst mimeType = binaryObj.mimeType || 'image/jpeg';\n\nconst html = `\n<html>\n  <body style=\"margin:0; width:1080px; height:1080px; background: linear-gradient(135deg, #111, #333); color: white; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center;\">\n    <img src=\"data:${mimeType};base64,${imageBase64}\" style=\"max-height: 600px; max-width: 900px; object-fit: contain; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); margin-bottom: 40px;\">\n    <h1 style=\"font-size: 56px; text-align: center; margin: 0 40px 20px;\">${info.name}</h1>\n    <h2 style=\"font-size: 48px; color: #ff3b3b; margin: 0;\">${info.price}</h2>\n    <div style=\"position: absolute; top: 40px; left: 40px; background: white; padding: 10px 30px; border-radius: 30px; color: black; font-weight: bold; font-size: 32px;\">Gadget Breeze BD</div>\n  </body>\n</html>\n`;\n\nreturn [{ json: { html, caption: cap.caption, url: info.url, name: info.name } }];"
+            },
+            "id": "11",
+            "name": "Build Poster HTML",
+            "type": "n8n-nodes-base.code",
+            "typeVersion": 2,
+            "position": [
+                2000,
+                200
+            ]
+        },
+        {
+            "parameters": {
+                "method": "POST",
+                "url": "http://localhost:3000/screenshot",
+                "sendBody": true,
+                "specifyBody": "json",
+                "jsonBody": "={{ JSON.stringify({ html: $json.html, width: 1080, height: 1080 }) }}",
+                "responseFormat": "file",
+                "options": {}
+            },
+            "id": "12",
+            "name": "Render Poster Image",
+            "type": "n8n-nodes-base.httpRequest",
+            "typeVersion": 4.2,
+            "position": [
+                2200,
+                200
+            ]
+        },
+        {
+            "parameters": {
+                "method": "POST",
+                "url": "https://graph.facebook.com/v18.0/511985038657941/photos",
+                "sendBody": true,
+                "contentType": "multipart-form-data",
+                "bodyParameters": {
+                    "parameters": [
+                        {
+                            "name": "message",
+                            "value": "={{ $('Build Poster HTML').first().json.caption }}"
+                        },
+                        {
+                            "name": "access_token",
+                            "value": "EAAR2rImmHOoBQ6g5XRlAisvsz6jw6HIK6IjJsDKh8lh0LWUMdNTu3Q3USQUJSfkprLLASYCaAAbZCK0PfEHZARvELe4dg0QaesZBcZAjDSzH0SSHKZAAqfER9BRY0RpWaAMfeYfDT4rYKRi54t7k5rKEyEo8ZBkub8CmRuFZAnYRBRUB5EZAWX5PyWbIs6lWcYQHDguQ0nZCBTy5TZAOBxfcTrW4qw5qr1i80E"
+                        },
+                        {
+                            "name": "published",
+                            "value": "false"
+                        },
+                        {
+                            "name": "scheduled_publish_time",
+                            "value": "={{ Math.floor(new Date().getTime() / 1000) + 900 }}"
+                        },
+                        {
+                            "parameterType": "formBinary",
+                            "name": "source",
+                            "inputDataFieldName": "data"
+                        }
+                    ]
+                },
+                "options": {}
+            },
+            "id": "13",
+            "name": "Post to Facebook",
+            "type": "n8n-nodes-base.httpRequest",
+            "typeVersion": 4.2,
+            "position": [
+                2400,
+                200
+            ]
+        },
+        {
+            "parameters": {
+                "operation": "append",
+                "documentId": {
+                    "__rl": true,
+                    "mode": "url"
+                },
+                "sheetUrl": "YOUR_GOOGLE_SHEET_URL",
+                "sheetName": "Sheet1",
+                "columns": {
+                    "mappingMode": "defineBelow",
+                    "value": {
+                        "product_url": "={{ $('Build Poster HTML').first().json.url }}",
+                        "product_name": "={{ $('Build Poster HTML').first().json.name }}",
+                        "posted_at": "={{ new Date().toISOString() }}"
+                    }
+                },
+                "options": {}
+            },
+            "id": "14",
+            "name": "Mark as Posted",
+            "type": "n8n-nodes-base.googleSheets",
+            "typeVersion": 4.3,
+            "position": [
+                2600,
+                200
+            ],
+            "credentials": {
+                "googleSheetsOAuth2Api": {
+                    "id": "SETUP_IN_N8N",
+                    "name": "Google Sheets account"
+                }
+            }
+        }
+    ],
+    "connections": {
+        "Schedule (5x Daily)": {
+            "main": [
+                [
+                    {
+                        "node": "Scrape Category Page",
+                        "type": "main",
+                        "index": 0
+                    },
+                    {
+                        "node": "Get Posted Products",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Scrape Category Page": {
+            "main": [
+                [
+                    {
+                        "node": "Parse Product Links",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Parse Product Links": {
+            "main": [
+                [
+                    {
+                        "node": "Find Unposted Product",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Get Posted Products": {
+            "main": [
+                [
+                    {
+                        "node": "Find Unposted Product",
+                        "type": "main",
+                        "index": 1
+                    }
+                ]
+            ]
+        },
+        "Find Unposted Product": {
+            "main": [
+                [
+                    {
+                        "node": "Get Product Details",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Get Product Details": {
+            "main": [
+                [
+                    {
+                        "node": "Extract Product Info",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Extract Product Info": {
+            "main": [
+                [
+                    {
+                        "node": "Generate Caption",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Generate Caption": {
+            "main": [
+                [
+                    {
+                        "node": "Parse Caption",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Parse Caption": {
+            "main": [
+                [
+                    {
+                        "node": "Download Product Image",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Download Product Image": {
+            "main": [
+                [
+                    {
+                        "node": "Build Poster HTML",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Build Poster HTML": {
+            "main": [
+                [
+                    {
+                        "node": "Render Poster Image",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Render Poster Image": {
+            "main": [
+                [
+                    {
+                        "node": "Post to Facebook",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Post to Facebook": {
+            "main": [
+                [
+                    {
+                        "node": "Mark as Posted",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    },
+    "settings": {}
+}
