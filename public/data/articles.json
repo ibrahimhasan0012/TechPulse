@@ -1,5 +1,35 @@
 [
   {
+    "id": "e59ba9ce-064c-48bb-95d2-95142dce83e2",
+    "title": "CRED fundraise helps VC inflow to cross $1B",
+    "title_bn": "ক্রেড তহবিল সংগ্রহের ফলে ভিসি প্রবাহ ১ বিলিয়ন ডলার ছাড়িয়ে গেছে",
+    "url": "https://yourstory.com/2026/06/cred-fundraise-helps-vc-inflow-to-cross-1b",
+    "source": "YourStory",
+    "region": "India",
+    "category": "Startups",
+    "author": "TechPulse",
+    "date": "Jun 29, 2026",
+    "timestamp": "2026-06-29T02:00:00.000Z",
+    "readTime": "1 min read",
+    "imageUrl": "https://images.yourstory.com/cs/2/11718bd02d6d11e9aa979329348d4c3e/2026-CopyofNewPPTTemplates-1782654128289.png",
+    "excerpt": "Venture capital funding into Indian startups crossed the $1-billion mark on a weekly basis for the first time since 2023 and this was primarily due to $900 million fund raise of CRED.",
+    "paragraph1": "Venture capital funding into Indian startups crossed the $1-billion mark on a weekly basis for the first time since 2023 and this was primarily due to $900 million fund raise of CRED.",
+    "paragraph2": "",
+    "paragraph3": "",
+    "paragraph4": "",
+    "paragraph5": "",
+    "bangla_paragraph1": "২০২৩ সালের পর প্রথমবারের মতো ভারতীয় স্টার্টআপগুলিতে বিনিয়োগের পরিমাণ ১ বিলিয়ন ডলার ছাড়িয়েছে।",
+    "bangla_paragraph2": "",
+    "bangla_paragraph3": "",
+    "bangla_paragraph4": "",
+    "bangla_paragraph5": "",
+    "related_articles": [
+      "1fcc9a5f-dd94-4b8e-830b-d340dffd77d5",
+      "468ad4e3-be74-4c70-afc4-25e4ed2f9058",
+      "7487e173-dd36-41d8-b9b7-7f7cbbc96ee5"
+    ]
+  },
+  {
     "id": "b9d536fe-7599-4752-a28e-1bd34b5983fe",
     "title": "Suno launches Spark incubator program to feed independent artists to its AI machine",
     "title_bn": "সুনো তার এআই মেশিনে স্বাধীন শিল্পীদের ফিড করার জন্য স্পার্ক ইনকিউবেটর প্রোগ্রাম চালু করেছে",
@@ -5967,36 +5997,6 @@
       "52397237-8c62-4ecb-b531-1b53604d826c",
       "76e8ee5c-9872-4abb-b03d-3433de0469c2",
       "df119c69-b70f-403e-a558-1e4ebf84c6ee"
-    ]
-  },
-  {
-    "id": "61b4bd45-d6f5-49d4-b653-0d9a322fc311",
-    "title": "Rippling now wants to be your entire data stack",
-    "title_bn": "রিপলিং এখন আপনার পুরো ডেটা স্ট্যাক হতে চায়",
-    "url": "https://techcrunch.com/2026/06/25/parker-conrad-knows-which-employees-are-worth-their-ai-spend-and-says-rippling-can-help-you-too/",
-    "source": "TechCrunch",
-    "region": "Global",
-    "category": "AI & Dev",
-    "author": "TechPulse",
-    "date": "Jun 25, 2026",
-    "timestamp": "2026-06-25T16:00:00.000Z",
-    "readTime": "5 min read",
-    "imageUrl": "https://techcrunch.com/wp-content/uploads/2024/08/GettyImages-1258478709.jpg?w=1024",
-    "excerpt": "\"There were employees doing things like, 'Claude is so helpful for me — it analyzes my calendar and my email and puts together a plan for me,'\" he says. \"That person was spending at a run rate of $30,000 a year for this.\"",
-    "paragraph1": "Parker Conrad wants you to believe that a huge chunk of data analytics belongs inside human capital management systems — a claim that conveniently positions Rippling, which started out as an HR software company, to compete directly with dedicated business intelligence tools. The pitch is that the modern data stack — the galaxy of tools that companies currently jury-rig from multiple vendors — can be collapsed into one. Just moving data from your various business systems into a warehouse is itself a massive industry; that’s what companies like Fivetran and Airbyte do. Then you need somewhere to store and query it, like Snowflake; then something to transform and clean it, like dbt Labs; and then a visualization layer like Tableau on top. Conrad’s argument is that Rippling knits together all of that into one system and wraps it in something the others lack: a built-in understanding of your org, its ever-evolving reporting structure, and everything impacted when any metric moves up or down. That’s what Rippling Data Cloud, officially launching Thursday morning, is designed to deliver. To see it in action, Conrad shares his screen from his San Francisco office and then offers a window into what Rippling found when it turned the product on its own workforce. “There were employees doing things like, ‘Claude is so helpful for me — it analyzes my calendar and my email and puts together a plan for me,’” he says. “That person was spending at a run rate of $30,000 a year for this.” No one was doing anything wrong, he’s quick to add, but the ROI simply wasn’t there.",
-    "paragraph2": "It’s the kind of finding that most companies currently have no way of surfacing. He then shows me a live dashboard he’s built by simply asking Rippling AI to analyze his company’s most recent compensation review cycle — distributions of performance ratings, promotion rates by department, salary ratios, all of it drillable to the individual level. Then he pulls up another, this one cross-referencing support ticket volume from Salesforce with employee scheduling data — enough to show, at a glance, which teams are drowning and which aren’t. The enrollments team, he notes, is severely understaffed. The travel team has more than double the unresolved tickets of the platform team. But the example Conrad seems most excited about is one closer to a preoccupation many executives share right now: AI token spend. He shows a dashboard combining data from Anthropic’s usage logs, GitHub pull request data, and Rippling’s own performance ratings to peer at which engineers are actually getting value from their AI tools and which are burning money without much to show for it. “The high performers spend the most, which you would sort of expect,” Conrad says. But the dashboard also flags engineers with high spend and high peer rejection rates on code reviews — these are people whose colleagues are frequently asking them to redo something. “If your peers are telling you to go back and do this over all the time, maybe you’re just generating a lot of slop,” he says.",
-    "paragraph3": "The analysis has already prompted Rippling to cut spending limits for certain employees. The product can also be configured to alert managers — or automatically shut off access — when employees blow past a spending threshold. On the question of impact to Rippling’s own margins when customers exceed their token allotments, Conrad doesn’t get specific — “it’s kind of early,” he says — but brushes back the idea that Rippling is subsidizing customer usage. “We’re not losing money,” he says, adding that the goal is to keep it “as affordable as possible for customers.” The base SKU, bundled with Rippling AI, runs around $20 a month, with usage-based charges kicking in for heavier consumers. About 560 companies are currently using it, with new revenue from the product running at roughly $5 million to $7 million a month. As for which AI models are actually powering Rippling’s growing AI suite, Conrad says the company has a new favorite at the moment. “We’ve actually moved a lot of stuff from Anthropic to OpenAI recently,” he offers, deeming OpenAI’s 5.5 model as “both better and more cost-effective” for what Rippling is doing. He’s also careful to note the balance keeps shifting and the company uses different models for different tasks.",
-    "paragraph4": "Rippling Data Cloud is the most prominent launch this week, but it isn’t the only one. Earlier this week, the company also announced Business Banking, which offers a high-yield checking account and same-day payroll processing, a feature Conrad describes as eliminating the mental overhead of managing two timelines at once. Most payroll systems require processing two to four days in advance; Rippling’s banking product enables companies to run payroll on the day employees are paid, with changes accepted as late as 1 p.m. on payday. It’s an elbow thrown into territory occupied by fintechs like Ramp, which just raised $750 million at a $44 billion valuation — nearly three times the $16.8 billion valuation Rippling’s investors assigned the company last year — and which has been positioning itself as the financial operating system for companies navigating AI costs. Conrad welcomes the comparison, noting that Rippling’s banking business is far smaller than Ramp’s currently but is “growing very quickly and doing extremely well,” and that “there are some advantages to centralizing all of this.” Conrad says overall, Rippling is still roughly two years from cash-flow positive, spending 45% to 50% of its revenue on R&D compared to the roughly 8% to 9% that public-market HR companies like Paylocity and Paycom spend. The cost of building everything in-house is the point, in other words, and the payoff is a system that can easily answer questions without pulling from four different vendor stacks to do it.",
-    "paragraph5": "As for an IPO, Conrad makes it very clear he’s in no hurry, even with the window wide open right now. “The public markets have become this retirement community for slow growth companies,” he says, adding that he’s “not religious one way or the other,” even as it sounds very much the opposite. For now, he says flatly: “We are not going public. Not even with a ‘wink, wink,’” he adds. When you purchase through links in our articles, we may earn a small commission. This doesn’t affect our editorial independence.",
-    "bangla_paragraph1": "পার্কার কনরাড আপনাকে বিশ্বাস করতে চায় যে ডেটা বিশ্লেষণের একটি বিশাল অংশ মানব মূলধন পরিচালনার সিস্টেমের ভিতরে রয়েছে  একটি দাবি যা সহজেই রিপলিংকে স্থান দেয়, যা একটি এইচআর সফটওয়্যার সংস্থা হিসাবে শুরু হয়েছিল, নিবেদিত বিজনেস ইন্টেলিজেন্স সরঞ্জামগুলির সাথে সরাসরি প্রতিযোগিতা করার জন্য। পিচটি হ'ল আধুনিক ডেটা স্ট্যাক  বর্তমানে সংস্থাগুলি একাধিক বিক্রেতার কাছ থেকে জুরি-রিগ সরঞ্জামের গ্যালাক্সি  একের মধ্যে ভেঙে যেতে পারে। আপনার বিভিন্ন ব্যবসায়িক সিস্টেম থেকে ডেটা গুদামে সরিয়ে নেওয়া তার নিজস্ব ",
-    "bangla_paragraph2": "এটি এমন একটি আবিষ্কার যা বেশিরভাগ সংস্থার বর্তমানে প্রকাশের কোনও উপায় নেই। তারপরে তিনি আমাকে একটি লাইভ ড্যাশবোর্ড দেখান যা তিনি কেবল তার কোম্পানির সাম্প্রতিকতম ক্ষতিপূরণ পর্যালোচনা চক্র বিশ্লেষণ করতে রিপলিং এআইকে জিজ্ঞাসা করে তৈরি করেছেন  পারফরম্যান্স রেটিং, বিভাগ অনুসারে পদোন্নতির হার, বেতন অনুপাতের বিতরণ, এটি সমস্ত পৃথক স্তরে ড্রিলযোগ্য। তার পরে তিনি অন্যটি টানেন, এই এক ক্রস-রেফারেন্সিং সাপোর্ট টিকিট ভলিউম থেকে বিক্রয় বাহিনী কর্মচারীদের সময়সূচী ডেটা সহ  যথেষ্ট দেখানোর জন্য, এক নজরে, ",
-    "bangla_paragraph3": "বিশ্লেষণ ইতিমধ্যে রিপলিংকে নির্দিষ্ট কর্মীদের জন্য ব্যয় সীমা হ্রাস করতে বাধ্য করেছে। কর্মচারীরা যখন ব্যয় প্রান্তিক অতিক্রম করে তখন পণ্যটি ম্যানেজারদের সতর্ক করতে বা স্বয়ংক্রিয়ভাবে অ্যাক্সেস বন্ধ করতেও কনফিগার করা যেতে পারে। গ্রাহকরা যখন তাদের টোকেন বরাদ্দ অতিক্রম করেন তখন রিপ্লিংয়ের নিজস্ব মার্জিনে প্রভাবের বিষয়ে কনরাড নির্দিষ্ট করে না, তবে তিনি বলেছেন যে রিপলিং গ্রাহকের ব্যবহারকে ভর্তুকি দিচ্ছে। আমরা অর্থ হারাচ্ছি না, তিনি যোগ করেছেন।",
-    "bangla_paragraph4": "রিপলিং ডেটা ক্লাউড এই সপ্তাহে সবচেয়ে বিশিষ্ট লঞ্চ, কিন্তু এটি একমাত্র নয়। এই সপ্তাহের শুরুর দিকে, কোম্পানিটি বিজনেস ব্যাংকিংও ঘোষণা করেছিল, যা একটি উচ্চ-উপার্জনকারী চেক অ্যাকাউন্ট এবং একই দিনের বেতন প্রক্রিয়াকরণ সরবরাহ করে, একটি বৈশিষ্ট্য যা কনরাড একযোগে দুটি টাইমলাইন পরিচালনার মানসিক ওভারহেড দূর করে বলে বর্ণনা করেছেন। বেশিরভাগ বেতন সিস্টেমের জন্য দুই থেকে চার দিন আগে প্রক্রিয়াকারণের প্রয়োজন; রিপ্লিংয়ের ব্যাংক পণ্য সংস্থাগুলিকে কর্মীদের বেতন দেওয়া দিন বেতন চালানোর অনুমতি দেয়, পরিবর্তনগুলি acc",
-    "bangla_paragraph5": "আইপিও সম্পর্কে, কনরাড স্পষ্ট করে দিয়েছেন যে তিনি খুব তাড়াহুড়ো করছেন না, এমনকি এখনই উইন্ডোটি উন্মুক্ত রয়েছে। পাবলিক মার্কেটগুলি ধীরগতির সংস্থাগুলির জন্য এই অবসর সম্প্রদায় হয়ে উঠেছে, তিনি বলেছেন, তিনি যোগ করেছেন যে তিনি ধর্মীয় একরকম বা অন্যরকম নয়, যদিও এটি খুব বিপরীত শোনাচ্ছে। এখন পর্যন্ত তিনি স্পষ্টভাবে বলেছেনঃ আমরা পাবলিক যাচ্ছি না। এমনকি মুচকি মেলানো, মেলানোর মাধ্যমেও নয়, তিনি আরও যোগ করেছেন। আপনি যখন আমাদের নিবন্ধগুলির লিঙ্কগুলির মাধ্যমে ক্রয় করেন, আমরা একটি ছোট কমিশন উপার্জন করতে পারি। এটি আমাদের সম্পাদকীয়কে প্রভাবিত করে না ",
-    "related_articles": [
-      "0fb91ca8-8bf2-45a2-88c8-9d4452922c0d",
-      "cf8d6def-6f72-49a6-a829-9aaa322e7493",
-      "69376772-ddb5-42e3-924b-12a43ebe0f4f"
     ]
   }
 ]
