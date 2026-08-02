@@ -1,5 +1,35 @@
 [
   {
+    "id": "69a85cd0-cca3-4c4d-a64b-b6dfbf7771bf",
+    "title": "Malaysia is reportedly shutting down Balaji Srinivasan’s Network School",
+    "title_bn": "Malaysia is reportedly shutting down Balaji Srinivasan’s Network School",
+    "url": "https://techcrunch.com/2026/08/02/malaysia-is-reportedly-shutting-down-balaji-srinivasans-network-school/",
+    "source": "TechCrunch",
+    "region": "Global",
+    "category": "AI & Dev",
+    "author": "TechPulse",
+    "date": "Aug 2, 2026",
+    "timestamp": "2026-08-02T17:05:07.000Z",
+    "readTime": "1 min read",
+    "imageUrl": "https://techcrunch.com/wp-content/uploads/2017/09/tcdisrupt_sf17_balajisrinivasan-3679.jpg?resize=1200,766",
+    "excerpt": "Let's see how this \"frontier community for techno-optimists\" is doing ...",
+    "paragraph1": "In Brief Posted: 10:05 AM PDT · August 2, 2026 Image Credits:TechCrunch The Malaysian government has ordered the shutdown of a startup-centric community called the Network School, according to The Wall Street Journal. Billing itself as “a frontier community for techno-optimists,” the Network School reportedly grew out of entrepreneur and investor Balaji Srinivasan’s conviction that the United States is in irreversible decline; Srinivasan has said his goal is “to start a new country.",
+    "paragraph2": "” So the Network School is supposed to represent the first step in a seven-stage plan (outlined in Srinivasan’s book “The Network State”) for building a new society. Based in an abandoned Malaysian hotel, the WSJ described the program as “part tech incubator, part self-improvement retreat.",
+    "paragraph3": "” Attendees, however, complained about moldy rooms, as well as a dearth of women and nightlife. After receiving questions from the WSJ, Srinivasan – who apparently renounced his American citizenship in 2023 — published a lengthy post on X declaring himself “a proud Singaporean” and complaining that the WSJ was working on a “hit piece” that would make him look like “an odd duck […] as opposed to an early adopter.",
+    "paragraph4": "” And although the current Malaysian campus will reportedly need to shut down due to licensing issues, Srinivasan recently announced a new agreement for a campus in Kazakhstan.",
+    "paragraph5": "",
+    "bangla_paragraph1": "In Brief Posted: 10:05 AM PDT · August 2, 2026 Image Credits:TechCrunch The Malaysian government has ordered the shutdown of a startup-centric community called the Network School, according to The Wall Street Journal. Billing itself as “a frontier community for techno-optimists,” the Network School reportedly grew out of entrepreneur and investor Balaji Srinivasan’s conviction that the United States is in irreversible decline; Srinivasan has said his goal is “to start a new country.",
+    "bangla_paragraph2": "” So the Network School is supposed to represent the first step in a seven-stage plan (outlined in Srinivasan’s book “The Network State”) for building a new society. Based in an abandoned Malaysian hotel, the WSJ described the program as “part tech incubator, part self-improvement retreat.",
+    "bangla_paragraph3": "” Attendees, however, complained about moldy rooms, as well as a dearth of women and nightlife. After receiving questions from the WSJ, Srinivasan – who apparently renounced his American citizenship in 2023 — published a lengthy post on X declaring himself “a proud Singaporean” and complaining that the WSJ was working on a “hit piece” that would make him look like “an odd duck […] as opposed to an early adopter.",
+    "bangla_paragraph4": "” And although the current Malaysian campus will reportedly need to shut down due to licensing issues, Srinivasan recently announced a new agreement for a campus in Kazakhstan.",
+    "bangla_paragraph5": "",
+    "related_articles": [
+      "371f5265-68db-47bc-bcc9-cf55da59c55e",
+      "587be04f-61ba-4065-879c-8e5b576b82e8",
+      "372b8b59-94e9-4f41-a56f-1ad47b6d2b07"
+    ]
+  },
+  {
     "id": "6e6c48a3-74a7-4051-b9b7-b3e25dea8b8c",
     "title": "TechCrunch Mobility: Two roads diverged — for robotaxis",
     "title_bn": "TechCrunch Mobility: Two roads diverged — for robotaxis",
@@ -5967,36 +5997,6 @@
       "5a056f4f-ba8a-417c-9d5e-52230290dec8",
       "ddc4f202-7d13-4591-94ba-2be4272a455d",
       "1fa78fa3-8d89-4952-963d-cfe1d6caebda"
-    ]
-  },
-  {
-    "id": "1fa78fa3-8d89-4952-963d-cfe1d6caebda",
-    "title": "Google is rebuilding Chrome security using AI to catch hidden vulnerabilities",
-    "title_bn": "Google is rebuilding Chrome security using AI to catch hidden vulnerabilities",
-    "url": "https://www.androidauthority.com/google-chrome-ai-security-overhaul-3692872/",
-    "source": "AndroidAuth",
-    "region": "Global",
-    "category": "Hardware",
-    "author": "TechPulse",
-    "date": "Jul 30, 2026",
-    "timestamp": "2026-07-30T17:00:44.000Z",
-    "readTime": "3 min read",
-    "imageUrl": "https://www.androidauthority.com/wp-content/uploads/2026/05/Chrome-logo-on-phone-stock-photo-1.jpg",
-    "excerpt": "AI agents are squashing record numbers of bugs while dynamic updates protect users on the fly.",
-    "paragraph1": "Edgar Cervantes / Android AuthorityTL;DR Google is leveraging Gemini-powered AI models to overhaul Chrome’s security, discovering and fixing 1,072 vulnerabilities across the last two milestones, more than the previous 23 milestones combined. To handle the massive increase in bug reports, Google has implemented multi-agent workflows in which AI agents automatically triage issues, draft candidate code fixes, serve as critics, and write cross-platform tests. To prevent attackers from exploiting known vulnerabilities before users update, Google is piloting two security releases a week and pioneering “dynamic patching” to apply critical background updates on the fly without requiring a full browser restart. Google is fundamentally overhauling how it secures Chrome, leveraging AI to discover, triage, and patch vulnerabilities at a speed traditional security workflows simply can’t match. As the browser picks up user-facing tweaks like an Appearance menu and under-the-hood scroll performance upgrades, Google’s underlying defense mechanism is undergoing its biggest structural shift in years.",
-    "paragraph2": "According to a deep dive published on the Chromium Blog, the Chrome Security team is now deploying custom Gemini-powered agent harnesses alongside specialized AI tools from Google DeepMind and Project Zero. The push is yielding immediate results: across the Chrome 149 and 150 release milestones, Google squashed 1,072 security bugs, which is more than the combined total of the previous 23 milestones. The automated pipeline even flagged a high-severity sandbox escape bug that had quietly survived in Chrome’s codebase for over 13 years.Number of security bugs fixed in recent Chrome Stable release milestonesTo manage the sudden influx of bug reports (which surged past 2025’s total volume by March 2026), Google automated its triage and patching pipelines, with multi-agent workflows now handling the heavy lifting. “Fixing agents” draft potential candidate code, while separate “critic agents” evaluate the patches against Chromium standards, and “test-writing agents” generate cross-platform test suites.",
-    "paragraph3": "Integrated directly into Google’s continuous integration setup, these models scan every commit every 24 hours, blocking over 20 vulnerabilities (including a critical S1+ flaw) from reaching production in May alone.Behind the scenes, Google is also tackling memory safety, one of the root causes for high-severity browser vulnerabilities. While the team continues to harden legacy C++ code, Google’s long-term architectural solution is a migration toward memory-safe languages like Rust.However, discovering and fixing a bug only solves half the problem. Once a patch lands in Chrome’s public open-source codebase, attackers race to reverse-engineer it to exploit unupdated browsers, a window known as the “patch gap.",
-    "paragraph4": "” To shrink this vulnerability window, Google is piloting a shift to two security releases per week, down from its typical weekly update schedule.Getting updates shipped quickly is useless if users delay applying them. People naturally postpone restarting their browsers to avoid interrupting their active workflows, leaving their machines exposed to exploits. To fix this without frustrating users, Google is pioneering “dynamic patching,” a method that leverages Chrome’s multi-process architecture to hot-swap background processes such as the Renderer and GPU on the fly, without a full browser restart.Additionally, Chrome on macOS now uses windowless background states to trigger silent auto-restarts, moving toward a future in which browser security updates happen continuously, seamlessly, and entirely in the background.",
-    "paragraph5": "FollowThank you for being part of our community. Read our Comment Policy before posting.",
-    "bangla_paragraph1": "Edgar Cervantes / Android AuthorityTL;DR Google is leveraging Gemini-powered AI models to overhaul Chrome’s security, discovering and fixing 1,072 vulnerabilities across the last two milestones, more than the previous 23 milestones combined. To handle the massive increase in bug reports, Google has implemented multi-agent workflows in which AI agents automatically triage issues, draft candidate code fixes, serve as critics, and write cross-platform tests. To prevent attackers from exploiting known vulnerabilities before users update, Google is piloting two security releases a week and pioneering “dynamic patching” to apply critical background updates on the fly without requiring a full browser restart. Google is fundamentally overhauling how it secures Chrome, leveraging AI to discover, triage, and patch vulnerabilities at a speed traditional security workflows simply can’t match. As the browser picks up user-facing tweaks like an Appearance menu and under-the-hood scroll performance upgrades, Google’s underlying defense mechanism is undergoing its biggest structural shift in years.",
-    "bangla_paragraph2": "According to a deep dive published on the Chromium Blog, the Chrome Security team is now deploying custom Gemini-powered agent harnesses alongside specialized AI tools from Google DeepMind and Project Zero. The push is yielding immediate results: across the Chrome 149 and 150 release milestones, Google squashed 1,072 security bugs, which is more than the combined total of the previous 23 milestones. The automated pipeline even flagged a high-severity sandbox escape bug that had quietly survived in Chrome’s codebase for over 13 years.Number of security bugs fixed in recent Chrome Stable release milestonesTo manage the sudden influx of bug reports (which surged past 2025’s total volume by March 2026), Google automated its triage and patching pipelines, with multi-agent workflows now handling the heavy lifting. “Fixing agents” draft potential candidate code, while separate “critic agents” evaluate the patches against Chromium standards, and “test-writing agents” generate cross-platform test suites.",
-    "bangla_paragraph3": "Integrated directly into Google’s continuous integration setup, these models scan every commit every 24 hours, blocking over 20 vulnerabilities (including a critical S1+ flaw) from reaching production in May alone.Behind the scenes, Google is also tackling memory safety, one of the root causes for high-severity browser vulnerabilities. While the team continues to harden legacy C++ code, Google’s long-term architectural solution is a migration toward memory-safe languages like Rust.However, discovering and fixing a bug only solves half the problem. Once a patch lands in Chrome’s public open-source codebase, attackers race to reverse-engineer it to exploit unupdated browsers, a window known as the “patch gap.",
-    "bangla_paragraph4": "” To shrink this vulnerability window, Google is piloting a shift to two security releases per week, down from its typical weekly update schedule.Getting updates shipped quickly is useless if users delay applying them. People naturally postpone restarting their browsers to avoid interrupting their active workflows, leaving their machines exposed to exploits. To fix this without frustrating users, Google is pioneering “dynamic patching,” a method that leverages Chrome’s multi-process architecture to hot-swap background processes such as the Renderer and GPU on the fly, without a full browser restart.Additionally, Chrome on macOS now uses windowless background states to trigger silent auto-restarts, moving toward a future in which browser security updates happen continuously, seamlessly, and entirely in the background.",
-    "bangla_paragraph5": "FollowThank you for being part of our community. Read our Comment Policy before posting.",
-    "related_articles": [
-      "6eeb3a4b-a029-4d17-aad0-42ea26efcad9",
-      "8deecbd9-aadf-4adb-a510-a4f10a73e1ac",
-      "93773e5e-59cf-4d9a-8fd4-fbb7504039c7"
     ]
   }
 ]
