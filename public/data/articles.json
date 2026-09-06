@@ -1,5 +1,35 @@
 [
   {
+    "id": "56a51e49-3dac-4911-af3f-73bd6c59a689",
+    "title": "Seattle Times and Newsday are the latest publications to sue OpenAI and Microsoft",
+    "title_bn": "সিয়াটল টাইমস এবং নিউজডে হলো সর্বশেষ প্রকাশনা যারা ওপেনএআই এবং মাইক্রোসফটকে মামলা করেছে",
+    "url": "https://techcrunch.com/2026/09/05/seattle-times-and-newsday-are-the-latest-publications-to-sue-openai-and-microsoft/",
+    "source": "TechCrunch",
+    "region": "Global",
+    "category": "AI & Dev",
+    "author": "TechPulse",
+    "date": "Sep 5, 2026",
+    "timestamp": "2026-09-05T22:49:55.000Z",
+    "readTime": "1 min read",
+    "imageUrl": "https://techcrunch.com/wp-content/uploads/2023/03/artifact-newspaper-icon.jpg?resize=1200,645",
+    "excerpt": "Two more news organizations are suing OpenAI and Microsoft over the supposed use of their journalism to train AI.",
+    "paragraph1": "Two more news organizations are suing OpenAI and Microsoft over the supposed use of their journalism to train AI. A lawsuit filed by The Seattle Times and Newsday argued that with the advent of AI, the journalism industry could become “broken beyond repair.",
+    "paragraph2": "” The lawsuit described generative AI as “a snake eating its own tail” that could “destroy the very organizations” that produce the content it’s trained on. “AI products like ChatGPT and CoPilot are touted as producers of content, but in fact they are rapacious consumers, devouring human-authored content and delivering back to the world copies and derivative imitations of that same original content they consumed to achieve their commercial objectives,” the lawsuit said.",
+    "paragraph3": "Back in 2023, The New York Times sued OpenAI and its partner/investor Microsoft over alleged copyright infringement; other publications have followed suit as the case continued. The Seattle Times’ lawsuit is particularly notable because Microsoft and OpenAI have funded some of the organization’s journalism projects and fellowships.",
+    "paragraph4": "A Microsoft spokesperson told GeekWire that the company is “surprised by the lawsuit” but is “always happy to sit down and explore solutions to this type of dispute.",
+    "paragraph5": "",
+    "bangla_paragraph1": "আরও দুটি সংবাদ সংস্থা তাদের সাংবাদিকতাকে এআই প্রশিক্ষণের জন্য ব্যবহারের অভিযোগে ওপেনএআই এবং মাইক্রোসফটকে মামলা করেছে। সিয়াটল টাইমস এবং নিউজডে কর্তৃক দায়ের করা একটি মামলা যুক্তিযুক্ত যে এআইয়ের আবির্ভাবের সাথে সাথে সাংবাদিকতা শিল্পটি \"পুনর্নির্মাণের বাইরে ভেঙে যেতে পারে।",
+    "bangla_paragraph2": " মামলায় জেনারেটিভ এআইকে একটি সাপ হিসেবে বর্ণনা করা হয়েছে যা নিজের লেজ খায়  যা প্রতিষ্ঠানগুলোকে ধ্বংস করতে পারে  যেগুলো এর জন্য প্রশিক্ষিত সামগ্রী তৈরি করে। চ্যাটজিপিটি এবং কোপাইলটের মতো এআই পণ্যগুলিকে সামগ্রী উৎপাদনকারী হিসেবে প্রচার করা হয়, কিন্তু আসলে তারা ক্ষুধার্ত ভোক্তা, তারা মানুষের লেখা সামগ্রী গ্রাস করে এবং তাদের বাণিজ্যিক লক্ষ্য অর্জনের জন্য তারা যে মূল সামগ্রীটি ব্যবহার করেছে তার অনুলিপি এবং প্রাপ্তিগত অনুকরণ বিশ্বকে ফিরিয়ে দেয়, মামলাটি বলেছে।",
+    "bangla_paragraph3": "২০২৩ সালে, নিউ ইয়র্ক টাইমস ওপেনএআই এবং এর অংশীদার / বিনিয়োগকারী মাইক্রোসফটকে কপিরাইট লঙ্ঘনের অভিযোগে মামলা করেছিল; মামলাটি অব্যাহত থাকায় অন্যান্য প্রকাশনাও মামলা অনুসরণ করেছে। সিয়াটল টাইমসের মামলা বিশেষত উল্লেখযোগ্য কারণ মাইক্রোজোফ্ট এবং ওপেন এআই সংস্থার কিছু সাংবাদিকতা প্রকল্প এবং ফেলোশিপগুলি অর্থায়ন করেছে।",
+    "bangla_paragraph4": "মাইক্রোসফটের একজন মুখপাত্র জিকওয়াইরকে বলেন যে কোম্পানিটি এই মামলা দেখে অবাক হয়েছে কিন্তু এমন ধরনের বিরোধের সমাধান খুঁজে বের করতে সবসময় খুশি।",
+    "bangla_paragraph5": "",
+    "related_articles": [
+      "a8b7722b-a3ac-4185-92ff-29f4713be9b7",
+      "9e2c4f57-0751-4809-b4b4-e62339d67065",
+      "8bf14611-fbf2-4134-a89b-4ee4d1385b3f"
+    ]
+  },
+  {
     "id": "385893c9-7986-4dcd-b2e4-23e2ce3060a9",
     "title": "German spacetech Isar Aerospace’s second rocket launch reaches orbit in milestone",
     "title_bn": "জার্মান স্পেস টেক আইসার এয়ারস্পেসের দ্বিতীয় রকেট উৎক্ষেপণ মহাকাশের কক্ষপথে পৌঁছেছে",
@@ -5967,36 +5997,6 @@
       "5d76f5f9-6983-4d16-8005-a783f236af3d",
       "789bbe35-84bf-4c05-8023-e68db79a1a98",
       "d394eebc-664d-41be-9b20-4f4fc27127d6"
-    ]
-  },
-  {
-    "id": "34984de0-fcbf-40ca-8411-749c220d2566",
-    "title": "Apple Reportedly Planning All-New MacBook Model Between Air and Pro",
-    "title_bn": "অ্যাপল এয়ার এবং প্রো এর মধ্যে সম্পূর্ণ নতুন ম্যাকবুক মডেলের পরিকল্পনা করছে বলে জানা গেছে",
-    "url": "https://www.macrumors.com/2026/09/03/apple-new-oled-macbook-between-air-pro/",
-    "source": "MacRumors",
-    "region": "Global",
-    "category": "Hardware",
-    "author": "TechPulse",
-    "date": "Sep 3, 2026",
-    "timestamp": "2026-09-03T13:50:28.000Z",
-    "readTime": "3 min read",
-    "imageUrl": "https://images.macrumors.com/t/N226lPt8xlG29VVlxrGAllc2pcE=/1920x/article-new/2025/03/MacBook-Air-Hello.jpg",
-    "excerpt": "Apple may introduce an entirely new 13.8-inch OLED MacBook model in 2029, potentially creating a new product tier between the MacBook Air and MacBook Pro, according to an updated product roadmap from research firm Omdia. The firm's latest roadmap san",
-    "paragraph1": "Thursday September 3, 2026 6:50 am PDT by Tim HardwickApple may introduce an entirely new 13.8-inch OLED MacBook model in 2029, potentially creating a new product tier between the MacBook Air and MacBook Pro, according to an updated product roadmap from research firm Omdia. The firm's latest roadmap sandwiches a new 13.8-inch MacBook between the projected time line for the Air and Pro models. The surprise model is said to use a single-stack hybrid OLED panel, rather than the more sophisticated tandem OLED technology that is expected in the upcoming OLED MacBook Pro models, which are set to launch either later this year or early next year. It seems this prediction hasn't come out of nowhere, either.",
-    "paragraph2": "According to a June report from ZDNet Korea, Apple sounded out Samsung Display, LG Display, and BOE for information regarding a 13.8-inch OLED MacBook panel earlier this year. At the time, the general assumption was that it was likely to be part of Apple's work on the first OLED MacBook Air, expected by 2028 at the earliest. However, looking at Omdia's latest roadmap, the OLED MacBook Air is conspicuously absent, having been replaced by the 13.8-inch OLED machine in a separate \"new\" product category. The new model is expected to incorporate an LTPO+ backplane, integrated touch sensing, an under-panel camera, and a color filter integrated into the OLED encapsulation layer.",
-    "paragraph3": "Omdia believes it is still too early to know for sure which display manufacturer would supply panels for the device, but the firm believes that it could potentially become an important mainstream MacBook product, positioned between the LCD MacBook Air and the higher-end OLED MacBook Pro. Meanwhile, the MacBook Air line is shown as continuing to use LCD displays right into 2030. Of course, Apple's wholesale OLED adoption plans could change, and Omdia itself caveats that its roadmap is based on current market expectations. On that basis alone, it could be adjusted at any time according to OLED manufacturing capacity, component costs, and Apple's wider product strategy. Additionally, this is the first we've heard of a completely new MacBook line, and it's still three years out. So with all due caution, file this one under \"wait and see.\"",
-    "paragraph4": "Popular StoriesMini-LED MacBook Pro Models Could Stick Around Until 2028Thursday September 3, 2026 7:01 am PDT by Tim HardwickApple has reportedly revised its plans for adopting OLED displays across its MacBook lineup, and its existing LCD-based MacBook Pro models with mini-LED backlighting are now expected to remain available for longer than anticipated. According to a new OLED adoption roadmap published by research firm Omdia, Apple still intends long-term adoption of OLED panels across MacBooks and iPads, but...Apple Apparently Cancels Plans for Two New MacBooksApple has canceled plans for a foldable MacBook and a larger OLED MacBook Pro model, according to research firm Omdia. In a new research note, Omdia said Apple has scrapped development of a large foldable MacBook that would have measured between 16.1 and 18 inches when unfolded. It was previously reported that this device had already slipped out of its original 2026 production window, with...",
-    "paragraph5": "iOS 27 Introduces New 'iPhone Handoff' FeatureWednesday September 2, 2026 12:35 pm PDT by Joe RossignolApple has added a new \"iPhone Handoff\" feature to iOS 27 that will allow you to switch between two iPhones while using the same phone number on each device. This functionality was briefly mentioned during the WWDC 2026 keynote in June, on a slide that listed hundreds of new features coming in iOS 27 and corresponding software updates, but Apple never shared any further details at the time.",
-    "bangla_paragraph1": "বৃহস্পতিবার, সেপ্টেম্বর 3, 2026 6:50 অপরাহ্ন পিডিটি টিম হার্ডউইকঅ্যাপল ২০২৯ সালে একটি সম্পূর্ণ নতুন ১৩.৮ ইঞ্চি ওএলইডি ম্যাকবুক মডেল চালু করতে পারে, সম্ভাব্যভাবে ম্যাকবুক এয়ার এবং ম্যাকবুক প্রো এর মধ্যে একটি নতুন পণ্য স্তর তৈরি করতে পারে। গবেষণা সংস্থা ওমদিয়ার আপডেট পণ্য রোডম্যাপ অনুসারে। সংস্থার সর্বশেষ রোডমেপটি এয়ার ও প্রো মডেলগুলির জন্য অনুমানিত সময়রেখার মধ্যে একটি 13.8 ইঞ্চির নতুন ম্যাকব্যাক স্যান্ডউইচ করে। বিস্ময় মডেলটি আরও পরিশীলিত টের পরিবর্তে একটি একক স্ট্যাক হাইব্রিড ওএলআইডি প্যানেল ব্যবহার করে বলে মনে করা হয়।",
-    "bangla_paragraph2": "জেডডিনেট কোরিয়ার জুনের প্রতিবেদন অনুসারে, অ্যাপল এই বছরের শুরুর দিকে একটি ১৩.৮ ইঞ্চি ওএলইডি ম্যাকবুক প্যানেল সম্পর্কিত তথ্যের জন্য স্যামসাং ডিসপ্লে, এলজি ডিসফ্লে এবং বিওইকে জরিপ করেছিল। সেই সময়, সাধারণ অনুমান ছিল যে এটি সম্ভবত প্রথম ওএলআইডি মাকবুক এয়ারের অ্যাপলের কাজের অংশ হতে পারে, যা ২০২৮ সালের মধ্যে প্রত্যাশিত। তবে, ওমডিয়ার সর্বশেষ রোডম্যাপটি দেখে, ওএলডি মেকবুক এ্যারটি স্পষ্টভাবে অনুপস্থিত, এটি পৃথক \"নতুন\" পণ্য ক্যাটেগরিতে ১৩.৯ ইঞ্চির ওএলএডি মেশিন দ্বারা প্রতিস্থাপিত হয়েছে।",
-    "bangla_paragraph3": "ওমডিয়া বিশ্বাস করে যে কোন ডিসপ্লে প্রস্তুতকারক ডিভাইসের জন্য প্যানেল সরবরাহ করবে তা নিশ্চিতভাবে জানা এখনও খুব তাড়াতাড়ি, তবে সংস্থাটি বিশ্বাস করে এটি সম্ভাব্যভাবে একটি গুরুত্বপূর্ণ মূলধারার ম্যাকবুক পণ্য হয়ে উঠতে পারে, এলসিডি ম্যাকবোক এয়ার এবং উচ্চ-শেষ ওএলইডি মাকবুক প্রো এর মধ্যে অবস্থিত। এদিকে, ম্যাকবুক এয়ার লাইনটি ২০৩০ সালেও এলসিড ডিসಪ್লে ব্যবহার অব্যাহত রাখার জন্য দেখানো হয়েছে। অবশ্যই অ্যাপলের পাইকারি ওএলডি গ্রহণের পরিকল্পনা পরিবর্তন হতে পারে এবং ওমদিয়া নিজেই সতর্কতা দেয় যে এর রোডম্যাপটি cu এর উপর ভিত্তি করে।",
-    "bangla_paragraph4": "জনপ্রিয় গল্পমিনি-এলইডি ম্যাকবুক প্রো মডেলগুলি 2028 পর্যন্ত স্থায়ী হতে পারেThursday September 3, 2026 7:01 am PDT by Tim Hardwickঅ্যাপল তার ম্যাকবোক লাইনআপ জুড়ে ওএলইড ডিসপ্লে গ্রহণের পরিকল্পনা সংশোধন করেছে বলে জানা গেছে এবং তার বিদ্যমান এলসিডি ভিত্তিক ম্যাকবুক প্রো মডিউলগুলি মিনি-এলআইডি ব্যাকলাইট সহ প্রত্যাশিত সময়ের চেয়ে বেশি সময় ধরে উপলব্ধ থাকবে বলে আশা করা হচ্ছে। গবেষণা সংস্থা ওমডিয়া দ্বারা প্রকাশিত একটি নতুন ওএলডি গ্রহণের রোডম্যাপ অনুসারে, অ্যাপল এখনও ম্যাকবোয়ে ওএলএডি প্যানেল গ্রহণের দীর্ঘমেয়াদী পরিকল্পনা করছে।",
-    "bangla_paragraph5": "আইওএস ২৭ নতুন 'আইফোন হ্যান্ডফ' বৈশিষ্ট্য চালু করেছেবুধবার, ২ সেপ্টেম্বর, ২০২৬ ১২ঃ৩৫ পিডিটি জো রসসাইনলঅ্যাপল আইওস ২৭ এ একটি নতুন \"আইফোন হেন্ডফ\" বৈশিষ্ট্য যুক্ত করেছে যা আপনাকে প্রতিটি ডিভাইসে একই ফোন নম্বর ব্যবহার করে দুটি আইফোনের মধ্যে স্যুইচ করতে দেয়। এই কার্যকারিতাটি জুন মাসে ডাব্লুডাব্লুটিসি ২০২ 26 মূল বক্তব্যের সময় সংক্ষেপে উল্লেখ করা হয়েছিল, একটি স্লাইডে আইওএস ২7 এবং সংশ্লিষ্ট সফ্টওয়্যার আপডেটে আসন্ন শত শত নতুন বৈশিষ্ট্য তালিকাভুক্ত করা হয়েছিল। তবে অ্যাপল সেই সময় আর কোনও বিবরণ ভাগ করেনি।",
-    "related_articles": [
-      "725ec5ef-b021-48b2-9fb3-1c12af37a30a",
-      "789bbe35-84bf-4c05-8023-e68db79a1a98",
-      "8a14196a-b3c5-4384-83ad-15d2dc295d40"
     ]
   }
 ]
