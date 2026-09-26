@@ -1,5 +1,35 @@
 [
   {
+    "id": "90815c59-b0d9-4655-a820-041250e5020c",
+    "title": "Insurers claim AI is already increasing healthcare costs",
+    "title_bn": "বীমা কোম্পানি দাবি করছে যে, এআই ইতিমধ্যেই স্বাস্থ্যসেবার খরচ বাড়িয়ে দিচ্ছে",
+    "url": "https://techcrunch.com/2026/09/26/insurers-claim-ai-is-already-increasing-healthcare-costs/",
+    "source": "TechCrunch",
+    "region": "Global",
+    "category": "AI & Dev",
+    "author": "TechPulse",
+    "date": "Sep 26, 2026",
+    "timestamp": "2026-09-26T21:02:06.000Z",
+    "readTime": "1 min read",
+    "imageUrl": "https://techcrunch.com/wp-content/uploads/2021/11/GettyImages-1214954967.jpg?resize=1200,612",
+    "excerpt": "Blue Cross Blue Shield says hospital use of AI tools led to an additional $942M in healthcare spending over a two-year period.",
+    "paragraph1": "In Brief Posted: 2:02 PM PDT · September 26, 2026 Image Credits:TravelCouples / Getty Images Hospitals’ use of artificial intelligence tools as they submit insurance claims led to an additional $942 million in healthcare spending over a two-year period, according to an analysis by the Blue Cross Blue Shield Association. The BCBSA analysis found “a sharp increase in patients being documented as having complex conditions,” but argued there is a “clear disconnect between [medical] coding and treatment,” as there’s “no evidence of corresponding change in care delivered.",
+    "paragraph2": "” The New York Times pointed the analysis as just the latest sign that AI is contributing to an increase in healthcare costs. While battles between hospitals and insurers over treatments and payments are nothing new, the NYT said the use of AI on both sides seems to be making it worse.",
+    "paragraph3": "Dr. Shiv Rao, founder of AI startup Abridge, acknowledged that the use of AI could lead to “a horrible dystopic future nobody wants to live in,” with “bots fighting bots, agents fighting agents.",
+    "paragraph4": "” But Rao said it might also reduce tensions and cut costs. And the BCBSA’s senior vice president Luke Chalker resisted characterizing the situation as a battle, claiming, “It’s not a war.",
+    "paragraph5": "It’s a completely one-sided blood bath,” with insurers on the losing side.",
+    "bangla_paragraph1": "In Brief Posted: 2:02 PM PDT · সেপ্টেম্বর 26, 2026 Image Credits:TravelCouples / Getty Images হাসপাতালগুলি  বীমা দাবি জমা দেওয়ার সময় কৃত্রিম বুদ্ধিমত্তা সরঞ্জামগুলির ব্যবহারের ফলে দুই বছরের মধ্যে স্বাস্থ্যসেবা ব্যয় অতিরিক্ত $942 মিলিয়ন ডলার হয়েছে, ব্লু ক্রস ব্লু শিল্ড অ্যাসোসিয়েশনের বিশ্লেষণ অনুযায়ী। বিসিবিএসএ বিশ্লেষনে দেখা গেছে  জটিল অবস্থার সাথে ডকুমেন্ট করা রোগীদের মধ্যে তীব্র বৃদ্ধি, তবে যুক্তিযুক্ত যে [চিকিৎসা] কোডিং এবং চিকিত্সার মধ্যে  স্পষ্ট সংযোগ বিচ্ছিন্নতা রয়েছে",
+    "bangla_paragraph2": " নিউ ইয়র্ক টাইমস এই বিশ্লেষণকে কেবলমাত্র সর্বশেষ লক্ষণ হিসাবে উল্লেখ করেছে যে এআই স্বাস্থ্যসেবা ব্যয়ের বৃদ্ধিতে অবদান রাখছে। যদিও চিকিত্সা এবং অর্থ প্রদানের জন্য হাসপাতাল এবং বীমা সংস্থাগুলির মধ্যে যুদ্ধ নতুন কিছু নয়, NYT বলেছে যে উভয় পক্ষের এআই ব্যবহার পরিস্থিতিকে আরও খারাপ করছে বলে মনে হচ্ছে।",
+    "bangla_paragraph3": "এআই স্টার্টআপ এব্রিজ এর প্রতিষ্ঠাতা ডঃ শিব রাও স্বীকার করেছেন যে এআই ব্যবহারের ফলে ভয়ঙ্কর দুষ্টু ভবিষ্যৎ কেউ বাস করতে চায় না, বটদের সাথে যুদ্ধ করছে বট, এজেন্টদের সাথে লড়াই করছে এজেন্টে।",
+    "bangla_paragraph4": "কিন্তু রাও বলেন, এটি উত্তেজনা কমাতে এবং খরচ কমাতেও পারে। এবং বিসিবিএসএ-র সিনিয়র ভাইস প্রেসিডেন্ট লুক চ্যালকার পরিস্থিতিকে যুদ্ধ হিসেবে বর্ণনা করতে অস্বীকার করে বলেন, \"এটা যুদ্ধ নয়।",
+    "bangla_paragraph5": "এটা সম্পূর্ণ একতরফা রক্তাক্ত স্নান, বীমা কোম্পানিগুলোকে হারানোর দিকে নিয়ে।",
+    "related_articles": [
+      "8456644a-590f-435a-b395-8180b19962b4",
+      "a40981c3-232b-4506-a5ef-5d3aff2abff7",
+      "1c657fbd-8150-4a1b-98a2-cf1b017b8bc2"
+    ]
+  },
+  {
     "id": "d3285f15-e1d5-4e8f-8b3d-88508807be54",
     "title": "Kids turned the comment section of an NPR podcast into a group chat",
     "title_bn": "শিশুরা এনপিআর পডকাস্টের মন্তব্য বিভাগকে একটি গ্রুপ চ্যাটে পরিণত করেছে ",
@@ -5967,36 +5997,6 @@
       "79123090-f9c5-46ae-a027-9b67d151370b",
       "aa25f783-6c9f-42c2-9527-f207223e8dcb",
       "8e55aeac-f50e-4f8c-9e30-c57920f994e8"
-    ]
-  },
-  {
-    "id": "49981afe-8559-40f7-919a-95b9be38f93c",
-    "title": "French neobank Qonto unveils &quot;milestone&quot; new central Paris HQ",
-    "title_bn": "ফরাসি নেওব্যাঙ্ক কন্টো নতুন কেন্দ্রীয় প্যারিস সদর দফতর উন্মোচন করেছে",
-    "url": "https://tech.eu/2026/09/24/french-neobank-qonto-unveils-milestone-new-central-paris-hq/",
-    "source": "TechEU",
-    "region": "Europe",
-    "category": "Startups",
-    "author": "TechPulse",
-    "date": "Sep 24, 2026",
-    "timestamp": "2026-09-24T05:20:00.000Z",
-    "readTime": "1 min read",
-    "imageUrl": "https://cdn.tech.eu/uploads/2026/09/smart-534.jpg",
-    "excerpt": "French neobank Qonto yesterday unveiled its new headquarters in central Paris, a 11,000 square metre site, nearly double the size of its previous headquarters, in a move heralded as a “milestone” by i...",
-    "paragraph1": "French neobank Qonto yesterday unveiled its new headquarters in central Paris, a 11,000 square metre site, nearly double the size of its previous headquarters, in a move heralded as a “milestone” by its CEO. Qonto has more than 600,000 SME and freelance customers across Europe, where it takes on incumbent financial players. On top of its core business banking offering, it offers SMEs and freelancers corporate cards, bookkeeping tools, expense management and short-term financing in a single hub.",
-    "paragraph2": "Qonto's new headquarters mark a significant upgrade on its previous headquarters, which was in a Paris WeWork. Its new headquarters is spread over nine floors and includes three cafes and an on-site barista service provided through Qonto’s partnership with Trèfle, a French inclusive workplace-catering company employing and training people with disabilities. It also has a gym and sauna room and a terrace with spectacular views across Paris.",
-    "paragraph3": "In an effort to help the environment, some of the office furniture is second-hand. On the walls there are portraits featuring entrepreneurs from across Europe, a meeting room is named after Qonto’s first customer, a map shows its European footprint, and a listening point allows teams to hear customer recordings directly. Alexandre Prot, co-founder and CEO Qonto, said: “Today marks an important milestone for Qonto.",
-    "paragraph4": "Bonne Nouvelle is where we will build Qonto’s next chapter. As we move towards becoming a bank, our ambition is clear: to become the AI-powered European champion of banking and finance management for SMEs.\"",
-    "paragraph5": "",
-    "bangla_paragraph1": "ফরাসি নেব্যাঙ্ক কন্টো গতকাল তার নতুন সদর দফতরটি সেন্ট্রাল প্যারিসে উন্মোচন করেছে, এটি 11,000 বর্গমিটার সাইট, যা তার পূর্ববর্তী সদরদফতরের প্রায় দ্বিগুণ আকারের, একটি পদক্ষেপ যা এর প্রধান নির্বাহী কর্মকর্তা দ্বারা একটি \"মাইলফলক\" হিসাবে ঘোষণা করা হয়েছিল। কন্টোর ইউরোপ জুড়ে 600,000 এরও বেশি এসএমই এবং ফ্রিল্যান্স গ্রাহক রয়েছে, যেখানে এটি প্রতিষ্ঠিত আর্থিক খেলোয়াড়দের সাথে গ্রহণ করে। এর মূল ব্যবসায়িক ব্যাংকিং অফারের উপরে, এটি এসএমে এবং ফ্রিলাঞ্চারদের কর্পোরেট কার্ড, বুককিপিং সরঞ্জাম, ব্যয় পরিচালনা এবং স্বল্পমেয়াদী অর্থায়ন একক হাবের মধ্যে সরবরাহ করে।",
-    "bangla_paragraph2": "কন্টোর নতুন সদর দফতরটি এর পূর্ববর্তী সদরদফতরের তুলনায় উল্লেখযোগ্য উন্নতি চিহ্নিত করে, যা প্যারিসের একটি উইওয়ার্কে ছিল। এর নতুন সদরের নয়টি তলায় ছড়িয়ে পড়েছে এবং এতে তিনটি ক্যাফে এবং ট্র্যাফলের সাথে কন্টো এর অংশীদারিত্বের মাধ্যমে সরবরাহ করা একটি অন-সাইট বারিস্তা পরিষেবা রয়েছে, যা একটি ফরাসি অন্তর্ভুক্তিমূলক কর্মক্ষেত্র-কেটারিং সংস্থা যা প্রতিবন্ধী ব্যক্তিদের নিয়োগ এবং প্রশিক্ষণ দেয়। এতে একটি জিম এবং সাউনা রুম এবং প্যারী জুড়ে দর্শনীয় দৃশ্য সহ একটি টেরেস রয়েছে।",
-    "bangla_paragraph3": "পরিবেশ রক্ষার জন্য কিছু অফিস আসবাবপত্র সেকেন্ড হ্যান্ড। দেয়ালগুলিতে ইউরোপ জুড়ে উদ্যোক্তাদের চিত্রিত প্রতিকৃতি রয়েছে, একটি সভা কক্ষটি কন্টোর প্রথম গ্রাহকের নামে নামকরণ করা হয়েছে, একটি মানচিত্র তার ইউরোপীয় পদচিহ্ন দেখায় এবং একটি শ্রবণ পয়েন্ট টিমগুলিকে সরাসরি গ্রাহকের রেকর্ডিং শুনতে দেয়। কন্টো সহ-প্রতিষ্ঠাতা এবং প্রধান নির্বাহী আলেকজান্ডার প্রোট বলেছেনঃ আজ কন্টুর জন্য একটি গুরুত্বপূর্ণ মাইলফলক চিহ্নিত করে।",
-    "bangla_paragraph4": "আমরা যখন একটি ব্যাংক হওয়ার দিকে এগিয়ে যাচ্ছি, তখন আমাদের উচ্চাকাঙ্ক্ষা স্পষ্টঃ ক্ষুদ্র ও মাঝারি শিল্পের জন্য ব্যাংকিং এবং অর্থ ব্যবস্থাপনার এআই-চালিত ইউরোপীয় চ্যাম্পিয়ন হওয়া।",
-    "bangla_paragraph5": "",
-    "related_articles": [
-      "7a82f381-1f7a-48a5-aaff-9de42f00e439",
-      "2ea2dcd5-b08c-44a2-8442-a9768288abc8",
-      "40bc045c-62ec-4160-9a5d-f9ebe8e08dcb"
     ]
   }
 ]
