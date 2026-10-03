@@ -1,5 +1,35 @@
 [
   {
+    "id": "e73de155-6ffc-4e53-8bd9-2f4811ddee8e",
+    "title": "Jack Dorsey’s Bitchat Goes Offline In India, Apple Cites MeitY Order",
+    "title_bn": "ভারতে জ্যাক ডরসির বিটচ্যাট বন্ধ, অ্যাপল আমাকে আদেশ দিয়েছে",
+    "url": "https://inc42.com/buzz/jack-dorseys-bitchat-goes-offline-in-india-apple-cites-meity-order/",
+    "source": "Inc42",
+    "region": "India",
+    "category": "Startups",
+    "author": "TechPulse",
+    "date": "Oct 3, 2026",
+    "timestamp": "2026-10-03T19:35:25.000Z",
+    "readTime": "3 min read",
+    "imageUrl": "https://inc42.com/cdn-cgi/image/quality=90/https://asset.inc42.com/2026/10/bitchat-India-ban-social-.png",
+    "excerpt": "Bitchat, the decentralised messaging platform founded by Twitter (now X) cofounder Jack Dorsey, has been removed from Google Play Store…",
+    "paragraph1": "SUMMARYDorsey shared an official email from Apple, indicating that MeitY had issued orders for removal of Bitchat from the App Store over alleged content deemed illegal in India Earlier, I4C had raised concerns that Bitchat’s anonymous communication prevented authorities from obtaining subscriber details during active investigations Additionally, Bitchat is no longer available for download via the Google Play Store and its website also appears to no longer be accessible Bitchat, the decentralised messaging platform founded by Twitter (now X) cofounder Jack Dorsey, has been removed from Google Play Store and Apple’s App Store following an official government order. In a post on X, Dorsey shared an official email from Apple, which read that the IT ministry (MeitY) had issued directions for the removal of the Bitchat app from the App Store under Section 69A of the IT Act. The email noted that the app allegedly included content deemed illegal in India. However, the communique did not specify what content had triggered the takedown order. Apple advised the developer to seek further details from MeitY directly.",
+    "paragraph2": "The Apple email further noted that Bitchat’s beta-testing access via TestFlight has also been blocked. However, the app would remain available on its App Store outside India. Meanwhile, Bitchat is no longer available for download via the Google Play Store as well and its website also appears to no longer be accessible in the country. It’s unclear whether this is for the same reason. Launched by Dorsey in 2025, Bitchat is an open-source messaging app that enables peer-to-peer (P2) communication through Bluetooth mesh networks without requiring internet access or centralised servers.",
+    "paragraph3": "The app does not require users to make accounts and has no central identity system either. It can be used during extreme occasions like internet outages and natural disasters, or in areas with poor network coverage. This is not the first time that Bitchat has landed in choppy regulatory waters in the country. In July this year, Dorsey had claimed the Indian government had directed GitHub to remove multiple repositories linked to Bitchat. He had shared a notification issued by the Indian Cyber Crime Coordination Centre (I4C) to support his claims.",
+    "paragraph4": "The I4C’s notification had raised concerns that Bitchat’s implementation of anonymous communication prevents authorities from obtaining subscriber details or communication records during active investigations. The agency also warned that the platform could be exploited to evade surveillance and bypass internet shutdowns to coordinate unlawful assemblies, protests, or criminal activities. Notably, I4C’s concerns had come amid the unrest over the NEET 2026 paper leak, when protesters were reportedly using Bitchat to communicate amid suspension of mobile internet services at Jantar Mantar in New Delhi. The action against Bitchat appears to be a part of Centre’s broader plan to tighten scrutiny of social media platforms. Earlier this year, MeitY had proposed amendments to the IT Rules, 2021, which would make government advisories legally binding on online intermediaries.",
+    "paragraph5": "The draft rules also proposed requiring platforms to remove content that could be used to commit unlawful acts within three hours of receiving a court order or a reasoned government notice.",
+    "bangla_paragraph1": "সংক্ষিপ্তসার. ডরসি অ্যাপলের একটি অফিসিয়াল ইমেল শেয়ার করেছেন, যা নির্দেশ করে যে MeitY ভারতে অবৈধ বলে মনে করা কথিত সামগ্রীতে অ্যাপ স্টোর থেকে বিটচ্যাট সরিয়ে নেওয়ার আদেশ দিয়েছে। এর আগে, আই 4 সি উদ্বেগ প্রকাশ করেছিল যে বিটচাটের বেনামে যোগাযোগ সক্রিয় তদন্তের সময় কর্তৃপক্ষকে গ্রাহকের বিবরণ পেতে বাধা দেয়।",
+    "bangla_paragraph2": "অ্যাপল ইমেলটি আরও উল্লেখ করেছে যে টেস্টফ্লাইটের মাধ্যমে বিটচ্যাট এর বিটা-পরীক্ষার অ্যাক্সেসও অবরুদ্ধ করা হয়েছে। তবে অ্যাপটি ভারতের বাইরে অ্যাপ স্টোরে উপলব্ধ থাকবে। এদিকে, গুগল প্লে স্টোরের মাধ্যমে বিটক্যাট আর ডাউনলোডের জন্য উপলব্ধ নয় এবং এর ওয়েবসাইটটিও দেশে আর অ্যাকসেসযোগ্য বলে মনে হচ্ছে না। এটি একই কারণে কিনা তা অস্পষ্ট। ডরসি দ্বারা ২০২৫ সালে চালু করা বিটচাট একটি ওপেন-সোর্স মেসেজিং অ্যাপ যা পিয়ার-টু-পিয়ার (পি২) যোগাযোগকে সক্ষম করে।",
+    "bangla_paragraph3": "এই অ্যাপ্লিকেশনটি ব্যবহারকারীদের অ্যাকাউন্ট তৈরি করার প্রয়োজন হয় না এবং এর কোনও কেন্দ্রীয় পরিচয় ব্যবস্থাও নেই। এটি ইন্টারনেট আউটপুট এবং প্রাকৃতিক দুর্যোগের মতো চরম অনুষ্ঠানের সময় বা দুর্বল নেটওয়ার্ক কভারেজ সহ অঞ্চলে ব্যবহার করা যেতে পারে। এটি প্রথমবার নয় যে বিটচ্যাট দেশে ঝামেলা নিয়ন্ত্রণের জলে অবতরণ করেছে। চলতি বছরের জুলাইয়ে ডরসি দাবি করেছিলেন যে ভারত সরকার গিটহাবকে বিটচাটের সাথে যুক্ত একাধিক সংগ্রহস্থল সরিয়ে ফেলার নির্দেশ দিয়েছে। তিনি ভারতীয় সাইবার ক্রাইমের দ্বারা জারি করা একটি বিজ্ঞপ্তি ভাগ করেছেন।",
+    "bangla_paragraph4": "আই৪সি'র বিজ্ঞপ্তিটি উদ্বেগ প্রকাশ করেছিল যে বিটচ্যাট নামহীন যোগাযোগের বাস্তবায়ন কর্তৃপক্ষকে সক্রিয় তদন্তের সময় গ্রাহকের বিবরণ বা যোগাযোগের রেকর্ডগুলি পেতে বাধা দেয়। সংস্থাটি সতর্ক করেছিল যে অবৈধ সমাবেশ, প্রতিবাদ বা অপরাধমূলক কার্যক্রম সমন্বয় করার জন্য নজরদারি এড়াতে এবং ইন্টারনেট বন্ধকে বাইপাস করতে প্ল্যাটফর্মটি শোষণ করা যেতে পারে। উল্লেখযোগ্যভাবে, আই৪ সি'র উদ্বেগগুলি নীট ২০২৬ কাগজ ফাঁসের উদ্বেগগুলির মধ্যে এসেছিল, যখন প্রতিবাদকারীদের রিপোর্ট করা হয়েছিল।",
+    "bangla_paragraph5": "এই খসড়া নিয়মের মধ্যে আদালতের আদেশ বা সরকারি নোটিশ পাওয়ার তিন ঘণ্টার মধ্যে অবৈধ কাজ করতে ব্যবহার করা যেতে পারে এমন সামগ্রী অপসারণের জন্য প্ল্যাটফর্মগুলিকে বাধ্য করার প্রস্তাবও রয়েছে।",
+    "related_articles": [
+      "0edc003c-3779-4783-bb30-b1a32a861453",
+      "ea76e55a-d17b-44ee-bae0-76f553051318",
+      "3feab410-6f87-430a-8fb6-fa2ee7ae8c4f"
+    ]
+  },
+  {
     "id": "78157eef-f540-44b7-a4e6-f463034f4e80",
     "title": "Apple changes full-disk access permissions to curb abuse from AI agents",
     "title_bn": "এআই এজেন্টদের অপব্যবহার রোধে অ্যাপল পুরো ডিস্ক অ্যাক্সেসের অনুমতি পরিবর্তন করে",
@@ -5967,36 +5997,6 @@
       "437aa4cf-0a18-460e-9c6f-48f3b8e74e0d",
       "1ea999b1-05ea-471f-8a73-4474976fd5af",
       "8264bb82-e65b-44e9-b663-356bdc2452f7"
-    ]
-  },
-  {
-    "id": "a388f0a0-020e-4fb2-a5e1-2b24ceaa14b1",
-    "title": "The Skullcandy Crusher 540 Active hits $119.99 at Amazon with big bass and a gym-ready fit",
-    "title_bn": "স্কুলক্যান্ডি ক্রাশার ৫৪০ অ্যাক্টিভ অ্যামাজনে ১১৯.৯৯ ডলারে বিক্রি হচ্ছে",
-    "url": "https://www.androidauthority.com/skullcandy-crusher-540-active-deal-3717509/",
-    "source": "AndroidAuth",
-    "region": "Global",
-    "category": "Hardware",
-    "author": "TechPulse",
-    "date": "Sep 30, 2026",
-    "timestamp": "2026-09-30T16:41:46.000Z",
-    "readTime": "1 min read",
-    "imageUrl": "https://www.androidauthority.com/wp-content/uploads/2026/09/Skullcandy-Crusher-540-Active-Wireless-Headphones-Press-Image.jpg",
-    "excerpt": "Amazon cuts the cans by 43% off RRP, making these bass-heavy workout headphones much easier to grab.",
-    "paragraph1": "Add Android Authority on Google: Skullcandy’s Crusher 540 Active is built for people who want big sound during workouts, and there’s a strong Amazon deal on it right now. These wireless over-ear headphones are designed for gym use, with sweat- and water-resistance, a tighter fit, and Skullcandy’s standout adjustable sensory bass system. That bass feature is the big draw here. The Crusher 540 Active is designed to deliver a much stronger low-end punch than typical headphones, making it a good fit for high-energy playlists.",
-    "paragraph2": "It also supports the Skullcandy app, where you can adjust settings, personalize sound, and access additional controls and customization options. Under the hood, you’re getting Bluetooth 5.2, 40mm drivers, a 20Hz to 20kHz frequency response, and a weight of about 332g. Battery life is rated at up to 40 hours, and rapid charging helps when you need a quick top-up before heading out.",
-    "paragraph3": "Amazon shoppers also seem happy with the headphones, giving them a 4.5-star rating. Reviews often highlight the bass as the headline feature, especially for exercise and high-energy music.The deal is what makes this a good time to buy.",
-    "paragraph4": "Amazon has the Skullcandy Crusher 540 Active down to $119.99, which is $90 off the $209.99 recommended retail price. That’s a 43% discount relative to the RRP.",
-    "paragraph5": "Since the current price is equal to the lowest price we’ve seen this year, this matches the best deal we have seen in 2026.FollowThank you for being part of our community. Read our Comment Policy before posting.",
-    "bangla_paragraph1": "গুগলে অ্যান্ড্রয়েড কর্তৃপক্ষ যুক্ত করুন: স্কুলক্যান্ডি এর ক্রাশার ৫৪০ অ্যাক্টিভ এমন লোকদের জন্য তৈরি করা হয়েছে যারা ওয়ার্কআউটের সময় বড় শব্দ চান এবং বর্তমানে এটিতে একটি শক্তিশালী অ্যামাজন চুক্তি রয়েছে। এই ওয়্যারলেস ওভার-ইয়ার হেডফোনগুলি জিম ব্যবহারের জন্য ডিজাইন করা হয়েছে, ঘাম এবং জলের প্রতিরোধের সাথে, একটি শক্ত ফিট এবং স্কুলকেন্ডির স্ট্যান্ডআউট নিয়মিত সংবেদনশীল বেস সিস্টেম। এই বেস বৈশিষ্ট্যটি এখানে বড় আকর্ষণ। ক্রাশর ৫৪० অ্যাক্টিভটি সাধারণ হেডফোনগুলির তুলনায় অনেক শক্তিশালী লো-এন্ড পাঞ্চ সরবরাহ করার জন্য ডিজাইনের, এটি একটি ভাল ফিট করে।",
-    "bangla_paragraph2": "এটি স্কুলক্যান্ডি অ্যাপ্লিকেশন সমর্থন করে, যেখানে আপনি সেটিংস সামঞ্জস্য করতে পারেন, শব্দটি ব্যক্তিগতকৃত করতে পারেন এবং অতিরিক্ত নিয়ন্ত্রণ এবং কাস্টমাইজেশন বিকল্পগুলি অ্যাক্সেস করতে পারেন। হুডের নীচে, আপনি ব্লুটুথ 5.2 পান, 40 মিমি ড্রাইভার, 20Hz থেকে 20kHz ফ্রিকোয়েন্সি প্রতিক্রিয়া, এবং প্রায় 332g ওজন। ব্যাটারি জীবন 40 ঘন্টা পর্যন্ত রেট করা হয়, এবং দ্রুত চার্জিং যখন আপনি বেরিয়ে যাওয়ার আগে দ্রুত রিপল-আপ প্রয়োজন তখন সহায়তা করে।",
-    "bangla_paragraph3": "অ্যামাজন ক্রেতাদেরও হেডফোনগুলি নিয়ে খুশি বলে মনে হচ্ছে, তাদের ৪.৫ তারকা রেটিং দেয়। পর্যালোচনাগুলি প্রায়শই ব্যায়াম এবং উচ্চ-শক্তিযুক্ত সংগীতের জন্য শিরোনাম বৈশিষ্ট্য হিসাবে বেসকে তুলে ধরে। চুক্তিটিই এটি কেনার জন্য একটি ভাল সময় করে তোলে।",
-    "bangla_paragraph4": "অ্যামাজন স্কালক্যান্ডি ক্রাশার ৫৪০ অ্যাক্টিভকে ১১৯.৯৯ ডলারে বিক্রি করছে, যা প্রস্তাবিত খুচরা মূল্যের ২০৯.99 ডলারের থেকে ৯০ ডলার কম। এটি আরআরপি-র তুলনায় ৪৩% ছাড়।",
-    "bangla_paragraph5": "যেহেতু বর্তমান মূল্য এই বছরের সর্বনিম্ন মূল্যের সমান, তাই এটি ২০২৬ সালে আমরা যে সেরা চুক্তি দেখেছি তার সাথে মেলে। আমাদের সম্প্রদায়ের অংশ হওয়ার জন্য আপনাকে ধন্যবাদ। পোস্ট করার আগে আমাদের মন্তব্য নীতি পড়ুন।",
-    "related_articles": [
-      "8378cb85-852b-459d-9ef9-5e3cd17863e5",
-      "e1a240f8-0b74-4fc0-a9c8-83c6c3dc6e71",
-      "f23c2d4a-5870-4138-8826-3a0f5081e490"
     ]
   }
 ]
